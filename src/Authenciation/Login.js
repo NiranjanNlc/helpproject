@@ -58,8 +58,7 @@ class Login  extends React.Component {
             console.log("trying to open login page")
             this.props.history.push("/chose/")
          //   window.location.reload(false);
-           
-          }
+           }
     }
    componentDidMount()
     {
