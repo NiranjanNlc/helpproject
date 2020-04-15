@@ -108,25 +108,25 @@ class Choice extends React.Component {
     {
         return(
           <section id="detailWrap">
-          <div class="container">
-              <div class="row">
-                  <div class="col-sm-12">
-                      <div class="row">
-                          <div class="col-sm-12 help_cov">
-                              <a class="btn help" href="#">Home</a>
+          <div className="container">
+              <div className="row">
+                  <div className="col-sm-12">
+                      <div className="row">
+                          <div className="col-sm-12 help_cov">
+                              <a className="btn help" href="#">Home</a>
                           </div>
                       </div>
-                      <div class="detailBlock">
-                          <div class="look">
+                      <div className="detailBlock">
+                          <div className="look">
                               <span>I am looking for</span>
                           </div>
                           <form>
-                              <select name="var1" onChange={this.handleChange} class="form-control input-lg">
+                              <select name="var1" onChange={this.handleChange} className="form-control input-lg">
                                   <option value="1">.......</option>
                                   <option value="Resturant">Resturant</option>
                                   <option value="Things To Do">Things To Do</option>  
                               </select>
-                              <select name="var2" onChange={this.handleChange} class="form-control input-lg">
+                              <select name="var2" onChange={this.handleChange} className="form-control input-lg">
                               <option value="Park">Park </option>
                                   <option value="Club">Club </option>
                                   <option value="Muesum">Muesum</option>
@@ -134,7 +134,7 @@ class Choice extends React.Component {
                                   <option value="Mid-Range">Mid-Range </option>
                                   <option value="HighEnd">HighEnd</option> 
                               </select>
-                              <select name='var3' className="form-control input-lg" 
+                              <select name='var3' classNameName="form-control input-lg" 
                               onChange={this.handleChange}>
                               <option value="Meat">Meat </option>
                                   <option value="Fish">Fish </option>
@@ -145,7 +145,7 @@ class Choice extends React.Component {
                                   <option value="6"></option>
                                   </select>
                                <button type="submit" 
-                              class="btn sub_help"
+                              className="btn sub_help"
                               onClick={(e)=>this.submitData(e)}> Help </button>
                           </form>
                       </div>
