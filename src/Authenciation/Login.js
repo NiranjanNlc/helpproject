@@ -27,6 +27,7 @@ class Login  extends React.Component {
     
     submitData(event)
     {
+      event.preventDefault();
     console.log("hello hunny bunny " )
     const { name, value } = event.target
     this.setState({

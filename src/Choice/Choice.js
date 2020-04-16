@@ -113,7 +113,7 @@ class Choice extends React.Component {
                   <div className="col-sm-12">
                       <div className="row">
                           <div className="col-sm-12 help_cov">
-                              <a className="btn help" href="#">Home</a>
+                             <Link to = "/dash"> <a className="btn help" href="#">Home</a></Link>
                           </div>
                       </div>
                       <div className="detailBlock">
@@ -134,8 +134,7 @@ class Choice extends React.Component {
                                   <option value="Mid-Range">Mid-Range </option>
                                   <option value="HighEnd">HighEnd</option> 
                               </select>
-                              <select name='var3' classNameName="form-control input-lg" 
-                              onChange={this.handleChange}>
+                              <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
                               <option value="Meat">Meat </option>
                                   <option value="Fish">Fish </option>
                                   <option value="Vegeterian">Vegeterian</option> 

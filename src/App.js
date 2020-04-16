@@ -7,17 +7,26 @@ import DashBoard from './DashBoard/DashBoard';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import SignUp from './Authenciation/SignUp';
 import Login from './Authenciation/Login';
+import MenuComponent from './NavBAr/MenuComponent';
 
 
 function App() {
   return (
-    <div>
+    <div> 
+        
+        
     <Router>
+    <MenuComponent />
         <>
         <Switch>
           <Route path="/" exact component={Login} />
            <Route path="/add/" component={SelectPlace} />
           <Route path="/chose/" component={Choice} />
+          <Route path="/dash/" component={DashBoard}/>
+             <Route path="/login/" component={Login}/>
+             <Route path="/sign/" component={SignUp}/>
+          
+           />
         </Switch>
       </>
 

@@ -2,9 +2,12 @@ import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
+import Axios from 'axios';
+import './Map.css'
+const API_URL = 'http://localhost:9001/send/' 
+const SUBMIT_URL = `${API_URL}`
 Geocode.setApiKey( "AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc" );
 Geocode.enableDebug();
-
 class Map extends Component{
 
 	constructor( props ){
@@ -26,23 +29,15 @@ class Map extends Component{
 	}
 	/**
 	 * Get the current address from the default map position and set those values in the state
-	 */
+	*/ 
 	componentDidMount() {
 		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
 			response => {
 				const address = response.results[0].formatted_address,
-				      addressArray =  response.results[0].address_components,
-				      city = this.getCity( addressArray ),
-				      area = this.getArea( addressArray ),
-				      state = this.getState( addressArray );
-
-				console.log( 'city', city, area, state );
+				      addressArray =  response.results[0].address_components;
 
 				this.setState( {
-					address: ( address ) ? address : '',
-					area: ( area ) ? area : '',
-					city: ( city ) ? city : '',
-					state: ( state ) ? state : '',
+					address: ( address ) ? address :''
 				} )
 			},
 			error => {
@@ -75,7 +70,7 @@ class Map extends Component{
 	 *
 	 * @param addressArray
 	 * @return {string}
-	 */
+	
 	getCity = ( addressArray ) => {
 		let city = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -90,7 +85,7 @@ class Map extends Component{
 	 *
 	 * @param addressArray
 	 * @return {string}
-	 */
+	 
 	getArea = ( addressArray ) => {
 		let area = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -109,7 +104,7 @@ class Map extends Component{
 	 *
 	 * @param addressArray
 	 * @return {string}
-	 */
+	 
 	getState = ( addressArray ) => {
 		let state = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -179,22 +174,16 @@ class Map extends Component{
 	/**
 	 * When the user types an address in the search box
 	 * @param place
-	 */
+	 
 	onPlaceSelected = ( place ) => {
 		console.log( 'plc', place );
 		const address = place.formatted_address,
 		      addressArray =  place.address_components,
-		      city = this.getCity( addressArray ),
-		      area = this.getArea( addressArray ),
-		      state = this.getState( addressArray ),
 		      latValue = place.geometry.location.lat(),
 		      lngValue = place.geometry.location.lng();
 		// Set these values in the state.
 		this.setState({
 			address: ( address ) ? address : '',
-			area: ( area ) ? area : '',
-			city: ( city ) ? city : '',
-			state: ( state ) ? state : '',
 			markerPosition: {
 				lat: latValue,
 				lng: lngValue
@@ -205,12 +194,22 @@ class Map extends Component{
 			},
 		})
 	};
-
+	*/
+	submitData(event)
+	 {
+	  Axios.post(`${SUBMIT_URL}`,this.state.address)
+	  .then((response) => {
+		console.log(response) 
+		 }).catch(() => {
+		console.log("error in adding ") 
+	 })
+	 }
 
 	render(){
 		const AsyncMap = withScriptjs(
 			withGoogleMap(
 				props => (
+					<div>
 					<GoogleMap google={ this.props.google }
 					           defaultZoom={ this.props.zoom }
 					           defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
@@ -244,7 +243,9 @@ class Map extends Component{
 							onPlaceSelected={ this.onPlaceSelected }
 							types={['(regions)']}
 						/>
-					</GoogleMap>
+						
+					</GoogleMap> 
+					 </div>
 				)
 			)
 		);
@@ -252,7 +253,7 @@ class Map extends Component{
 		if( this.props.center.lat !== undefined ) {
 			map = <div>
 				<div>
-					<div className="form-group">
+				{/* 	<div className="form-group">
 						<label htmlFor="">City</label>
 						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
 					</div>
@@ -263,7 +264,7 @@ class Map extends Component{
 					<div className="form-group">
 						<label htmlFor="">State</label>
 						<input type="text" name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state }/>
-					</div>
+		</div> */}
 					<div className="form-group">
 						<label htmlFor="">Address</label>
 						<input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address }/>
@@ -282,6 +283,9 @@ class Map extends Component{
 						<div style={{ height: `100%` }} />
 					}
 				/>
+ <button type="submit" 
+                              className="btn_sub_help"
+                              onClick={(e)=>this.submitData(e)}> Help </button>
 			</div>
 		} else {
 			map = <div style={{height: this.props.height}} />

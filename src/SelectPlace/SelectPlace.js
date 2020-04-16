@@ -18,6 +18,7 @@ class SelectPlace extends Component {
 					height='300px'
 					zoom={15}
 				/>
+        
 			</div>
     )
   }
