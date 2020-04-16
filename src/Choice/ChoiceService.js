@@ -1,0 +1,21 @@
+import axios from 'axios' 
+const API_URL = 'http://localhost:9001/send/' 
+const SUBMIT_URL = `${API_URL}`
+export const TOKEN="token"
+ export const headers = { 
+  'Authorization': 'Bearer '+localStorage.getItem(TOKEN)
+}
+class ChoiceService {
+  
+   ChoiceService(help)
+   {
+    console.log(help)
+    console.log("let me check")
+     return  axios.post(`${SUBMIT_URL}`,help)
+    
+  }
+   
+
+  
+}
+export default new ChoiceService();
