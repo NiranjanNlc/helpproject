@@ -111,6 +111,9 @@ ul.info li{
     font-size: 15px;
     text-transform: uppercase;
 }
+.btn.help a{
+    color: #fff;
+}
 
 /* help_page  */
 .look {

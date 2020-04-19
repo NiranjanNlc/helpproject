@@ -14,3 +14,24 @@
     left: 40%;
      
   }
+
+#mapWrap {
+  padding: 40px 0;
+}
+#mapWrap label {
+  font-weight: 700;
+  border-left: 3px solid #333;
+  padding-left: 15px;
+}
+.mapResult {
+    text-align: center;
+}
+.mapResult .form-control{
+  margin: 10px 0;
+}
+.mapResult .btn_sub_help {
+  background: #545454;
+  color: #fff;
+  padding: 12px 40px;
+  border-radius: 25px;
+}

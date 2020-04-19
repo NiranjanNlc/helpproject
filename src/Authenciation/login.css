@@ -120,7 +120,44 @@ h4 {
 #formWrap .form-control {
    height: 45px;
 }
+<<<<<<< HEAD
 
+=======
+#formWrap .cov-rem.clearfix{
+    margin-top: 20px;
+    font-size: 17px;
+}
+#formWrap .rem:first-child{
+    float: left;
+}
+#formWrap .rem:last-child{
+    float: right;
+}
+#formWrap hr{
+    margin: 6px 0;
+    border-color: #909090;
+}
+#formWrap .small {
+    margin: 0;
+    font-size: 17px;
+}
+#formWrap .small a{
+    color: #333;
+}
+#formWrap p.noac {
+    text-align: center;
+    margin: 0;
+    margin-top: 15px;
+    font-size: 17px;
+}
+#formWrap p.noac a{
+    color: #02bde2;
+    font-weight: 600;
+}
+#formWrap .rem input[type="checkbox"] {
+    margin-right: 6px;
+}
+>>>>>>> 312d1e08a74b14d2e1b770f73e76b95ab29b64dc
 .btn.sub_help {
     background: #3c3c3c;
     border-radius: 25px;
