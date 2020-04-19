@@ -59,7 +59,7 @@ class SignUp extends React.Component {
                                     <input type="text" onChange={this.handleChange} name="name"   className="form-control" placeholder="Name"/>
                                     <input type="text" onChange={this.handleChange}  name="surname"   className="form-control" placeholder="Surname"/>
                                     <input type="email" onChange={this.handleChange}  name="email"   className="form-control" placeholder="Email"/>
-                                    <input type="number" onChange={this.handleChange}  name="number"   className="form-control" placeholder="Number"/>
+                                    <input type="text" onChange={this.handleChange}  name="number"   className="form-control" placeholder="Number"/>
                                     <input type="text" onChange={this.handleChange} name="postcode"   className="form-control" placeholder="PostCode"/>
                                     <input type="text" placeholder="Enter Registration id"   className="form-control" name="rid" onChange={this.handleChange} required />
                                      <input type="password" placeholder="Enter Password" name="psw"   className="form-control" required onChange={this.handleChange}  required/>

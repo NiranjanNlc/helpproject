@@ -44,7 +44,8 @@ class Login  extends React.Component {
       console.log( response.data.accessToken)
       AuthenciationService.registerSuccessfulLoginForJwt(this.state.uname, response.data.accessToken)
         console.log("trying to push ") 
-      //  window.location.reload(false);   
+        this.props.history.push("/dash")
+        window.location.reload(false);   
     
     }).catch(() => {
         console.log("error")

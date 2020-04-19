@@ -1,5 +1,5 @@
 import axios from 'axios' 
-const API_URL = 'http://localhost:9001/send/' 
+const API_URL = '/send/' 
 const SUBMIT_URL = `${API_URL}`
 export const TOKEN="token"
  export const headers = { 
@@ -11,7 +11,7 @@ class ChoiceService {
    {
     console.log(help)
     console.log("let me check")
-     return  axios.post(`${SUBMIT_URL}`,help)
+     return  axios.post(`${SUBMIT_URL}`,help,{headers})
     
   }
    

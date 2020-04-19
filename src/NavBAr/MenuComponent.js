@@ -29,7 +29,7 @@ class MenuComponent extends Component {
                     
              <AppBar>
                  <Toolbar>
-                    <div><a href="#" className="navbar-brand">CoverTeacher</a></div>
+                    <div><a href="#" className="navbar-brand">KlyGo</a></div>
                     <ul className="navbar-nav">
                     {loggedIn && <li><Link className="nav-link" to="/add">Select Place</Link></li>}
                      {loggedIn &&  <li><Link className="nav-link" to="/chose">Ask for help</Link></li>}
@@ -40,7 +40,7 @@ class MenuComponent extends Component {
 
                     </ul>
                     <ul className="navbar-nav navbar-collapse justify-content-end">
-                    {loggedIn && <li><Link className="nav-link" to="/">Login</Link></li>}
+                    {loggedIn && <li><Link className="nav-link" to="/login/">Login</Link></li>}
                     {loggedIn && <li><Link className="nav-link" to="/sign">SignUp </Link></li>} 
                     </ul>
                     

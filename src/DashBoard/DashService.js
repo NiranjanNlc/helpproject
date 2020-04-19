@@ -1,6 +1,6 @@
 import axios from 'axios' 
 const API_URL = 'http://localhost:8080/send' 
-const HELP_URL = `http://localhost:9001/send/getHelpedNumber`
+const HELP_URL = `/send/getHelpedNumber`
 export const TOKEN="token"
  export const headers = { 
   'Authorization': 'Bearer '+localStorage.getItem(TOKEN)
@@ -8,7 +8,7 @@ export const TOKEN="token"
 class DashService {
   retrieveValue() {
     console.log("getting the value................")
-    return axios.get(`${HELP_URL}`);
+    return axios.get(`${HELP_URL}`,{headers});
   }
   
 }

@@ -4,10 +4,14 @@ import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import Axios from 'axios';
 import './Map.css'
-const API_URL = 'http://localhost:9001/send/' 
+const API_URL = '/send/suggestion' 
 const SUBMIT_URL = `${API_URL}`
 Geocode.setApiKey( "AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc" );
 Geocode.enableDebug();
+export const TOKEN="token"
+ export const headers = { 
+  'Authorization': 'Bearer '+localStorage.getItem(TOKEN)
+}
 class Map extends Component{
 
 	constructor( props ){
@@ -197,7 +201,7 @@ class Map extends Component{
 	*/
 	submitData(event)
 	 {
-	  Axios.post(`${SUBMIT_URL}`,this.state.address)
+	  Axios.post(`${SUBMIT_URL}`,this.state.address,{headers})
 	  .then((response) => {
 		console.log(response) 
 		 }).catch(() => {
