@@ -28,13 +28,7 @@ class AuthenticationService
         console.log(($signup))
         //  console.log($school+$subjet+$time)
         axios.post(`${API_URL}/api/auth/signup`,$signup)
-          .then(function (response) {
-          
-            console.log(response);
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
+       
       }
       isUserLoggedIn() {
         let user = localStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)

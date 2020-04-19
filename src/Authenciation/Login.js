@@ -96,7 +96,7 @@ class Login  extends React.Component {
                     </div>
                   </div>
                   <hr />
-                  <p className="noac">Not member yet? <a href="#">Register Now</a></p>
+                  <p className="noac">Not member yet? <Link  to="/sign/"><a href="#">Register Now</a></Link></p>
                 </form>
               </div>
             </div>

@@ -92,12 +92,9 @@ h4 {
 #main #formWrap .formWrap {
    padding: 55px;
 }
-<<<<<<< HEAD
-=======
 #signUpWrap #formWrap{
     height: auto ;
 }
->>>>>>> 312d1e08a74b14d2e1b770f73e76b95ab29b64dc
 #formWrap {
    padding: 50px 0;
    display: flex;
@@ -149,11 +146,8 @@ h4 {
     }
 
 }
-<<<<<<< HEAD
 
-=======
 /* a */
->>>>>>> 312d1e08a74b14d2e1b770f73e76b95ab29b64dc
 @media (min-width: 768px) {
 
 }
@@ -162,14 +156,11 @@ h4 {
     #formWrap .formWrap {
         width: 60%;
     }
-<<<<<<< HEAD
     #formWrap {
         height: 100vh;}
-=======
     #signUpWrap #formWrap{
         height: 100vh;
     }
->>>>>>> 312d1e08a74b14d2e1b770f73e76b95ab29b64dc
     .register, .signIn {
         width: 70%;
     }

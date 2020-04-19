@@ -22,8 +22,18 @@ class DashBoard extends React.Component {
       response => {
         console.log(response);
        this.setState({helped: response.data })
+      
     } 
     )
+    DashService.getData(this.state.name)
+    .then(
+        response => {
+          console.log(response);
+         this.setState({helped: response.data })
+        
+      } 
+      )
+       
  }
  
     

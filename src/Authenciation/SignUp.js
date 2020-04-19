@@ -36,7 +36,20 @@ class SignUp extends React.Component {
           rId:this.state.rid,
           psw:this.state.psw
         };
-        AuthenciationService.signUpRequest(signup);
+        AuthenciationService.signUpRequest(signup)
+        .then((response) => {
+          console.log("trying to push ")
+           
+          this.props.history.push("/login")
+          window.location.reload(false);   
+          //  window.location.reload(false);   
+  
+        }).catch(() => {
+          console.log("error in adding")
+          this.setState({ showSuccessMessage: false })
+          this.setState({ hasLoginFailed: true })
+        })
+  
       } 
     
   

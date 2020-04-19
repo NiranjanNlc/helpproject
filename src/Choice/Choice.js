@@ -97,11 +97,11 @@ class Choice extends React.Component {
      ChoiceService.ChoiceService (help)
    .then((response) => {
      console.log(response) 
+     this.props.history.push("/dash")
       }).catch(() => {
      console.log("error in adding ") 
   })
-  console.log(this.state.nextPage) 
-   this.props.history.push("/")
+ 
   }  
     
     render()
