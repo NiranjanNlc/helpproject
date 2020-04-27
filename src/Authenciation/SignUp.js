@@ -2,6 +2,8 @@ import   React  from 'react'
 import { BrowserRouter as Router, Route, history, Redirect ,Link} from 'react-router-dom'
 import  './register.css'
 import AuthenciationService from './AuthenciationService'
+import Autocomplete from 'react-autocomplete'
+import Place from './Place'
 class SignUp extends React.Component {
     constructor(props) {
       super(props)
@@ -16,6 +18,7 @@ class SignUp extends React.Component {
       }  
       this.handleChange=this.handleChange.bind(this)
       this.submitData = this.submitData.bind(this)
+      this.handleCo = this.handleCo.bind(this)
     }
     handleChange(event) {
     console.log(event.target.value)
@@ -24,8 +27,13 @@ class SignUp extends React.Component {
       [name]: value
     })
   }
+  handleCo(cordinate) { 
+    this.setState({
+      postcode: cordinate
+    })
+  }
       submitData(event) {
-
+         event.preventDefault()
         console.log(this.state.sname)
         const signup = {
           firstName: this.state.name,
@@ -39,13 +47,15 @@ class SignUp extends React.Component {
         AuthenciationService.signUpRequest(signup)
         .then((response) => {
           console.log("trying to push ")
-           
-          this.props.history.push("/login")
-          window.location.reload(false);   
+          this.props.history.push("/chose/")
+        //  window.location.reload(false);   
           //  window.location.reload(false);   
   
-        }).catch(() => {
+        }).catch(() => 
+        {
           console.log("error in adding")
+
+          this.props.history.push("/login/")
           this.setState({ showSuccessMessage: false })
           this.setState({ hasLoginFailed: true })
         })
@@ -73,7 +83,12 @@ class SignUp extends React.Component {
                                     <input type="text" onChange={this.handleChange}  name="surname"   className="form-control" placeholder="Surname"/>
                                     <input type="email" onChange={this.handleChange}  name="email"   className="form-control" placeholder="Email"/>
                                     <input type="text" onChange={this.handleChange}  name="number"   className="form-control" placeholder="Number"/>
-                                    <input type="text" onChange={this.handleChange} name="postcode"   className="form-control" placeholder="PostCode"/>
+                                    {/*<input type="text" onChange={this.handleChange} name="postcode"   className="form-control" placeholder="PostCode"/>
+                                    */}
+                                     <Place 
+                                     
+                                     onSelect={this.handleCo}    name="postcode"   className="form-control"  />
+                                  
                                     <input type="text" placeholder="Enter Registration id"   className="form-control" name="rid" onChange={this.handleChange} required />
                                      <input type="password" placeholder="Enter Password" name="psw"   className="form-control" required onChange={this.handleChange}  required/>
 

@@ -81,6 +81,7 @@ class Choice extends React.Component {
     
   submitData(event) {
   //  this.getLocation()
+  event.preventDefault()
     console.log("hello hunny bunny ") 
     const { name, value } = event.target
         this.setState({
@@ -97,7 +98,7 @@ class Choice extends React.Component {
      ChoiceService.ChoiceService (help)
    .then((response) => {
      console.log(response) 
-     this.props.history.push("/dash")
+     this.props.history.push("/chose")
       }).catch(() => {
      console.log("error in adding ") 
   })

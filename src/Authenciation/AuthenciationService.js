@@ -27,7 +27,7 @@ class AuthenticationService
    signUpRequest($signup) {
         console.log(($signup))
         //  console.log($school+$subjet+$time)
-        axios.post(`${API_URL}/api/auth/signup`,$signup)
+      return   axios.post(`${API_URL}/api/auth/signup`,$signup)
        
       }
       isUserLoggedIn() {

@@ -178,11 +178,11 @@ class Map extends Component{
 	/**
 	 * When the user types an address in the search box
 	 * @param place
-	 
+	*/ 
 	onPlaceSelected = ( place ) => {
 		console.log( 'plc', place );
 		const address = place.formatted_address,
-		      addressArray =  place.address_components,
+		 //     addressArray =  place.address_components,
 		      latValue = place.geometry.location.lat(),
 		      lngValue = place.geometry.location.lng();
 		// Set these values in the state.
@@ -198,7 +198,7 @@ class Map extends Component{
 			},
 		})
 	};
-	*/
+	
 	submitData(event)
 	 {
 	  Axios.post(`${SUBMIT_URL}`,this.state.address,{headers})

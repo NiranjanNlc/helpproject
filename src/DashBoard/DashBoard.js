@@ -29,7 +29,11 @@ class DashBoard extends React.Component {
     .then(
         response => {
           console.log(response);
-         this.setState({helped: response.data })
+         this.setState( 
+          {name: response.data.firstName},
+          {email: response.data.email},
+          {phone: response.data.phone}
+          )
         
       } 
       )
