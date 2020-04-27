@@ -1,10 +1,17 @@
 import React from 'react'; 
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 
+import '../SelectPlace/Map.css'
 class Place extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { address: '' }
+    this.state = { address: '',
+                    city:'',
+                  area:'',
+                state:'',
+              postalcode:'' }
+    this.setFormLocation = this.setFormLocation.bind(this)
+    this.handleSelect = this.handleSelect.bind(this)
   }
 
   handleChange = (address) => {
@@ -12,21 +19,57 @@ class Place extends React.Component {
   }
 
   // When the user selects an autocomplete suggestion...
-  handleSelect = (address) => {
+  handleSelect  (place)
+   {
     // Pull in the setFormLocation function from the parent ReportForm
    // const setFormLocation = this.props.setFormLocation
-      this.props.onSelect(address);
+      this.props.onSelect(place); 
        
-    geocodeByAddress(address)
-      .then(function(results){
-        // Set the location in the parent ReportFrom
-       // setFormLocation(results[0].formatted_address)
-       console.log(results[0].formatted_address)
-      // this.props.onClick(results[0].formatted_address)
+    geocodeByAddress(place)
+      .then(results =>{ 
+    const   addressArray =  results[0].address_components
+    console.log(addressArray)
+     const city=this.setFormLocation ( addressArray )
+       })
+      .catch(error =>
+        {console.error('Error', error)
+
+
       })
-      .catch(error => console.error('Error', error))
       
   }
+  setFormLocation ( addressArray )
+  {
+    console.log("heloo this method is working ")
+    let city = '';
+    let state ='';
+    let area='';
+    for( let i = 0; i < addressArray.length; i++ )
+     {
+      if ( addressArray[ i ].types[0] && 'administrative_area_level_2' === addressArray[ i ].types[0] )
+       {
+        city ='City :'+ addressArray[ i ].long_name;
+        this.setState({city : city})
+        console.log(city)
+       } 
+       if ( addressArray[ i ].types[0] && 'administrative_area_level_1' === addressArray[ i ].types[0] )
+        {
+       state = 'State :'+addressArray[ i ].long_name;
+       this.setState({state: state})
+       console.log(state)
+        } 
+        if ( addressArray[ i ].types[0]  ) {
+          for ( let j = 0; j < addressArray[ i ].types.length; j++ ) {
+            if ( 'sublocality_level_1' === addressArray[ i ].types[j] || 'locality' === addressArray[ i ].types[j] ) {
+              area = 'Area :'+ addressArray[ i ].long_name;
+              this.setState({area : area})
+              console.log(area)
+            }
+          }
+        }
+       console.log(city+state+area)
+		}
+	};
 
   render() {
     const renderInput = ({ getInputProps, getSuggestionItemProps, suggestions }) => (
@@ -46,15 +89,24 @@ class Place extends React.Component {
             </div>
           ))}
         </div>
+         	<div className="form-group"> 
+						<input type="text"  placeholder = 'City' name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
+					</div>
+					<div className="form-group"> 
+						<input type="text" placeholder = 'Area'name="area" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.area }/>
+					</div>
+					<div className="form-group"> 
+						<input type="text"  placeholder = 'State' name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state }/>
+		</div>  
       </div>
     );
 
     // Limit the suggestions to show only cities in the US
-    const searchOptions = {
+     /*const searchOptions = {
       types: ['(cities)'],
       componentRestrictions: {country: "us"}
      }
-
+*/
     return (
       <PlacesAutocomplete
         value={this.state.address}
@@ -62,7 +114,7 @@ class Place extends React.Component {
         onSelect={this.handleSelect} 
         renderInput={{ placeholder: 'Enter address' }}
         // Pass the search options prop
-        searchOptions={searchOptions}
+        //searchOptions={searchOptions}
         
       >
         {renderInput}

@@ -35,3 +35,8 @@
   padding: 12px 40px;
   border-radius: 25px;
 }
+.form-control {
+  height: 45px;
+  background:#ffffff ;
+  color: #fff;
+}

@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, history, Redirect ,Link} from 'react-ro
 import  './styleMedia.css'
 import  './styleCommon.css'
 import ChoiceService from './ChoiceService'
+import Place from '../Authenciation/Place'
 
 class Choice extends React.Component {
     constructor(props) 
@@ -16,15 +17,25 @@ class Choice extends React.Component {
         var3:'role1' ,
         lat:'',
         lang:'',
-        location:''
+        location:'',
+        city:'',
+        state:'',
+        area :''
 
       }
       this.handleChange = this.handleChange.bind(this)
        this.getpostal=this.getpostal.bind(this)
     this.submitData=this.submitData.bind(this)
- this.getLocation=this.getLocation.bind(this)}
+ this.getLocation=this.getLocation.bind(this)
+this.handleCo = this.handleCo.bind(this)}
+
+handleCo(cordinate) { 
+    this.setState({
+      location : cordinate
+    })
+  }
     componentDidMount() {
-        console.log('Component did mount!')
+    /*    console.log('Component did mount!')
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position)
             this.setState({lat: position.coords.latitude,
@@ -37,7 +48,7 @@ class Choice extends React.Component {
             timeout: 20000,
             maximumAge: 1000
         });
-        console.log( this.state.lat )
+        console.log( this.state.lat )*/
       //  this.getLocation();       
         }
      getLocation()
@@ -144,6 +155,10 @@ class Choice extends React.Component {
                                   <option value="Affordable">Affordable</option>
                                   <option value="6"></option>
                                   </select>
+                                               <b>in the location</b>   
+                                  <Place 
+                                     
+                                     onSelect={this.handleCo}   name="postcode"   className="form-control"  />
                                <button type="submit" 
                               className="btn sub_help"
                               onClick={(e)=>this.submitData(e)}> Help </button>
