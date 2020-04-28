@@ -47,7 +47,7 @@ class SignUp extends React.Component {
         AuthenciationService.signUpRequest(signup)
         .then((response) => {
           console.log("trying to push ")
-          this.props.history.push("/chose/")
+          this.props.history.push("/login/")
         //  window.location.reload(false);   
           //  window.location.reload(false);   
   
@@ -55,7 +55,7 @@ class SignUp extends React.Component {
         {
           console.log("error in adding")
 
-          this.props.history.push("/login/")
+         // this.props.history.push("/login/")
           this.setState({ showSuccessMessage: false })
           this.setState({ hasLoginFailed: true })
         })

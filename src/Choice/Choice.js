@@ -109,7 +109,7 @@ handleCo(cordinate) {
      ChoiceService.ChoiceService (help)
    .then((response) => {
      console.log(response) 
-     this.props.history.push("/chose")
+     this.props.history.push("/chose/")
       }).catch(() => {
      console.log("error in adding ") 
   })

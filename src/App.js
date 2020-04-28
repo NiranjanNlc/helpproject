@@ -8,6 +8,7 @@ import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import SignUp from './Authenciation/SignUp';
 import Login from './Authenciation/Login';
 import MenuComponent from './NavBAr/MenuComponent';
+import ThankYOu from './Authenciation/ThankYou';
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
           <Route path="/dash/" component={DashBoard}/>
              <Route path="/login/" component={Login}/>
              <Route path="/sign/" component={SignUp}/>
+             <Route path="/thanks/" component={ThankYOu}/>
           
            />
         </Switch>

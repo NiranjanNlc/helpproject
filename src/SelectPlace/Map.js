@@ -187,7 +187,7 @@ class Map extends Component{
 		      lngValue = place.geometry.location.lng();
 		// Set these values in the state.
 		this.setState({
-			address: ( address ) ? address : '',
+			address: place,
 			markerPosition: {
 				lat: latValue,
 				lng: lngValue
@@ -204,6 +204,7 @@ class Map extends Component{
 	  Axios.post(`${SUBMIT_URL}`,this.state.address,{headers})
 	  .then((response) => {
 		console.log(response) 
+		this.props.history.push("/thanks/")
 		 }).catch(() => {
 		console.log("error in adding ") 
 	 })
