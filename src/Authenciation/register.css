@@ -24,14 +24,9 @@ header {
 }
 
 .feild_entry .label {
-    text-align: right;
     display: flex;
     justify-content: center;
     flex-direction: column;
-}
-
-.label label {
-    margin: 0;
 }
 
 .feild .form-control {
@@ -72,4 +67,19 @@ header {
 
 .submitBtn .sub_help:hover {
     background: #e40d0d !important;
+}
+
+@media (max-width: 767px) {
+    .submitBtn {
+        text-align: left;
+    }
+}
+
+@media (min-width: 768px) {
+    .label label {
+        margin: 0;
+    }
+    .feild_entry .label {
+        text-align: right;
+    }
 }
