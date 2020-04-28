@@ -33,9 +33,7 @@ body {
     margin: 0 auto !important;
 }
 
-a,
-a:hover,
-a:focus {
+a, a:hover, a:focus {
     color: inherit;
     text-decoration: none;
     transition: all 0.3s;
@@ -45,10 +43,7 @@ p {
     line-height: 1.7;
 }
 
-h1,
-h2,
-h3,
-h4 {
+h1, h2, h3, h4 {
     /* font-family: 'Lora', serif; */
     font-family: 'Roboto Slab', serif;
 }
@@ -58,106 +53,125 @@ h4 {
     height: 150px;
     margin: 0 auto;
 }
-.profile_photo img{
+
+.profile_photo img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
-#main #formWrap{
-    height: 100vh; 
-}
-.register, .signIn{
-   border-radius: 25px;
-   padding: 12px 40px;
-   color: #fff;
-   cursor: pointer;
-   width: 55%;
-}
-.register{
-   border: 2px solid #3c3c3c;
-   color: #3c3c3c;
-   margin-bottom: 20px;
-}
-.register:hover{
-   background: #3c3c3c;
-   color: #fff;
-}
-.signIn{
-   background: #3c3c3c;
-}
-.signIn:hover{
-   background: #232323;
-   color: #fff;
-}
-#main #formWrap .formWrap {
-   padding: 55px;
-}
-#formWrap {
-   padding: 50px 0;
-   display: flex;
-   height: 100vh;
-   flex-direction: column;
-   justify-content: center;
-   background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#00c0f1), color-stop(100%,#10e281));
-}
-#formWrap .formWrap{
-   padding: 25px;
-   background: #fff;
-   box-shadow: 0px 0px 0px 5px rgba( 255,255,255,0.4 ), 0px 4px 20px rgba( 0,0,0,0.33 );
-   -moz-border-radius: 5px;
-   border-radius: 5px;
-   width: 37%;
-   margin: 0 auto;
-}
-#formWrap .form-control{
-   margin-bottom: 15px;
-}
-#formWrap .profile_photo {
-   width: 130px;
-   height: 130px;
-   margin-bottom: 15px;
-}
-#formWrap .form-control {
-   height: 45px;
-}
-<<<<<<< HEAD
 
-=======
-#formWrap .cov-rem.clearfix{
+#main #formWrap {
+    height: 100vh;
+}
+
+.register, .signIn {
+    border-radius: 25px;
+    padding: 12px 40px;
+    color: #fff;
+    cursor: pointer;
+    width: 55%;
+}
+
+.register {
+    border: 2px solid #3c3c3c;
+    color: #3c3c3c;
+    margin-bottom: 20px;
+}
+
+.register:hover {
+    background: #3c3c3c;
+    color: #fff;
+}
+
+.signIn {
+    background: #3c3c3c;
+}
+
+.signIn:hover {
+    background: #232323;
+    color: #fff;
+}
+
+#main #formWrap .formWrap {
+    padding: 55px;
+}
+
+#formWrap {
+    padding: 50px 0;
+    display: flex;
+    height: 100vh;
+    flex-direction: column;
+    justify-content: center;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00c0f1), color-stop(100%, #10e281));
+}
+
+#formWrap .formWrap {
+    padding: 25px;
+    background: #fff;
+    box-shadow: 0px 0px 0px 5px rgba( 255, 255, 255, 0.4), 0px 4px 20px rgba( 0, 0, 0, 0.33);
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    width: 37%;
+    margin: 0 auto;
+}
+
+#formWrap .form-control {
+    margin-bottom: 15px;
+}
+
+#formWrap .profile_photo {
+    width: 130px;
+    height: 130px;
+    margin-bottom: 15px;
+}
+
+#formWrap .form-control {
+    height: 45px;
+}
+
+#formWrap .cov-rem.clearfix {
     margin-top: 20px;
     font-size: 17px;
 }
-#formWrap .rem:first-child{
+
+#formWrap .rem:first-child {
     float: left;
 }
-#formWrap .rem:last-child{
+
+#formWrap .rem:last-child {
     float: right;
 }
-#formWrap hr{
+
+#formWrap hr {
     margin: 6px 0;
     border-color: #909090;
 }
+
 #formWrap .small {
     margin: 0;
     font-size: 17px;
 }
-#formWrap .small a{
+
+#formWrap .small a {
     color: #333;
 }
+
 #formWrap p.noac {
     text-align: center;
     margin: 0;
     margin-top: 15px;
     font-size: 17px;
 }
-#formWrap p.noac a{
+
+#formWrap p.noac a {
     color: #02bde2;
     font-weight: 600;
 }
+
 #formWrap .rem input[type="checkbox"] {
     margin-right: 6px;
 }
->>>>>>> 312d1e08a74b14d2e1b770f73e76b95ab29b64dc
+
 .btn.sub_help {
     background: #3c3c3c;
     border-radius: 25px;
@@ -165,32 +179,32 @@ h4 {
     color: #fff;
     cursor: pointer;
 }
-.btn.sub_help:hover, .btn.sub_help:focus{
+
+.btn.sub_help:hover, .btn.sub_help:focus {
     background: #545454;
 }
+
 @media (max-width: 767px) {
     #formWrap .formWrap {
         width: 100%;
     }
     .help_cov {
-       margin-bottom: 15px;
+        margin-bottom: 15px;
     }
     .register, .signIn {
         width: 80%;
     }
-
 }
 
-@media (min-width: 768px) {
-
-}
+@media (min-width: 768px) {}
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
     #formWrap .formWrap {
         width: 60%;
     }
     #formWrap {
-        height: 100vh;}
+        height: 100vh;
+    }
     .register, .signIn {
         width: 70%;
     }

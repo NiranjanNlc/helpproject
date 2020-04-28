@@ -16,7 +16,7 @@ class SelectPlace extends Component {
           <Map
             google={this.props.google}
             center={{ lat: 18.5204, lng: 73.8567 }}
-            height='300px'
+            height='auto'
             zoom={15}
           />
         </div>

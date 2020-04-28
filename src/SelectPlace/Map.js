@@ -4,18 +4,18 @@ import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
 import Axios from 'axios';
 import './Map.css'
-const API_URL = '/send/suggestion' 
+const API_URL = '/send/suggestion'
 const SUBMIT_URL = `${API_URL}`
-Geocode.setApiKey( "AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc" );
+Geocode.setApiKey("AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc");
 Geocode.enableDebug();
-export const TOKEN="token"
- export const headers = { 
-  'Authorization': 'Bearer '+localStorage.getItem(TOKEN)
+export const TOKEN = "token"
+export const headers = {
+	'Authorization': 'Bearer ' + localStorage.getItem(TOKEN)
 }
-class Map extends Component{
+class Map extends Component {
 
-	constructor( props ){
-		super( props );
+	constructor(props) {
+		super(props);
 		this.state = {
 			address: '',
 			city: '',
@@ -33,19 +33,19 @@ class Map extends Component{
 	}
 	/**
 	 * Get the current address from the default map position and set those values in the state
-	*/ 
+	*/
 	componentDidMount() {
-		Geocode.fromLatLng( this.state.mapPosition.lat , this.state.mapPosition.lng ).then(
+		Geocode.fromLatLng(this.state.mapPosition.lat, this.state.mapPosition.lng).then(
 			response => {
 				const address = response.results[0].formatted_address,
-				      addressArray =  response.results[0].address_components;
+					addressArray = response.results[0].address_components;
 
-				this.setState( {
-					address: ( address ) ? address :''
-				} )
+				this.setState({
+					address: (address) ? address : ''
+				})
 			},
 			error => {
-				console.error( error );
+				console.error(error);
 			}
 		);
 	};
@@ -56,7 +56,7 @@ class Map extends Component{
 	 * @param nextState
 	 * @return {boolean}
 	 */
-	shouldComponentUpdate( nextProps, nextState ){
+	shouldComponentUpdate(nextProps, nextState) {
 		if (
 			this.state.markerPosition.lat !== this.props.center.lat ||
 			this.state.address !== nextState.address ||
@@ -65,7 +65,7 @@ class Map extends Component{
 			this.state.state !== nextState.state
 		) {
 			return true
-		} else if ( this.props.center.lat === nextProps.center.lat ){
+		} else if (this.props.center.lat === nextProps.center.lat) {
 			return false
 		}
 	}
@@ -124,7 +124,7 @@ class Map extends Component{
 	 * And function for city,state and address input
 	 * @param event
 	 */
-	onChange = ( event ) => {
+	onChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value });
 	};
 	/**
@@ -132,7 +132,7 @@ class Map extends Component{
 	 *
 	 * @param event
 	 */
-	onInfoWindowClose = ( event ) => {
+	onInfoWindowClose = (event) => {
 
 	};
 
@@ -143,22 +143,22 @@ class Map extends Component{
 	 *
 	 * @param event
 	 */
-	onMarkerDragEnd = ( event ) => {
+	onMarkerDragEnd = (event) => {
 		let newLat = event.latLng.lat(),
-		    newLng = event.latLng.lng();
+			newLng = event.latLng.lng();
 
-		Geocode.fromLatLng( newLat , newLng ).then(
+		Geocode.fromLatLng(newLat, newLng).then(
 			response => {
 				const address = response.results[0].formatted_address,
-				      addressArray =  response.results[0].address_components,
-				      city = this.getCity( addressArray ),
-				      area = this.getArea( addressArray ),
-				      state = this.getState( addressArray );
-				this.setState( {
-					address: ( address ) ? address : '',
-					area: ( area ) ? area : '',
-					city: ( city ) ? city : '',
-					state: ( state ) ? state : '',
+					addressArray = response.results[0].address_components,
+					city = this.getCity(addressArray),
+					area = this.getArea(addressArray),
+					state = this.getState(addressArray);
+				this.setState({
+					address: (address) ? address : '',
+					area: (area) ? area : '',
+					city: (city) ? city : '',
+					state: (state) ? state : '',
 					markerPosition: {
 						lat: newLat,
 						lng: newLng
@@ -167,7 +167,7 @@ class Map extends Component{
 						lat: newLat,
 						lng: newLng
 					},
-				} )
+				})
 			},
 			error => {
 				console.error(error);
@@ -178,13 +178,13 @@ class Map extends Component{
 	/**
 	 * When the user types an address in the search box
 	 * @param place
-	*/ 
-	onPlaceSelected = ( place ) => {
-		console.log( 'plc', place );
+	*/
+	onPlaceSelected = (place) => {
+		console.log('plc', place);
 		const address = place.formatted_address,
-		 //     addressArray =  place.address_components,
-		      latValue = place.geometry.location.lat(),
-		      lngValue = place.geometry.location.lng();
+			//     addressArray =  place.address_components,
+			latValue = place.geometry.location.lat(),
+			lngValue = place.geometry.location.lng();
 		// Set these values in the state.
 		this.setState({
 			address: place,
@@ -198,67 +198,64 @@ class Map extends Component{
 			},
 		})
 	};
-	
-	submitData(event)
-	 {
-	  Axios.post(`${SUBMIT_URL}`,this.state.address,{headers})
-	  .then((response) => {
-		console.log(response) 
-		this.props.history.push("/thanks/")
-		 }).catch(() => {
-		console.log("error in adding ") 
-	 })
-	 }
 
-	render(){
+	submitData(event) {
+		Axios.post(`${SUBMIT_URL}`, this.state.address, { headers })
+			.then((response) => {
+				console.log(response)
+				this.props.history.push("/thanks/")
+			}).catch(() => {
+				console.log("error in adding ")
+			})
+	}
+
+	render() {
 		const AsyncMap = withScriptjs(
 			withGoogleMap(
 				props => (
 					<div>
-					<GoogleMap google={ this.props.google }
-					           defaultZoom={ this.props.zoom }
-					           defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
-					>
-						{/* InfoWindow on top of marker */}
-						<InfoWindow
-							onClose={this.onInfoWindowClose}
-							position={{ lat: ( this.state.markerPosition.lat + 0.0018 ), lng: this.state.markerPosition.lng }}
+						<GoogleMap google={this.props.google}
+							defaultZoom={this.props.zoom}
+							defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
 						>
-							<div>
-								<span style={{ padding: 0, margin: 0 }}>{ this.state.address }</span>
-							</div>
-						</InfoWindow>
-						{/*Marker*/}
-						<Marker google={this.props.google}
-						        name={'Dolores park'}
-						        draggable={true}
-						        onDragEnd={ this.onMarkerDragEnd }
-						        position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
-						/>
-						<Marker />
-						{/* For Auto complete Search Box */}
-						<Autocomplete
-							style={{
-								width: '100%',
-								height: '40px',
-								paddingLeft: '16px',
-								marginTop: '2px',
-								marginBottom: '500px'
-							}}
-							onPlaceSelected={ this.onPlaceSelected }
-							types={['(regions)']}
-						/>
-						
-					</GoogleMap> 
-					 </div>
+							{/* InfoWindow on top of marker */}
+							<InfoWindow
+								onClose={this.onInfoWindowClose}
+								position={{ lat: (this.state.markerPosition.lat + 0.0018), lng: this.state.markerPosition.lng }}
+							>
+								<div>
+									<span style={{ padding: 0, margin: 0 }}>{this.state.address}</span>
+								</div>
+							</InfoWindow>
+							{/*Marker*/}
+							<Marker google={this.props.google}
+								name={'Dolores park'}
+								draggable={true}
+								onDragEnd={this.onMarkerDragEnd}
+								position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
+							/>
+							<Marker />
+							{/* For Auto complete Search Box */}
+
+						</GoogleMap>
+						<div className="mapResult">
+							<Autocomplete className="form-control"
+								onPlaceSelected={this.onPlaceSelected}
+								types={['(regions)']}
+							/>
+							<button type="submit"
+								className="btn btn_sub_help"
+								onClick={(e) => this.submitData(e)}> Help </button>
+						</div>
+					</div>
 				)
 			)
 		);
 		let map;
-		if( this.props.center.lat !== undefined ) {
+		if (this.props.center.lat !== undefined) {
 			map = <div>
 				<div>
-				{/* 	<div className="form-group">
+					{/* 	<div className="form-group">
 						<label htmlFor="">City</label>
 						<input type="text" name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
 					</div>
@@ -271,15 +268,16 @@ class Map extends Component{
 						<input type="text" name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state }/>
 		</div> */}
 					<div className="form-group">
+						<h3 className="map_title">Please suggest  Restaurant with Affordable & Vegetarian  near London,UK</h3>
 						<label htmlFor="">Address</label>
-						<input type="text" name="address" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.address }/>
+						<input type="text" name="address" className="form-control" onChange={this.onChange} readOnly="readOnly" value={this.state.address} />
 					</div>
 				</div>
 
 				<AsyncMap
 					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0&libraries=places"
 					loadingElement={
-						<div style={{ height: `100%` }} />
+						<div />
 					}
 					containerElement={
 						<div style={{ height: this.props.height }} />
@@ -288,14 +286,11 @@ class Map extends Component{
 						<div style={{ height: `100%` }} />
 					}
 				/>
- <button type="submit" 
-                              className="btn_sub_help"
-                              onClick={(e)=>this.submitData(e)}> Help </button>
 			</div>
 		} else {
-			map = <div style={{height: this.props.height}} />
+			map = <div style={{ height: this.props.height }} />
 		}
-		return( map )
+		return (map)
 	}
 }
 export default Map
