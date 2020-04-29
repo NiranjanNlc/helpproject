@@ -1,9 +1,12 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
 import './register.css'
-import AuthenciationService from './AuthenciationService'
-import Autocomplete from 'react-autocomplete'
+import AuthenciationService from './AuthenciationService' 
+import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
+
 import Place from './Place'
+import Locat from './Locat'
+import LocationService from './LocationService'
 class SignUp extends React.Component {
   constructor(props) {
     super(props)
@@ -12,13 +15,19 @@ class SignUp extends React.Component {
       sname: '',
       email: '',
       numb: '',
+      loc:'',
       postcode: '',
       rid: '',
-      psw: ''
+      psw: '',
+      city:'',
+      street:'',
+      phn:'',
+      hphn:''
     }
     this.handleChange = this.handleChange.bind(this)
     this.submitData = this.submitData.bind(this)
     this.handleCo = this.handleCo.bind(this)
+    this.onPlaceSelected = this.onPlaceSelected.bind(this)
   }
   handleChange(event) {
     console.log(event.target.value)
@@ -32,6 +41,32 @@ class SignUp extends React.Component {
       postcode: cordinate
     })
   }
+  onPlaceSelected(loc)
+  {
+    this.setState(
+      {
+        loc:loc,
+      }
+      )
+      geocodeByAddress(loc)
+      .then(results =>{ 
+    const   addressArray =  results[0].address_components
+    console.log(addressArray)
+     const cit=LocationService.getCity(addressArray)
+     const postal=LocationService.getpostal(addressArray)
+     console.log(postal)
+     this.setState(
+      {
+        postcode: postal,
+        city: cit
+      })
+       })
+      .catch(error =>
+        {console.error('Error', error)
+
+
+      })
+  }
   submitData(event) {
     event.preventDefault()
     console.log(this.state.sname)
@@ -39,7 +74,7 @@ class SignUp extends React.Component {
       firstName: this.state.name,
       surname: this.state.sname,
       email: this.state.email,
-      phoneNumber: this.state.number,
+      phoneNumber: this.state.numb,
       postalCode: this.state.postcode,
       rId: this.state.rid,
       psw: this.state.psw
@@ -53,16 +88,11 @@ class SignUp extends React.Component {
 
       }).catch(() => {
         console.log("error in adding")
-
         // this.props.history.push("/login/")
         this.setState({ showSuccessMessage: false })
         this.setState({ hasLoginFailed: true })
       })
-
   }
-
-
-
   render() {
     // this.refreshHelpedOne()
     return (
@@ -92,7 +122,7 @@ class SignUp extends React.Component {
                             <label>Last Name</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="text" onChange={this.handleChange} name="surname" className="form-control" />
+                            <input type="text" onChange={this.handleChange} name="sname" className="form-control" />
                           </div>
                         </div>
                       </div>
@@ -112,6 +142,14 @@ class SignUp extends React.Component {
                         </div>
                         <div className="row feild_entry">
                           <div className="col-sm-4 label">
+                            <label>UserName</label>
+                          </div>
+                          <div className="col-sm-8 feild">
+                            <input type="text" onChange={this.handleChange} name="rid" className="form-control" />
+                          </div>
+                        </div>
+                        <div className="row feild_entry">
+                          <div className="col-sm-4 label">
                             <label>Password</label>
                           </div>
                           <div className="col-sm-8 feild">
@@ -123,7 +161,7 @@ class SignUp extends React.Component {
                             <label>Confirm Password</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="password" name="psw" className="form-control" required onChange={this.handleChange} required />
+                            <input type="password" name="psw1" className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                       </div>
@@ -133,6 +171,16 @@ class SignUp extends React.Component {
                         <h4>Your address</h4>
                       </div>
                       <div className="feildCov">
+                      <div className="row feild_entry">
+                          <div className="col-sm-4 label">
+                            <label>* Location</label>
+                          </div>
+                          <div className="col-sm-8 feild">
+                            <Locat
+                              onSelect={this.onPlaceSelected}   name="loc"   className="form-control"  />
+                               
+                          </div>
+                        </div>
                         <div className="row feild_entry">
                           <div className="col-sm-4 label">
                             <label>Street</label>
@@ -146,7 +194,7 @@ class SignUp extends React.Component {
                             <label>City or Town</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="text" name="City" className="form-control" required onChange={this.handleChange} required />
+                            <input type="text" name="city"  defaultValue ={this.state.city} className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -154,7 +202,7 @@ class SignUp extends React.Component {
                             <label>Post Code</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="text" name="post code" className="form-control" required onChange={this.handleChange} required />
+                            <input type="text" name="postcode" defaultValue ={this.state.postcode} className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -176,7 +224,7 @@ class SignUp extends React.Component {
                             <label>Phone Number</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="number" name="post code" className="form-control" required onChange={this.handleChange} required />
+                            <input type="number" name="numb" className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -184,7 +232,7 @@ class SignUp extends React.Component {
                             <label>Home Phone Number</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="number" name="post code" className="form-control" required onChange={this.handleChange} required />
+                            <input type="number" name="hphn" className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                       </div>

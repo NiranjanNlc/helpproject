@@ -45,7 +45,7 @@ class Login  extends React.Component {
         AuthenciationService.registerSuccessfulLoginForJwt(response.data.role, response.data.accessToken)
         console.log("trying to push ")
          
-        this.props.history.push("/dash")
+        this.props.history.push("/dash/")
         window.location.reload(false);   
         //  window.location.reload(false);   
 
@@ -59,8 +59,8 @@ class Login  extends React.Component {
   checkLogin() {
     if (AuthenciationService.isUserLoggedIn()) {
       console.log("trying to open login page")
-      this.props.history.push("/chose/")
-      //   window.location.reload(false);
+      this.props.history.push("/dash/")
+      window.location.reload(false);
     }
   }
   componentDidMount() {

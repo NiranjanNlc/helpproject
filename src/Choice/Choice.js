@@ -2,11 +2,13 @@ import   React  from 'react'
 import Geocode from "react-geocode";
 import axios from 'axios' 
 import { BrowserRouter as Router, Route, history, Redirect ,Link} from 'react-router-dom'
-import  './styleMedia.css'
+import  './styleMedia.css' 
+
+import { withRouter } from 'react-router';  
 import  './styleCommon.css'
 import ChoiceService from './ChoiceService'
-import Place from '../Authenciation/Place'
-
+import Place from '../Authenciation/Place' 
+import LocationService from '../Authenciation/LocationService'
 class Choice extends React.Component {
     constructor(props) 
     {
@@ -20,19 +22,38 @@ class Choice extends React.Component {
         location:'',
         city:'',
         state:'',
-        area :''
+        area :'',
+        postal_code:''
 
       }
       this.handleChange = this.handleChange.bind(this)
        this.getpostal=this.getpostal.bind(this)
     this.submitData=this.submitData.bind(this)
  this.getLocation=this.getLocation.bind(this)
-this.handleCo = this.handleCo.bind(this)}
+this.handleCo = this.handleCo.bind(this)
+this.checkLogin = this.checkLogin.bind(this)
+}
+
 
 handleCo(cordinate) { 
     this.setState({
       location : cordinate
     })
+    Geocode.fromAddress(cordinate).then(
+        response => {
+            console.log(response)
+          const { lat, lng } = response.results[0].geometry.location;
+          this.setState(
+            { lat:lat,
+            lang:lng
+        }  )
+          console.log(this.state.lat)
+          console.log(this.state.lng);
+        },
+        error => {
+          console.error(error);
+        }
+      );
   }
     componentDidMount() {
     /*    console.log('Component did mount!')
@@ -87,7 +108,7 @@ handleCo(cordinate) {
           [name]: value
         })
     console.log(this.state.var3)
-    this.getLocation();   
+  //  this.getLocation();   
     }
     
   submitData(event) {
@@ -102,19 +123,27 @@ handleCo(cordinate) {
         var1: this.state.var1,
         var2:this.state.var2,
         var3:this.state.var3,
-        location:this.state.location
+        location:this.state.location,
+        lat:this.state.lat,
+        lng:this.state.lang
     }
     console.log(help)
     
      ChoiceService.ChoiceService (help)
    .then((response) => {
      console.log(response) 
-     this.props.history.push("/chose/")
+     this.checkLogin()
       }).catch(() => {
      console.log("error in adding ") 
   })
  
   }  
+  checkLogin() { 
+		console.log("trying to open login page")
+		this.props.history.push("/dash/")
+		window.location.reload(false);
+		 
+	  }
     
     render()
     {
@@ -172,4 +201,4 @@ handleCo(cordinate) {
         )
     }
 }
-export default Choice;
+export default withRouter(Choice);

@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
-import Axios from 'axios';
+import Axios from 'axios'; 
+import { withRouter } from 'react-router'; 
 import './Map.css'
 const API_URL = '/send/suggestion'
 const SUBMIT_URL = `${API_URL}`
@@ -21,6 +22,7 @@ class Map extends Component {
 			city: '',
 			area: '',
 			state: '',
+            sugg:'',
 			mapPosition: {
 				lat: this.props.center.lat,
 				lng: this.props.center.lng
@@ -28,13 +30,30 @@ class Map extends Component {
 			markerPosition: {
 				lat: this.props.center.lat,
 				lng: this.props.center.lng
-			}
+			},
+			var1:this.props.var1,
+			var2:this.props.var2,
+			var3:this.props.var3,
+			loc:this.props.loc
+			
 		}
+		this.onSuggestion = this.onSuggestion.bind(this)
+	}
+	 
+	onSuggestion(event)
+	{
+		console.log(event.target.value)
+		this.setState({ [event.target.name]: event.target.value });
+	
+	
 	}
 	/**
 	 * Get the current address from the default map position and set those values in the state
 	*/
 	componentDidMount() {
+		console.log(this.state.var1)
+		console.log(this.state.var2)
+		console.log(this.state.var3)
 		Geocode.fromLatLng(this.state.mapPosition.lat, this.state.mapPosition.lng).then(
 			response => {
 				const address = response.results[0].formatted_address,
@@ -74,7 +93,7 @@ class Map extends Component {
 	 *
 	 * @param addressArray
 	 * @return {string}
-	
+	*/
 	getCity = ( addressArray ) => {
 		let city = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -89,7 +108,7 @@ class Map extends Component {
 	 *
 	 * @param addressArray
 	 * @return {string}
-	 
+	 */
 	getArea = ( addressArray ) => {
 		let area = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -108,7 +127,7 @@ class Map extends Component {
 	 *
 	 * @param addressArray
 	 * @return {string}
-	 
+	 */
 	getState = ( addressArray ) => {
 		let state = '';
 		for( let i = 0; i < addressArray.length; i++ ) {
@@ -179,41 +198,68 @@ class Map extends Component {
 	 * When the user types an address in the search box
 	 * @param place
 	*/
-	onPlaceSelected = (place) => {
-		console.log('plc', place);
+	onPlaceSelected = ( place ) => {
+		console.log( 'plc', place );
 		const address = place.formatted_address,
-			//     addressArray =  place.address_components,
-			latValue = place.geometry.location.lat(),
-			lngValue = place.geometry.location.lng();
+		   addressArray =  place.address_components 
+		   console.log(address)
+		   this.setState({address:address})
+		   Geocode.fromAddress(address).then(
+			response => {
+				console.log(response)
+			 const  { latValue, lngValue } = response.results[0].geometry.location;
+			 this.setState({
+				address: ( address ) ? address : '',
+				 
+				markerPosition: {
+					lat: latValue,
+					lng: lngValue
+				},
+				mapPosition: {
+					lat: latValue,
+					lng: lngValue
+				},
+			})
+			  console.log(latValue, lngValue);
+			},
+			error => {
+			  console.error(error);
+			}
+		  ); 
 		// Set these values in the state.
-		this.setState({
-			address: place,
-			markerPosition: {
-				lat: latValue,
-				lng: lngValue
-			},
-			mapPosition: {
-				lat: latValue,
-				lng: lngValue
-			},
-		})
 	};
-
+	
 	submitData(event) {
-		Axios.post(`${SUBMIT_URL}`, this.state.address, { headers })
+		const help={ 
+				var1: this.state.var1,
+				var2:this.state.var2,
+				var3:this.state.var3,
+                sugg:this.state.sugg,
+				location:this.state.address,
+				 }
+				 console.log(help)
+		Axios.post(`${SUBMIT_URL}`,help)
 			.then((response) => {
 				console.log(response)
-				this.props.history.push("/thanks/")
-			}).catch(() => {
+				 this.checkLogin()
+				//this.props.history.push("/thanks/")
+			}).catch((error) => {
+				console.log(error) 
 				console.log("error in adding ")
 			})
 	}
+	checkLogin() { 
+		console.log("trying to open login page")
+		  this.props.history.push("/thanks/")
+		  window.location.reload(false);
+		 
+	  }
 
 	render() {
 		const AsyncMap = withScriptjs(
 			withGoogleMap(
 				props => (
-					<div>
+					<div className="mapCov">
 						<GoogleMap google={this.props.google}
 							defaultZoom={this.props.zoom}
 							defaultCenter={{ lat: this.state.mapPosition.lat, lng: this.state.mapPosition.lng }}
@@ -239,10 +285,11 @@ class Map extends Component {
 
 						</GoogleMap>
 						<div className="mapResult">
-							<Autocomplete className="form-control"
+						{/* <Autocomplete className="form-control"
 								onPlaceSelected={this.onPlaceSelected}
 								types={['(regions)']}
 							/>
+							*/}	
 							<button type="submit"
 								className="btn btn_sub_help"
 								onClick={(e) => this.submitData(e)}> Help </button>
@@ -268,9 +315,13 @@ class Map extends Component {
 						<input type="text" name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state }/>
 		</div> */}
 					<div className="form-group">
-						<h3 className="map_title">Please suggest  Restaurant with Affordable & Vegetarian  near London,UK</h3>
+						<h3 className="map_title">Please suggest {this.state.var1} with {this.state.var2}  & {this.state.var3}  near {this.state.loc} </h3>
 						<label htmlFor="">Address</label>
 						<input type="text" name="address" className="form-control" onChange={this.onChange} readOnly="readOnly" value={this.state.address} />
+						<label htmlFor="">Please type your suggestion</label>
+						<input type="text" name="sugg" className="form-control" onChange={this.onSuggestion}    />
+					    <label htmlFor="">Drag the pointer to the location of your suggestion</label>
+						
 					</div>
 				</div>
 
@@ -285,6 +336,7 @@ class Map extends Component {
 					mapElement={
 						<div style={{ height: `100%` }} />
 					}
+					center={{ lat:this.state.markerPosition.lat,lng:this.state.markerPosition.lng}}
 				/>
 			</div>
 		} else {
@@ -293,4 +345,4 @@ class Map extends Component {
 		return (map)
 	}
 }
-export default Map
+export default withRouter(Map)
