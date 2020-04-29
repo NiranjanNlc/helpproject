@@ -281,7 +281,16 @@ class Map extends Component {
 							/>
 							<Marker />
 							{/* For Auto complete Search Box */}
-
+							<div className="mapResult">
+								{/* <Autocomplete className="form-control"
+								onPlaceSelected={this.onPlaceSelected}
+								types={['(regions)']}
+							/>
+							*/}
+								<button type="submit"
+									className="btn btn_sub_help"
+									onClick={(e) => this.submitData(e)}> Help </button>
+							</div>
 						</GoogleMap>
 					</div>
 				)
@@ -333,7 +342,7 @@ class Map extends Component {
 						<div />
 					}
 					containerElement={
-						<div style={{ height: this.props.height }} />
+						<div className="mapCov" style={{ height: this.props.height }} />
 					}
 					mapElement={
 						<div style={{ height: `100%` }} />

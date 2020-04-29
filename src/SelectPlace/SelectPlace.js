@@ -76,21 +76,9 @@ class SelectPlace extends Component {
               var2={this.state.var2}
               var3={this.state.var3}
               loc={this.state.loc}
-              height='300px'
               zoom={15}
             />
-            <div className="mapResult">
-              {/* <Autocomplete className="form-control"
-								onPlaceSelected={this.onPlaceSelected}
-								types={['(regions)']}
-							/>
-							*/}
-              <button type="submit"
-                className="btn btn_sub_help"
-                onClick={(e) => this.submitData(e)}> Help </button>
-            </div>
           </div>
-
         </div>
       )
     }

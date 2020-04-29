@@ -22,10 +22,32 @@
   border-radius: 25px;
 }
 
+.mapResult .btn_sub_help:hover {
+  background: #32a036;
+}
+
 .map_title {
   margin-top: 20px;
   margin-bottom: 20px;
   font-size: 23px;
   border-left: 3px solid #333;
   padding-left: 15px;
+}
+
+.mapCov {
+  height: 350px;
+}
+
+.mapCov .mapCov {
+  height: auto;
+  margin-bottom: 30px;
+}
+
+@media (max-width: 767px) {
+  .mapCov {
+    height: 250px;
+  }
+  .map_title {
+    font-size: 20px;
+  }
 }
