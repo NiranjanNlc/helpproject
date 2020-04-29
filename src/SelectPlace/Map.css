@@ -4,11 +4,10 @@
 
 #mapWrap label {
   font-weight: 700;
-  border-left: 3px solid #333;
-  padding-left: 15px;
 }
 
 .mapResult {
+  margin-top: 30px;
   text-align: center;
 }
 
@@ -17,7 +16,7 @@
 }
 
 .mapResult .btn_sub_help {
-  background: #545454;
+  background: #4caf50;
   color: #fff;
   padding: 12px 40px;
   border-radius: 25px;
@@ -25,6 +24,8 @@
 
 .map_title {
   margin-top: 20px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   font-size: 23px;
+  border-left: 3px solid #333;
+  padding-left: 15px;
 }
