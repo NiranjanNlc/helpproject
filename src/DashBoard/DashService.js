@@ -9,12 +9,18 @@ const DATA_URL = `/send/get`
 class DashService {
   retrieveValue() {
     console.log("getting the value................")
-    return axios.get(`${HELP_URL}`,{headers});
+    return axios.get(`${HELP_URL}`,{headers :headers});
   }
-  getData(user)
+  getData()
   {
     console.log("getting the value................")
-    return axios.get(`${DATA_URL}`,user,{headers});
+    console.log(localStorage.getItem('authenticatedUser'))
+    return axios.post(`${DATA_URL}`, localStorage.getItem('authenticatedUser'),
+    {headers:
+       {"Content-Type": "text/plain" , 
+        'Authorization': 'Bearer '+localStorage.getItem(TOKEN)
+      }
+      });
 
   }
   

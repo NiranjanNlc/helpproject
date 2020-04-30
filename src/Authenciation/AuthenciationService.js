@@ -35,6 +35,12 @@ class AuthenticationService
         if (user === null) return false
         return true
     }
+    logout() {
+      localStorage.removeItem(USER_NAME_SESSION_ATTRIBUTE_NAME);
+      localStorage.removeItem(SCHOOL_NAME_SESSION_ATTRIBUTE_NAME); 
+      localStorage.removeItem(TOKEN);
+    //  this.props.history.push(`/login`)
+  }
     setupAxiosInterceptors(token) {
       console.log(token)
       axios.interceptors.request.use(

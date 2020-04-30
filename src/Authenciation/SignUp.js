@@ -69,6 +69,7 @@ class SignUp extends React.Component {
   }
   submitData(event) {
     event.preventDefault()
+    
     console.log(this.state.sname)
     const signup = {
       firstName: this.state.name,
@@ -81,8 +82,13 @@ class SignUp extends React.Component {
     };
     AuthenciationService.signUpRequest(signup)
       .then((response) => {
-        console.log("trying to push ")
-        this.props.history.push("/login/")
+        console.log(this.state.name)
+    //    this.props.history.push("/message/")
+        this.props.history.push({
+          pathname: '/message/',
+         // search: '?query=abc',
+            detail: this.state.name 
+        })
         //  window.location.reload(false);   
         //  window.location.reload(false);   
 
@@ -243,14 +249,21 @@ class SignUp extends React.Component {
                       </div>
                       <div className="row feild_entry">
                         <div className="col-sm-12 text">
-                          <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to</p>
-                        </div>
+                          <p> You will be recieving the text message whenever the
+                             new user tries to seek the places or recommendation near
+                              the address you have registered .
+                               By signing up  you agreed to our privacy policy and
+                      allows us to send sms in the provided number as per needed  .
+
+                          </p>
+                             </div>
                         <div className="col-sm-12 checkBox">
                           <ul>
                             <li>
-                              <input type="checkbox" /><label for="remember"> Post</label>
+                              <input type="checkbox" /><label for="remember">
+                                I agree to the terms and conditions and privacy policy statement </label>
                             </li>
-                            <li>
+                      {/*      <li>
                               <input type="checkbox" /><label for="remember"> Telephone</label>
                             </li>
                             <li>
@@ -259,6 +272,7 @@ class SignUp extends React.Component {
                             <li>
                               <input type="checkbox" /><label for="remember"> Text</label>
                             </li>
+                            */} 
                           </ul>
                         </div>
                       </div>

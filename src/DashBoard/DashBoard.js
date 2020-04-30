@@ -25,14 +25,18 @@ class DashBoard extends React.Component {
       
     } 
     )
-    DashService.getData(this.state.name)
+    DashService.getData()
     .then(
         response => {
           console.log(response);
+          console.log(response.data.firstName)
+          console.log(response.data.email)
+          console.log(response.data.phone)
          this.setState( 
-          {name: response.data.firstName},
-          {email: response.data.email},
-          {phone: response.data.phone}
+          {name: response.data.firstName})
+          this.setState( 
+          {email: response.data.email})
+          this.setState( {phone: response.data.phoneNumber}
           )
         
       } 
