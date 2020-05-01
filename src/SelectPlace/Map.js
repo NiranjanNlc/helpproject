@@ -34,7 +34,8 @@ class Map extends Component {
 			var1: this.props.var1,
 			var2: this.props.var2,
 			var3: this.props.var3,
-			loc: this.props.loc
+			loc: this.props.loc,
+			rid:this.props.rid
 
 		}
 		this.onSuggestion = this.onSuggestion.bind(this)
@@ -235,6 +236,7 @@ class Map extends Component {
 			var3: this.state.var3,
 			sugg: this.state.sugg,
 			location: this.state.address,
+			rid: this.state.rid
 		}
 		console.log(help)
 		Axios.post(`${SUBMIT_URL}`, help)

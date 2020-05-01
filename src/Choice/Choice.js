@@ -8,12 +8,13 @@ import { withRouter } from 'react-router';
 import  './styleCommon.css'
 import ChoiceService from './ChoiceService'
 import Place from '../Authenciation/Place' 
-import LocationService from '../Authenciation/LocationService'
+import AuthenciationService from '../Authenciation/AuthenciationService'
+export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 class Choice extends React.Component {
     constructor(props) 
     {
       super(props)
-      this.state = {
+        this.state = {
         var1:'role1',
         var2:'role1',
         var3:'role1' ,
@@ -23,7 +24,8 @@ class Choice extends React.Component {
         city:'',
         state:'',
         area :'',
-        postal_code:''
+        postal_code:'',
+        helpedone:  ''
 
       }
       this.handleChange = this.handleChange.bind(this)
@@ -47,6 +49,7 @@ handleCo(cordinate) {
             { lat:lat,
             lang:lng
         }  )
+        this.getLocation(lat,lng)
           console.log(this.state.lat)
           console.log(this.state.lng);
         },
@@ -56,6 +59,11 @@ handleCo(cordinate) {
       );
   }
     componentDidMount() {
+      const helpedone= AuthenciationService.getToken()
+      this.setState(
+        {helpedone:helpedone}
+      )
+      console.log(helpedone)
     /*    console.log('Component did mount!')
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position)
@@ -72,16 +80,16 @@ handleCo(cordinate) {
         console.log( this.state.lat )*/
       //  this.getLocation();       
         }
-     getLocation()
+     getLocation(lat,lang)
     {
-        Geocode.fromLatLng( this.state.lat , this.state.lang ).then(
+        Geocode.fromLatLng(lat,lang ).then(
             response => {
                 const address = response.results[0].formatted_address,
                       addressArray =  response.results[0].address_components,
                        postal_code =this.getpostal(addressArray)
                 console.log(postal_code) 
                 this.setState( {
-                    location:postal_code 
+                    postal_code:postal_code 
                 } )
             },
             error => {
@@ -125,7 +133,9 @@ handleCo(cordinate) {
         var3:this.state.var3,
         location:this.state.location,
         lat:this.state.lat,
-        lng:this.state.lang
+        lng:this.state.lang,
+        helpedone:this.state.helpedone,
+        postcode:this.state.postal_code
     }
     console.log(help)
     

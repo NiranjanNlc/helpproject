@@ -41,6 +41,10 @@ class AuthenticationService
       localStorage.removeItem(TOKEN);
     //  this.props.history.push(`/login`)
   }
+    getToken()
+    {
+      return localStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
+    }
     setupAxiosInterceptors(token) {
       console.log(token)
       axios.interceptors.request.use(

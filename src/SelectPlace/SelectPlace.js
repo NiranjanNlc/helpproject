@@ -22,7 +22,8 @@ class SelectPlace extends Component {
       lat: 18.5204,
       lng: 73.8567,
       loc: '',
-      loading: true
+      loading: true,
+      rid:''
     }
   }
   componentDidMount() {
@@ -41,6 +42,7 @@ class SelectPlace extends Component {
         lat: parseFloat(values.lat),
         lng: parseFloat(values.lng)
       })
+      this.setState({rid: values.id})
     console.log(this.state.var1)
     console.log(this.state.var2, this.state.var3)
     Geocode.fromLatLng(values.lat, values.lng).then(
@@ -76,6 +78,7 @@ class SelectPlace extends Component {
               var2={this.state.var2}
               var3={this.state.var3}
               loc={this.state.loc}
+              rid={this.state.rid}
               zoom={15}
             />
           </div>

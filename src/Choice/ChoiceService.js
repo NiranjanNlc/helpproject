@@ -12,9 +12,10 @@ class ChoiceService {
     console.log(help)
     console.log("let me check")
     console.log(headers)
-     return  axios.post(`${SUBMIT_URL}`,help,headers)
+     return  axios.post(`${SUBMIT_URL}`,help)
     
   }
+  
    
 
   

@@ -208,7 +208,7 @@ class SignUp extends React.Component {
                             <label>Post Code</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="text" name="postcode" defaultValue ={this.state.postcode} className="form-control" required onChange={this.handleChange} required />
+                            <input type="text" name="postcode" defaultValue ={this.state.postcode} className="form-control"  onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">
