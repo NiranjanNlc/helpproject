@@ -45,6 +45,11 @@ class AuthenticationService
     {
       return localStorage.getItem(USER_NAME_SESSION_ATTRIBUTE_NAME)
     }
+    verifyUser(token)
+    {
+      console.log(token)
+      return   axios.post(`${API_URL}/api/auth/verify`,String(token))
+    }
     setupAxiosInterceptors(token) {
       console.log(token)
       axios.interceptors.request.use(

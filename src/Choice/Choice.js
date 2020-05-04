@@ -9,15 +9,16 @@ import  './styleCommon.css'
 import ChoiceService from './ChoiceService'
 import Place from '../Authenciation/Place' 
 import AuthenciationService from '../Authenciation/AuthenciationService'
+import Locat from '../Authenciation/Locat';
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 class Choice extends React.Component {
     constructor(props) 
     {
       super(props)
         this.state = {
-        var1:'role1',
-        var2:'role1',
-        var3:'role1' ,
+        var1:'Resturant',
+        var2:'Affordable',
+        var3:'Fish' ,
         lat:'',
         lang:'',
         location:'',
@@ -195,7 +196,7 @@ handleCo(cordinate) {
                                   <option value="6"></option>
                                   </select>
                                                <b>in the location</b>   
-                                  <Place 
+                                  <Place
                                      
                                      onSelect={this.handleCo}   name="postcode"   className="form-control"  />
                                <button type="submit" 

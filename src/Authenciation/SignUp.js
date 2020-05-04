@@ -84,11 +84,16 @@ class SignUp extends React.Component {
       .then((response) => {
         console.log(this.state.name)
     //    this.props.history.push("/message/")
-        this.props.history.push({
+   if(response.data==="error")
+   {
+     return;
+   }
+    this.props.history.push({
           pathname: '/message/',
          // search: '?query=abc',
             detail: this.state.name 
         })
+     
         //  window.location.reload(false);   
         //  window.location.reload(false);   
 
@@ -143,7 +148,7 @@ class SignUp extends React.Component {
                             <label>Email address</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="email" onChange={this.handleChange} name="email" className="form-control" />
+                            <input type="email" placeholder="example@gmail.com" onChange={this.handleChange} name="email" className="form-control" />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -182,7 +187,7 @@ class SignUp extends React.Component {
                             <label>* Location</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <Locat
+                            <Locat 
                               onSelect={this.onPlaceSelected}   name="loc"   className="form-control"  />
                                
                           </div>
@@ -230,7 +235,7 @@ class SignUp extends React.Component {
                             <label>Phone Number</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="number" name="numb" className="form-control" required onChange={this.handleChange} required />
+                            <input type="number" placeholder="*country code required--" name="numb" className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">

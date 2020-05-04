@@ -10,7 +10,7 @@ import Login from './Authenciation/Login';
 import MenuComponent from './NavBAr/MenuComponent';
 import ThankYOu from './Authenciation/ThankYou';
 import Message from './Authenciation/Message';
-
+import Verify from './Authenciation/Verify';
 function App() {
   return (
     <div>
@@ -27,6 +27,8 @@ function App() {
             <Route path="/login/" component={Login} />
             <Route path="/sign/" component={SignUp} />
             <Route path="/thanks/" component={ThankYOu} />
+            <Route path="/verify/" component={Verify} />
+            
             <Route path="/Message/" component={Message} />
 
            />

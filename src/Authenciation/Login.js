@@ -81,7 +81,7 @@ class Login  extends React.Component {
               <div className="formWrap">
                 <form>
                   <div className="form-group">
-                    <input type="text" name='rid' onChange={this.handleChange} className="form-control" placeholder="Username or Email" />
+                    <input type="text" name='rid' onChange={this.handleChange} className="form-control" placeholder="Username " />
                     <input type="password" name='psw' onChange={this.handleChange} className="form-control" placeholder="Password" />
                   </div>
                   <div className="col-sm-12" align="center">

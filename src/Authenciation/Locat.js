@@ -79,7 +79,7 @@ class Locat  extends React.Component {
         <input className="form-control" 
          
      { ...getInputProps({
-      placeholder: 'Location '})}
+      placeholder: '--Type full address--'})}
       {...getInputProps()}  />
         <div className="autocomplete-dropdown-container">
           {suggestions.map(suggestion => (

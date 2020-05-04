@@ -11,13 +11,13 @@ class Message extends Component {
                         <div className="col-sm-12">
                             <div className="messageCov">
                                 <h1>Thanks for Signing up, {this.props.location.detail}
-                                     . We'r glad you are here.</h1>
+                                     . </h1>
                                 <div className="mail">
                                     <span><i class="fas fa-envelope"></i></span>
                                 </div>
-                                <p>An activation mail has been sent to your email.</p>
-                                <b><Link to="/login/"> <h6><u>click to login</u></h6></Link></b>
-                            </div>
+                                <p>Verification email has been sent to you  </p>
+                                <b><h6><u>Check your inbox</u></h6></b>
+                             </div>
                         </div>
                     </div>
                 </div>

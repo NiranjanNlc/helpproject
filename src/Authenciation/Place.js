@@ -12,10 +12,18 @@ class Place extends React.Component {
               postalcode:'' }
     this.setFormLocation = this.setFormLocation.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
+    this.onChange=this.onChange.bind(this)
   }
 
   handleChange = (address) => {
     this.setState({ address })
+  }
+  onChange(event)
+  {
+    const { name, value } = event.target
+    this.setState({
+      [name]: value
+    })
   }
 
   // When the user selects an autocomplete suggestion...
@@ -79,7 +87,7 @@ class Place extends React.Component {
         <input className="form-control" 
          
      { ...getInputProps({
-      placeholder: 'Location '})}
+      placeholder: 'Type and chose from suggestion'})}
       {...getInputProps()}  />
         <div className="autocomplete-dropdown-container">
           {suggestions.map(suggestion => (
@@ -90,13 +98,11 @@ class Place extends React.Component {
           ))}
         </div>
          	<div className="form-group"> 
-						<input type="text"  placeholder = 'City' name="city" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.city }/>
+						<input type="text"  placeholder = 'City' name="city" className="form-control" onChange={ this.onChange }   value={ this.state.city }/>
 					</div>
+ 
 					<div className="form-group"> 
-						<input type="text" placeholder = 'Area'name="area" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.area }/>
-					</div>
-					<div className="form-group"> 
-						<input type="text"  placeholder = 'State' name="state" className="form-control" onChange={ this.onChange } readOnly="readOnly" value={ this.state.state }/>
+						<input type="text"  placeholder = 'State' name="state" className="form-control" onChange={ this.onChange }   value={ this.state.state }/>
 		</div>  
       </div>
     );
