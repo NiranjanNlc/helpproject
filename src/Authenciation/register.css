@@ -9,6 +9,8 @@ header {
 
 #signUpWrap h3 {
     margin-bottom: 15px;
+    border-left: 4px solid #3f51b5;
+    padding-left: 20px;
 }
 
 .form-divider {
@@ -52,22 +54,21 @@ header {
     margin-right: 15px;
 }
 
-.checkBox label {
-    margin: 0;
-    margin-left: 5px;
+.checkBox input {
+    margin-right: 5px;
 }
 
 .submitBtn {
     text-align: right;
 }
 
-.submitBtn .sub_help {
+/* .submitBtn .sub_help {
     background: #ff1515 !important;
 }
 
 .submitBtn .sub_help:hover {
     background: #e40d0d !important;
-}
+} */
 
 @media (max-width: 767px) {
     .submitBtn {

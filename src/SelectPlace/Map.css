@@ -45,7 +45,8 @@
 
 @media (max-width: 767px) {
   .mapCov {
-    height: 250px;
+    height: 300px;
+    margin: 0 calc(50% - 50vw);
   }
   .map_title {
     font-size: 20px;

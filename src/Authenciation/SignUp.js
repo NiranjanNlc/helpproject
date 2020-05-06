@@ -1,75 +1,180 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
 import './register.css'
-import AuthenciationService from './AuthenciationService' 
+import AuthenciationService from './AuthenciationService'
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 
 import Place from './Place'
 import Locat from './Locat'
 import LocationService from './LocationService'
+// import Validation from './Validation'
 class SignUp extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: '',
-      sname: '',
-      email: '',
-      numb: '',
-      loc:'',
-      postcode: '',
-      rid: '',
-      psw: '',
-      city:'',
-      street:'',
-      phn:'',
-      hphn:''
+      fields: {},
+      errors: {}
+      // name: '',
+      // sname: '',
+      // email: '',
+      // numb: '',
+      // loc: '',
+      // postcode: '',
+      // rid: '',
+      // psw: '',
+      // city: '',
+      // street: '',
+      // phn: '',
+      // hphn: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.submitData = this.submitData.bind(this)
     this.handleCo = this.handleCo.bind(this)
     this.onPlaceSelected = this.onPlaceSelected.bind(this)
+    this.validateForm = this.validateForm.bind(this)
   }
-  handleChange(event) {
-    console.log(event.target.value)
-    const { name, value } = event.target
+
+  handleChange(e) {
+    console.log(e.target.value)
+    // const { name, value } = event.target
+    // this.setState({
+    //   [name]: value
+    // })
+
+    let fields = this.state.fields;
+    let errors = this.state.errors;
+    fields[e.target.name] = e.target.value;
+    errors[e.target.name] = ''
     this.setState({
-      [name]: value
-    })
+      fields
+    });
   }
+
+  validateForm() {
+    let formIsValid = true;
+    console.log(this.state.name)
+    let fields = this.state.fields;
+    let errors = {};
+    //    let formIsValid = true;
+
+    if (!fields["name"]) {
+      formIsValid = false;
+      errors["name"] = "*Please provide your First Name.";
+    }
+    if (!fields["sname"]) {
+      formIsValid = false;
+      errors["sname"] = "*Please provide your Last Name.";
+    }
+    if (!fields["email"]) {
+      formIsValid = false;
+      errors["email"] = "*Please enter your Email-ID.";
+    }
+    if (typeof fields["email"] !== "undefined") {
+      var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+      if (!pattern.test(fields["email"])) {
+        formIsValid = false;
+        errors["email"] = "*Please provide valid Email-ID.";
+      }
+    }
+    if (!fields["rid"]) {
+      formIsValid = false;
+      errors["rid"] = "*Please enter Username.";
+    }
+
+    if (typeof fields["rid"] !== "undefined") {
+
+      if (fields["rid"].length < 6) {
+        formIsValid = false;
+        errors["rid"] = "*At Least 5 Character.";
+      }
+    }
+    if (!fields["psw"]) {
+      formIsValid = false;
+      errors["psw"] = "*Set your Password.";
+    }
+    if (typeof fields["psw"] !== "undefined") {
+      if (!fields["psw"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
+        formIsValid = false;
+        errors["psw"] = "*Please enter secure and strong password.";
+      }
+    }
+    if (!fields["psw1"]) {
+      formIsValid = false;
+      errors["psw1"] = "*Required";
+    }
+    if (typeof fields["psw1"] !== "undefined") {
+      if (!fields["psw1"] !== fields["psw"]) {
+        formIsValid = false;
+        errors["psw1"] = "*Confirm your Password.";
+      }
+    }
+    if (!fields["street"]) {
+      formIsValid = false;
+      errors["street"] = "*Required";
+    }
+    if (!fields["city"]) {
+      formIsValid = false;
+      errors["city"] = "*Required";
+    }
+
+    if (!fields["postcode"]) {
+      formIsValid = false;
+      errors["postcode"] = "*Required";
+    }
+    if (!fields["numb"]) {
+      formIsValid = false;
+      errors["numb"] = "*Required";
+    }
+    if (typeof fields["numb"] !== "undefined") {
+      if (!fields["numb"].match(/^[0-9]{10}$/)) {
+        formIsValid = false;
+        errors["numb"] = "*Please enter valid mobile no.";
+      }
+    }
+    if (!fields["loc"]) {
+      formIsValid = false;
+      errors["loc"] = "*Required";
+    }
+    this.setState({
+      errors: errors
+    })
+
+    return formIsValid;
+  }
+
   handleCo(cordinate) {
     this.setState({
       postcode: cordinate
     })
   }
-  onPlaceSelected(loc)
-  {
+  onPlaceSelected(loc) {
     this.setState(
       {
-        loc:loc,
+        loc: loc,
       }
-      )
-      geocodeByAddress(loc)
-      .then(results =>{ 
-    const   addressArray =  results[0].address_components
-    console.log(addressArray)
-     const cit=LocationService.getCity(addressArray)
-     const postal=LocationService.getpostal(addressArray)
-     console.log(postal)
-     this.setState(
-      {
-        postcode: postal,
-        city: cit
+    )
+    geocodeByAddress(loc)
+      .then(results => {
+        const addressArray = results[0].address_components
+        console.log(addressArray)
+        const cit = LocationService.getCity(addressArray)
+        const postal = LocationService.getpostal(addressArray)
+        console.log(postal)
+        this.setState(
+          {
+            postcode: postal,
+            city: cit
+          })
       })
-       })
-      .catch(error =>
-        {console.error('Error', error)
+      .catch(error => {
+        console.error('Error', error)
 
 
       })
   }
   submitData(event) {
     event.preventDefault()
-    
+    this.validateForm(event)
     console.log(this.state.sname)
     const signup = {
       firstName: this.state.name,
@@ -130,7 +235,8 @@ class SignUp extends React.Component {
                             <label>First Name</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="text" onChange={this.handleChange} name="name" className="form-control" />
+                            <div className="errorMessage">{this.state.errors.name}</div>
+                            <input type="text" onChange={this.handleChange} name="name" value={this.state.fields.name} className="form-control" />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -138,7 +244,8 @@ class SignUp extends React.Component {
                             <label>Last Name</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="text" onChange={this.handleChange} name="sname" className="form-control" />
+                            <div className="errorMessage">{this.state.errors.sname}</div>
+                            <input type="text" onChange={this.handleChange} name="sname" value={this.state.fields.sname} className="form-control" />
                           </div>
                         </div>
                       </div>
@@ -153,7 +260,8 @@ class SignUp extends React.Component {
                             <label>Email address</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="email" placeholder="example@gmail.com" onChange={this.handleChange} name="email" className="form-control" />
+                            <div className="errorMessage">{this.state.errors.email}</div>
+                            <input type="email" value={this.state.fields.email} placeholder="example@gmail.com" onChange={this.handleChange} name="email" className="form-control" />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -161,7 +269,8 @@ class SignUp extends React.Component {
                             <label>UserName</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="text" onChange={this.handleChange} name="rid" className="form-control" />
+                            <div className="errorMessage">{this.state.errors.rid}</div>
+                            <input type="text" value={this.state.fields.rid} onChange={this.handleChange} name="rid" className="form-control" />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -169,7 +278,8 @@ class SignUp extends React.Component {
                             <label>Password</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="password" name="psw" className="form-control" required onChange={this.handleChange} required />
+                            <div className="errorMessage">{this.state.errors.psw}</div>
+                            <input type="password" name="psw" value={this.state.fields.psw} className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -177,7 +287,8 @@ class SignUp extends React.Component {
                             <label>Confirm Password</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="password" name="psw1" className="form-control" required onChange={this.handleChange} required />
+                            <div className="errorMessage">{this.state.errors.psw1}</div>
+                            <input type="password" name="psw1" value={this.state.fields.psw1} className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                       </div>
@@ -187,14 +298,15 @@ class SignUp extends React.Component {
                         <h4>Your address</h4>
                       </div>
                       <div className="feildCov">
-                      <div className="row feild_entry">
+                        <div className="row feild_entry">
                           <div className="col-sm-4 label">
                             <label>* Location</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <Locat 
-                              onSelect={this.onPlaceSelected}   name="loc"   className="form-control"  />
-                               
+                            <div className="errorMessage">{this.state.errors.loc}</div>
+                            <Locat
+                              onSelect={this.onPlaceSelected} name="loc" value={this.state.fields.loc} className="form-control" />
+
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -202,7 +314,8 @@ class SignUp extends React.Component {
                             <label>Street</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="text" onChange={this.handleChange} name="street" className="form-control" />
+                            <div className="errorMessage">{this.state.errors.street}</div>
+                            <input type="text" value={this.state.fields.street} onChange={this.handleChange} name="street" className="form-control" />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -210,7 +323,8 @@ class SignUp extends React.Component {
                             <label>City or Town</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="text" name="city"  defaultValue ={this.state.city} className="form-control" required onChange={this.handleChange} required />
+                            <div className="errorMessage">{this.state.errors.city}</div>
+                            <input type="text" value={this.state.fields.city} name="city" defaultValue={this.state.city} className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -218,7 +332,8 @@ class SignUp extends React.Component {
                             <label>Post Code</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="text" name="postcode" defaultValue ={this.state.postcode} className="form-control"  onChange={this.handleChange} required />
+                            <div className="errorMessage">{this.state.errors.postcode}</div>
+                            <input type="text" value={this.state.fields.postcode} name="postcode" defaultValue={this.state.postcode} className="form-control" onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -240,7 +355,8 @@ class SignUp extends React.Component {
                             <label>Phone Number</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <input type="number" placeholder="*country code required--" name="numb" className="form-control" required onChange={this.handleChange} required />
+                            <div className="errorMessage">{this.state.errors.numb}</div>
+                            <input type="number" value={this.state.fields.numb} placeholder="*country code required--" name="numb" className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -260,20 +376,21 @@ class SignUp extends React.Component {
                       <div className="row feild_entry">
                         <div className="col-sm-12 text">
                           <p> You will be recieving the text message whenever the
-                             new user tries to seek the places or recommendation near
-                              the address you have registered .
-                               By signing up  you agreed to our privacy policy and
-                      allows us to send sms in the provided number as per needed  .
+                          new user tries to seek the places or recommendation near
+                          the address you have registered .
+                          By signing up  you agreed to our privacy policy and
+                          allows us to send sms in the provided number as per needed  .
 
                           </p>
-                             </div>
+                        </div>
                         <div className="col-sm-12 checkBox">
                           <ul>
                             <li>
-                              <input type="checkbox" /><label for="remember">
+                              <label for="remember">
+                                <input type="checkbox" />
                                 I agree to the terms and conditions and privacy policy statement </label>
                             </li>
-                      {/*      <li>
+                            {/*      <li>
                               <input type="checkbox" /><label for="remember"> Telephone</label>
                             </li>
                             <li>
@@ -282,7 +399,7 @@ class SignUp extends React.Component {
                             <li>
                               <input type="checkbox" /><label for="remember"> Text</label>
                             </li>
-                            */} 
+                            */}
                           </ul>
                         </div>
                       </div>
