@@ -17,6 +17,9 @@ class Locat  extends React.Component {
   handleChange = (address) => {
     this.setState({ address })
   }
+  onChange = (add) => {
+    this.setState({ add })
+  }
 
   // When the user selects an autocomplete suggestion...
   handleSelect  (place)

@@ -11,6 +11,8 @@ import MenuComponent from './NavBAr/MenuComponent';
 import ThankYOu from './Authenciation/ThankYou';
 import Message from './Authenciation/Message';
 import Verify from './Authenciation/Verify';
+import AuthenticatedRoute from './Authenciation/AuthenciatedRoute';
+
 function App() {
   return (
     <div>
@@ -22,8 +24,8 @@ function App() {
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/add/" component={SelectPlace} />
-            <Route path="/chose/" component={Choice} />
-            <Route path="/dash/" component={DashBoard} />
+            <AuthenticatedRoute path="/chose/" component={Choice} />
+            <AuthenticatedRoute path="/dash/" component={DashBoard} />
             <Route path="/login/" component={Login} />
             <Route path="/sign/" component={SignUp} />
             <Route path="/thanks/" component={ThankYOu} />

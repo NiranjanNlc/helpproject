@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import { withGoogleMap, GoogleMap, withScriptjs, InfoWindow, Marker } from "react-google-maps";
 import Geocode from "react-geocode";
 import Autocomplete from 'react-google-autocomplete';
+import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 import Axios from 'axios';
 import { withRouter } from 'react-router';
-import './Map.css'
+import './Map.css'  
+import LocationSearchInput from './LocationSearchInput';
 const API_URL = '/send/suggestion'
 const SUBMIT_URL = `${API_URL}`
-Geocode.setApiKey("AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc");
-Geocode.enableDebug();
+//Geocode.setApiKey("AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc");
+//Geocode.enableDebug();
 export const TOKEN = "token"
+const google = window.google
 export const headers = {
 	'Authorization': 'Bearer ' + localStorage.getItem(TOKEN)
 }
@@ -23,6 +26,7 @@ class Map extends Component {
 			area: '',
 			state: '',
 			sugg: '',
+			add:'',
 			mapPosition: {
 				lat: this.props.center.lat,
 				lng: this.props.center.lng
@@ -42,10 +46,8 @@ class Map extends Component {
 	}
 
 	onSuggestion(event) {
-		console.log(event.target.value)
 		this.setState({ [event.target.name]: event.target.value });
-
-
+		console.log(this.state.sugg)
 	}
 	/**
 	 * Get the current address from the default map position and set those values in the state
@@ -145,7 +147,14 @@ class Map extends Component {
 	 */
 	onChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value });
+		this.refs.inputOfName.value = event.target.value
+		console.log(this.state.add)
+		
 	};
+	handleChange = (add) => {
+		this.setState({ add })
+		console.log(this.state.add)
+	  }
 	/**
 	 * This Event triggers when the marker window is closed
 	 *
@@ -199,6 +208,7 @@ class Map extends Component {
 	 * @param place
 	*/
 	onPlaceSelected = (place) => {
+	//	this.onChange()
 		console.log('plc', place);
 		const address = place.formatted_address,
 			addressArray = place.address_components
@@ -207,20 +217,21 @@ class Map extends Component {
 		Geocode.fromAddress(address).then(
 			response => {
 				console.log(response)
-				const { latValue, lngValue } = response.results[0].geometry.location;
+				const { lat, lng } = response.results[0].geometry.location;
 				this.setState({
 					address: (address) ? address : '',
 
 					markerPosition: {
-						lat: latValue,
-						lng: lngValue
+						lat: parseFloat(lat),
+						lng: parseFloat(lng)
 					},
 					mapPosition: {
-						lat: latValue,
-						lng: lngValue
+						lat: parseFloat(lat),
+						lng: parseFloat(lng)
 					},
-				})
-				console.log(latValue, lngValue);
+				},function(){
+					console.log(lat, lng)})
+				console.log(lat, lng);
 			},
 			error => {
 				console.error(error);
@@ -257,7 +268,13 @@ class Map extends Component {
 	}
 
 	render() {
-		const AsyncMap = withScriptjs(
+		const searchOptions = {
+			location: new google.maps.LatLng(-34, 151),
+			radius: 2000,
+			types: ['address']
+		  }
+		const AsyncMap = 
+		//withScriptjs(
 			withGoogleMap(
 				props => (
 					<div className="mapCov">
@@ -275,20 +292,24 @@ class Map extends Component {
 								</div>
 							</InfoWindow>
 							{/*Marker*/}
+							{this.state.state.markerPosition&&
 							<Marker google={this.props.google}
 								name={'Dolores park'}
 								draggable={true}
 								onDragEnd={this.onMarkerDragEnd}
 								position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
 							/>
+							}
 							<Marker />
 							{/* For Auto complete Search Box */}
 							<div className="mapResult">
-								{/* <Autocomplete className="form-control"
+							  {/* <Autocomplete className="form-control"
 								onPlaceSelected={this.onPlaceSelected}
-								types={['(regions)']}
-							/>
-							*/}
+								onChange={this.onChange}
+								name='add'
+								types={['establishment']}
+							/> */}
+							 
 								<button type="submit"
 									className="btn btn_sub_help"
 									onClick={(e) => this.submitData(e)}> Help </button>
@@ -296,7 +317,7 @@ class Map extends Component {
 						</GoogleMap>
 					</div>
 				)
-			)
+		//	)
 		);
 		let map;
 		if (this.props.center.lat !== undefined) {
@@ -324,9 +345,28 @@ class Map extends Component {
 							</div></div>
 							<div className="col-sm-6">
 								<div className="form-group">
-									<label htmlFor="">Please type your suggestion</label>
-									<input type="text" name="sugg" className="form-control" onChange={this.onSuggestion} />
+									<label htmlFor="">Suggested place </label>
+									<input type="text"
+									 name="sugg"
+									 className="form-control" 
+									 ref="inputOfName"
+									 
+									 value = {this.state.add}
+									onChange={this.onSuggestion} />
 								</div>
+							</div>
+							<div className="col-sm-6">
+								<div className="form-group">
+									<label htmlFor="">Please type your suggestion</label>
+									<Autocomplete className="form-control"
+								onPlaceSelected={this.onPlaceSelected}
+								onClick={this.onChange}
+								onSelect={this.onChange}
+								onChange={this.onChange}
+								name='add'
+								types={['establishment']}
+							/>
+								 </div>
 							</div>
 							<div className="col-sm-12">
 								<div className="form-group">
@@ -339,7 +379,7 @@ class Map extends Component {
 				</div>
 
 				<AsyncMap
-					googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGe5vjL8wBmilLzoJ0jNIwe9SAuH2xS_0&libraries=places"
+					// googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc&libraries=places"
 					loadingElement={
 						<div />
 					}
@@ -359,3 +399,4 @@ class Map extends Component {
 	}
 }
 export default withRouter(Map)
+//export default (withGoogleMap(Map));

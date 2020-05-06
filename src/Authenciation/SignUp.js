@@ -82,22 +82,27 @@ class SignUp extends React.Component {
     };
     AuthenciationService.signUpRequest(signup)
       .then((response) => {
-        console.log(this.state.name)
-    //    this.props.history.push("/message/")
-   if(response.data==="error")
-   {
-     return;
-   }
-    this.props.history.push({
+      console.log(response.data.success)
+      if(response.data.success==="false")
+      {
+      this.props.history.push({
+      pathname: '/message/',
+      // search: '?query=abc',
+      detail: this.state.name,
+      message:response.data.message
+      })
+    }
+      else
+      {
+        this.props.history.push({
           pathname: '/message/',
-         // search: '?query=abc',
-            detail: this.state.name 
-        })
-     
-        //  window.location.reload(false);   
-        //  window.location.reload(false);   
-
-      }).catch(() => {
+          // search: '?query=abc',
+          detail: this.state.name,
+          message:response.data.message
+          })
+      }
+    
+     }).catch((error) => {
         console.log("error in adding")
         // this.props.history.push("/login/")
         this.setState({ showSuccessMessage: false })

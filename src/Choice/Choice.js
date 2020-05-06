@@ -60,7 +60,7 @@ handleCo(cordinate) {
       );
   }
     componentDidMount() {
-      const helpedone= AuthenciationService.getToken()
+       const helpedone= AuthenciationService.getToken()
       this.setState(
         {helpedone:helpedone}
       )
@@ -115,6 +115,9 @@ handleCo(cordinate) {
         console.log(event.target.value)
         this.setState({
           [name]: value
+        },function()
+        {
+          console.log(this.state.var1)
         })
     console.log(this.state.var3)
   //  this.getLocation();   
@@ -178,11 +181,10 @@ handleCo(cordinate) {
                                   <option value="Resturant">Resturant</option>
                                   <option value="Things To Do">Things To Do</option>  
                               </select>
+                              {this.state.var1==='Resturant' ?
+                              <div>
                               <select name="var2" onChange={this.handleChange} className="form-control input-lg">
-                              <option value="Park">Park </option>
-                                  <option value="Club">Club </option>
-                                  <option value="Muesum">Muesum</option>
-                                  <option value="Affordable">Affordable</option>
+                                   <option value="Affordable">Affordable</option>
                                   <option value="Mid-Range">Mid-Range </option>
                                   <option value="HighEnd">HighEnd</option> 
                               </select>
@@ -190,11 +192,23 @@ handleCo(cordinate) {
                               <option value="Meat">Meat </option>
                                   <option value="Fish">Fish </option>
                                   <option value="Vegeterian">Vegeterian</option> 
-                                  <option value="Free">Free</option>
+                                  </select>
+                                  </div> 
+                                   :
+                                   <div>
+                              <select name="var2" onChange={this.handleChange} className="form-control input-lg">
+                                  <option value="Park">Park </option>
+                                  <option value="Club">Club </option>
+                                  <option value="Muesum">Muesum</option>
+                                    </select>
+                              <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
+                               <option value="Free">Free</option>
                                   <option value="Limited Edition">Limited Edition</option>
                                   <option value="Affordable">Affordable</option>
                                   <option value="6"></option>
                                   </select>
+                                  </div> 
+                                  }
                                                <b>in the location</b>   
                                   <Place
                                      
