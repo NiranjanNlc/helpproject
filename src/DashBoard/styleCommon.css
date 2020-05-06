@@ -136,11 +136,6 @@ ul.info li {
     border-radius: 0;
 }
 
-.detailBlock select.form-control.input-lg {
-    height: 50px !important;
-    margin-bottom: 15px;
-}
-
 .btn.sub_help {
     background: #3c3c3c;
     border-radius: 25px;

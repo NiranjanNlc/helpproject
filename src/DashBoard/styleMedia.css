@@ -1,6 +1,6 @@
 @media (max-width: 767px) {
     .detailBlock {
-        width: 100%;
+        width: 100% !important;
     }
     .help_cov {
         margin-bottom: 15px;
@@ -11,6 +11,6 @@
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
     .detailBlock {
-        width: 60%;
+        width: 60% !important;
     }
 }

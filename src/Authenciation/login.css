@@ -99,20 +99,20 @@ h1, h2, h3, h4 {
 #formWrap {
     padding: 50px 0;
     display: flex;
-    height: 100vh;
+    height: calc(100vh - 64px);
     flex-direction: column;
     justify-content: center;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00c0f1), color-stop(100%, #10e281));
+    /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00c0f1), color-stop(100%, #10e281)); */
+    background: #3f51b5;
 }
 
 #formWrap .formWrap {
     padding: 25px;
     background: #fff;
-    box-shadow: 0px 0px 0px 5px rgba( 255, 255, 255, 0.4), 0px 4px 20px rgba( 0, 0, 0, 0.33);
-    -moz-border-radius: 5px;
-    border-radius: 5px;
+    border-radius: 0;
     width: 37%;
     margin: 0 auto;
+    border: 1px solid #ddd;
 }
 
 #formWrap .form-control {
@@ -164,7 +164,7 @@ h1, h2, h3, h4 {
 }
 
 #formWrap p.noac a {
-    color: #02bde2;
+    color: #3f51b5;
     font-weight: 600;
 }
 
@@ -173,7 +173,7 @@ h1, h2, h3, h4 {
 }
 
 .btn.sub_help {
-    background: #3c3c3c;
+    background: #3f51b5;
     border-radius: 25px;
     padding: 12px 40px;
     color: #fff;
@@ -181,7 +181,15 @@ h1, h2, h3, h4 {
 }
 
 .btn.sub_help:hover, .btn.sub_help:focus {
-    background: #545454;
+    background: #4c63e0;
+}
+
+#formWrap h3 {
+    text-align: center;
+    font-size: 30px;
+    margin-bottom: 20px;
+    text-transform: capitalize;
+    color: #3f51b5;
 }
 
 @media (max-width: 767px) {
@@ -208,4 +216,9 @@ h1, h2, h3, h4 {
     .register, .signIn {
         width: 70%;
     }
+}
+
+.errorMessage {
+    color: red;
+    margin-bottom: 10px;
 }

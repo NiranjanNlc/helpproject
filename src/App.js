@@ -28,7 +28,7 @@ function App() {
             <Route path="/sign/" component={SignUp} />
             <Route path="/thanks/" component={ThankYOu} />
             <Route path="/verify/" component={Verify} />
-            
+
             <Route path="/Message/" component={Message} />
 
            />
