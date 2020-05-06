@@ -3,11 +3,9 @@ import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-r
 import './register.css'
 import AuthenciationService from './AuthenciationService'
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
-
 import Place from './Place'
 import Locat from './Locat'
 import LocationService from './LocationService'
-// import Validation from './Validation'
 class SignUp extends React.Component {
   constructor(props) {
     super(props)

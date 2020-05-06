@@ -2,8 +2,6 @@ import React from 'react'
 import AuthenciationService from './AuthenciationService'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
 import './login.css'
-import $ from 'jquery'
-// import Validation from './Validation'
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 class Login extends React.Component {
   constructor(props) {

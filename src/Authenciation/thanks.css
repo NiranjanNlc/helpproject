@@ -12,3 +12,13 @@
 .thanksWrap p:nth-last-child() {
     margin-bottom: 0;
 }
+
+.suggestion {
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    width: 65%;
+}
+
+.suggestion span {
+    width: 100%;
+}
