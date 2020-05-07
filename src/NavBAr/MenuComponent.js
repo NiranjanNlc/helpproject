@@ -22,7 +22,7 @@ class MenuComponent extends Component {
 
     render() {
         const loggedIn = AuthenciationService.isUserLoggedIn();
-           console.log(loggedIn)
+        console.log(loggedIn)
         return (
             <header>>
                 <nav className="navbar navbar-expand-md navbar-dark bg-dark">
@@ -43,9 +43,10 @@ class MenuComponent extends Component {
                                 {!loggedIn && <li><Link className="nav-link" to="/login/">Login</Link></li>}
                                 {!loggedIn && <li><Link className="nav-link" to="/sign">SignUp </Link></li>}
                                 {loggedIn && <li><Link className="nav-link" to="/" onClick={AuthenciationService.logout}>Logout</Link></li>}
-                             {/* {loggedIn && <li><Link className="nav-link" to="/Message">Message </Link></li>}
-                            */} 
-                           </ul>
+                                {/* {loggedIn && <li><Link className="nav-link" to="/Message">Message </Link></li>}
+                            */}
+
+                            </ul>
 
                         </Toolbar>
                     </AppBar>

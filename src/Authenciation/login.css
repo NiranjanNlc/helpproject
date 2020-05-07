@@ -202,6 +202,12 @@ h1, h2, h3, h4 {
     .register, .signIn {
         width: 80%;
     }
+    #formWrap .small, #formWrap .cov-rem.clearfix {
+        font-size: 15px !important;
+    }
+    #formWrap p.noac {
+        font-size: 16px;
+    }
 }
 
 @media (min-width: 768px) {}

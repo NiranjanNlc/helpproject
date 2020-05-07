@@ -12,3 +12,17 @@
 .thanksWrap p:nth-last-child() {
     margin-bottom: 0;
 }
+
+.suggestion {
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    margin-bottom: 5px;
+}
+
+.form-divider .suggestion {
+    width: 65%;
+}
+
+.form-divider .suggestion span {
+    width: 100%;
+}

@@ -55,6 +55,39 @@
     letter-spacing: 1px;
 }
 
+/* additional components  */
+
+.soonCov {
+    background: #fff;
+    border: 8px solid #3f51b5;
+    padding: 60px 30px;
+}
+
+.soonCov p {
+    font-size: 17px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+.soonCov .mail span {
+    font-weight: 600;
+    font-size: 30px;
+}
+
+.soonCov .mail:before, .soonCov .mail:after {
+    margin-top: 1em;
+}
+
+.back {
+    color: #3f51b5;
+    font-size: 17px;
+    font-weight: 600;
+}
+
+.back:hover {
+    color: #333;
+}
+
 @media (min-width: 768px) {
     .messageCov {
         margin: 0 150px;
@@ -69,6 +102,15 @@
     }
     .messageCov h1 {
         font-size: 1.6rem;
+    }
+    .soonCov {
+        padding: 30px 15px;
+    }
+    .soonCov .mail span {
+        font-size: 23px;
+    }
+    .soonCov p {
+        font-size: 16px;
     }
 }
 
