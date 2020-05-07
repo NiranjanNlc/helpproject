@@ -10,6 +10,8 @@ import Login from './Authenciation/Login';
 import MenuComponent from './NavBAr/MenuComponent';
 import ThankYOu from './Authenciation/ThankYou';
 import Message from './Authenciation/Message';
+import Soon from './Authenciation/Soon';
+import Sorry from './Authenciation/Sorry';
 import Verify from './Authenciation/Verify';
 function App() {
   return (
@@ -30,7 +32,8 @@ function App() {
             <Route path="/verify/" component={Verify} />
 
             <Route path="/Message/" component={Message} />
-
+            <Route path="/Soon/" component={Soon} />
+            <Route path="/Sorry/" component={Sorry} />
            />
         </Switch>
         </>
