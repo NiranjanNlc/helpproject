@@ -13,12 +13,12 @@
     margin-bottom: 0;
 }
 
-.suggestion {
+.form-divider .suggestion {
     border: 1px solid #ddd;
     padding: 5px 10px;
     width: 65%;
 }
 
-.suggestion span {
+.form-divider .suggestion span {
     width: 100%;
 }
