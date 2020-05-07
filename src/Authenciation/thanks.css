@@ -13,9 +13,12 @@
     margin-bottom: 0;
 }
 
-.form-divider .suggestion {
+.suggestion {
     border: 1px solid #ddd;
     padding: 5px 10px;
+}
+
+.form-divider .suggestion {
     width: 65%;
 }
 
