@@ -1,8 +1,7 @@
 import React from 'react'
 import AuthenciationService from './AuthenciationService'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
-import './login.css'
-import $ from 'jquery'
+import './login.css' 
 // import Validation from './Validation'
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 class Login extends React.Component {
@@ -93,8 +92,8 @@ class Login extends React.Component {
     // })
 
     const signIn = {
-      usernameOrEmail: this.state.rid,
-      password: this.state.psw
+      usernameOrEmail: this.state.fields.rid,
+      password: this.state.fields.psw
     };
     if (this.validateForm()) {
       AuthenciationService
@@ -111,9 +110,16 @@ class Login extends React.Component {
           //  window.location.reload(false);   
 
         }).catch(() => {
+
+          let errors = {};
+          errors["rid"] = "*Incorrect username or password";
+          this.setState({
+            errors: errors
+          })
           console.log("error")
           this.setState({ showSuccessMessage: false })
           this.setState({ hasLoginFailed: true })
+
         })
     }
     return;

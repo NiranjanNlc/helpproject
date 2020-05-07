@@ -12,7 +12,8 @@ class DashBoard extends React.Component {
         name:'Raju Tamang daii ',
         email:'raju_123@gmail.com',
         phone:'9867745342',
-        helped:'12'
+        helped:'12',
+        loading:true
       }  
     }
    componentDidMount() {
@@ -41,6 +42,10 @@ class DashBoard extends React.Component {
         
       } 
       )
+      this.setState(
+          {loading:false}
+      )
+     
        
  }
  
@@ -49,6 +54,10 @@ class DashBoard extends React.Component {
     
     render()
     {
+        if(this.state.loading===true)
+        {
+            return(<div></div>)
+        }
      // this.refreshHelpedOne()
         return(
            

@@ -9,24 +9,39 @@ class Locat  extends React.Component {
                     city:'',
                   area:'',
                 state:'',
-              postalcode:'' }
+              postalcode:'',
+              fields: this.props.fields }
+
     this.setFormLocation = this.setFormLocation.bind(this)
     this.handleSelect = this.handleSelect.bind(this)
   }
 
   handleChange = (address) => {
+    
+    console.log(address)
     this.setState({ address })
+    // var lang = this.state.address;
+    // this.props.onChange(address);
   }
   onChange = (add) => {
+    console.log(add)
     this.setState({ add })
+    
+    this.props.onClick(add);
   }
 
   // When the user selects an autocomplete suggestion...
   handleSelect  (place)
    {
+     console.log(this.state.fields)
+    this.props.onSelect(place);
+    this.props.callbackFromParent(this.state.fields);
+     return;  
+    //this.props.getChildprops(this.state.fields)
+   
     // Pull in the setFormLocation function from the parent ReportForm
    // const setFormLocation = this.props.setFormLocation
-      this.props.onSelect(place); 
+     // this.props.onSelect(place); 
        
     geocodeByAddress(place)
       .then(results =>{ 
@@ -107,13 +122,16 @@ class Locat  extends React.Component {
         value={this.state.address}
         onChange={this.handleChange}
         onSelect={this.handleSelect} 
+      //  onClick={this.onChange}
         renderInput={{ placeholder: 'Enter address' }}
+        fields={this.props.fields}
         // Pass the search options prop
         //searchOptions={searchOptions}
         
       >
         {renderInput}
       </PlacesAutocomplete>
+    
     );
   }
  

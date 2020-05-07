@@ -10,6 +10,7 @@ import ChoiceService from './ChoiceService'
 import Place from '../Authenciation/Place' 
 import AuthenciationService from '../Authenciation/AuthenciationService'
 import Locat from '../Authenciation/Locat';
+import LocationService from '../Authenciation/LocationService';
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 class Choice extends React.Component {
     constructor(props) 
@@ -27,7 +28,6 @@ class Choice extends React.Component {
         area :'',
         postal_code:'',
         helpedone:  ''
-
       }
       this.handleChange = this.handleChange.bind(this)
        this.getpostal=this.getpostal.bind(this)
@@ -35,6 +35,7 @@ class Choice extends React.Component {
  this.getLocation=this.getLocation.bind(this)
 this.handleCo = this.handleCo.bind(this)
 this.checkLogin = this.checkLogin.bind(this)
+this.getArea=this.getArea.bind(this)
 }
 
 
@@ -42,7 +43,7 @@ handleCo(cordinate) {
     this.setState({
       location : cordinate
     })
-    Geocode.fromAddress(cordinate).then(
+     Geocode.fromAddress(cordinate).then(
         response => {
             console.log(response)
           const { lat, lng } = response.results[0].geometry.location;
@@ -50,6 +51,10 @@ handleCo(cordinate) {
             { lat:lat,
             lang:lng
         }  )
+        var city=LocationService.getArea(response.results[0].address_components)
+        this.setState(
+          {city:city}
+        )
         this.getLocation(lat,lng)
           console.log(this.state.lat)
           console.log(this.state.lng);
@@ -88,16 +93,37 @@ handleCo(cordinate) {
                 const address = response.results[0].formatted_address,
                       addressArray =  response.results[0].address_components,
                        postal_code =this.getpostal(addressArray)
+                   //    city=LocationService.getArea(addressArray)
+                   //    console.log(city)
                 console.log(postal_code) 
                 this.setState( {
                     postal_code:postal_code 
                 } )
+              //   this.setState( { 
+              //     city:city
+              // } )
             },
             error => {
                 console.error( error );
             }
         );
        
+    }
+    getArea(addressArray)
+    {
+        for( let i = 0; i < addressArray.length; i++ )
+        {
+          if ( addressArray[ i ].types[0]  ) {
+            for ( let j = 0; j < addressArray[ i ].types.length; j++ ) {
+              if ( 'sublocality_level_1' === addressArray[ i ].types[j] || 'locality' === addressArray[ i ].types[j] ) {
+                var area =  addressArray[ i ].long_name;
+                this.setState({city : area})
+                console.log(area)
+              }
+            }
+          }
+             
+        }
     }
     getpostal(addressArray)
     {
@@ -139,7 +165,8 @@ handleCo(cordinate) {
         lat:this.state.lat,
         lng:this.state.lang,
         helpedone:this.state.helpedone,
-        postcode:this.state.postal_code
+        postcode:this.state.postal_code,
+        city:this.state.city,
     }
     console.log(help)
     

@@ -56,8 +56,8 @@ class Place extends React.Component {
      {
       if ( addressArray[ i ].types[0] && 'administrative_area_level_2' === addressArray[ i ].types[0] )
        {
-        city ='City :'+ addressArray[ i ].long_name;
-        this.setState({city : city})
+        // city ='City :'+ addressArray[ i ].long_name;
+        // this.setState({city : city})
         console.log(city)
        } 
        if ( addressArray[ i ].types[0] && 'administrative_area_level_1' === addressArray[ i ].types[0] )
@@ -69,8 +69,8 @@ class Place extends React.Component {
         if ( addressArray[ i ].types[0]  ) {
           for ( let j = 0; j < addressArray[ i ].types.length; j++ ) {
             if ( 'sublocality_level_1' === addressArray[ i ].types[j] || 'locality' === addressArray[ i ].types[j] ) {
-              area = 'Area :'+ addressArray[ i ].long_name;
-              this.setState({area : area})
+              area =  addressArray[ i ].long_name;
+              this.setState({city : area})
               console.log(area)
             }
           }
@@ -101,9 +101,9 @@ class Place extends React.Component {
 						<input type="text"  placeholder = 'City' name="city" className="form-control" onChange={ this.onChange }   value={ this.state.city }/>
 					</div>
  
-					<div className="form-group"> 
-						<input type="text"  placeholder = 'State' name="state" className="form-control" onChange={ this.onChange }   value={ this.state.state }/>
-		</div>  
+            {/* <div className="form-group"> 
+              <input type="text"  placeholder = 'State' name="state" className="form-control" onChange={ this.onChange }   value={ this.state.state }/>
+      </div>   */}
       </div>
     );
 

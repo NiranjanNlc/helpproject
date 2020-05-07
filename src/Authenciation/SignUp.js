@@ -4,9 +4,10 @@ import './register.css'
 import AuthenciationService from './AuthenciationService'
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 
-import Place from './Place'
-import Locat from './Locat'
+import Place from './Place' 
 import LocationService from './LocationService'
+import Autocomplete from 'react-autocomplete'
+import Locat from './Locat'
 // import Validation from './Validation'
 class SignUp extends React.Component {
   constructor(props) {
@@ -32,6 +33,19 @@ class SignUp extends React.Component {
     this.handleCo = this.handleCo.bind(this)
     this.onPlaceSelected = this.onPlaceSelected.bind(this)
     this.validateForm = this.validateForm.bind(this)
+    this.getChildprops=this.getChildprops.bind(this)
+  }
+  getChildprops(fields)
+  {
+    this.setState({fields})
+    console.log(this.state.fields)
+  }
+  onChange = (add) => {
+    console.log(add)
+    this.setState({fields:{
+      loc:add
+    } })
+    console.log(this.state.fields.loc)
   }
 
   handleChange(e) {
@@ -40,7 +54,6 @@ class SignUp extends React.Component {
     // this.setState({
     //   [name]: value
     // })
-
     let fields = this.state.fields;
     let errors = this.state.errors;
     fields[e.target.name] = e.target.value;
@@ -48,11 +61,13 @@ class SignUp extends React.Component {
     this.setState({
       fields
     });
+    console.log(fields)
   }
 
   validateForm() {
     let formIsValid = true;
-    console.log(this.state.name)
+    console.log("hello here")
+    console.log(this.state.fields.loc)
     let fields = this.state.fields;
     let errors = {};
     //    let formIsValid = true;
@@ -93,7 +108,7 @@ class SignUp extends React.Component {
       errors["psw"] = "*Set your Password.";
     }
     if (typeof fields["psw"] !== "undefined") {
-      if (!fields["psw"].match(/^.*(?=.{8,})(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%&]).*$/)) {
+      if (fields["psw"].length < 6) {
         formIsValid = false;
         errors["psw"] = "*Please enter secure and strong password.";
       }
@@ -103,7 +118,7 @@ class SignUp extends React.Component {
       errors["psw1"] = "*Required";
     }
     if (typeof fields["psw1"] !== "undefined") {
-      if (!fields["psw1"] !== fields["psw"]) {
+      if (fields["psw1"] !== fields["psw"]) {
         formIsValid = false;
         errors["psw1"] = "*Confirm your Password.";
       }
@@ -126,15 +141,15 @@ class SignUp extends React.Component {
       errors["numb"] = "*Required";
     }
     if (typeof fields["numb"] !== "undefined") {
-      if (!fields["numb"].match(/^[0-9]{10}$/)) {
-        formIsValid = false;
-        errors["numb"] = "*Please enter valid mobile no.";
-      }
+      // if (!fields["numb"].match(/^[0-9]{10}$/)) {
+      //   formIsValid = false;
+      //   errors["numb"] = "*Please enter valid mobile no.";
+      // }
     }
-    if (!fields["loc"]) {
-      formIsValid = false;
-      errors["loc"] = "*Required";
-    }
+    // if (!fields["loc"]) {
+    //   formIsValid = false;
+    //   errors["loc"] = "*Required";
+    // }
     this.setState({
       errors: errors
     })
@@ -148,18 +163,35 @@ class SignUp extends React.Component {
     })
   }
   onPlaceSelected(loc) {
-    this.setState(
-      {
-        loc: loc,
-      }
-    )
+    console.log("fffff")
+    var nlc=this.state.fields
+    console.log(this.state.fields)
+     console.log(this.state.fields.loc)
     geocodeByAddress(loc)
       .then(results => {
         const addressArray = results[0].address_components
         console.log(addressArray)
-        const cit = LocationService.getCity(addressArray)
+        const cit = LocationService.getArea(addressArray)
         const postal = LocationService.getpostal(addressArray)
         console.log(postal)
+        console.log(results[0].formatted_address)
+        this.setState({
+          fields:{
+            postcode:postal,
+            city:cit,
+            psw:nlc.psw,
+            rid:nlc.rid,
+            psw1:nlc.psw1,
+            name:nlc.name,
+            sname:nlc.sname,
+            email:nlc.email,
+            street:nlc.street,
+            country:nlc.country,
+            homephone:nlc.hphn,
+            loc:results[0].formatted_address
+          }
+        });
+        console.log(this.state.fields)
         this.setState(
           {
             postcode: postal,
@@ -171,20 +203,30 @@ class SignUp extends React.Component {
 
 
       })
+      console.log(this.state.fields.loc)
+      console.log("In place select ")
   }
   submitData(event) {
     event.preventDefault()
-    this.validateForm(event)
-    console.log(this.state.sname)
+     const loc1 =this.state.fields.loc
+    if(this.validateForm(event))
+   {
+
     const signup = {
-      firstName: this.state.name,
-      surname: this.state.sname,
-      email: this.state.email,
-      phoneNumber: this.state.numb,
-      postalCode: this.state.postcode,
-      rId: this.state.rid,
-      psw: this.state.psw
-    };
+      firstName: this.state.fields.name,
+      surname: this.state.fields.sname,
+      email: this.state.fields.email,
+      phoneNumber: this.state.fields.numb,
+      postalCode: this.state.fields.postcode,
+      rId: this.state.fields.rid,
+      psw: this.state.fields.psw,
+      loc:loc1,
+      street:this.state.fields.street,
+      city:this.state.fields.city,
+      country:this.state.fields.country,
+      homephone:this.state.fields.hphn
+    }
+    console.log(signup)
     AuthenciationService.signUpRequest(signup)
       .then((response) => {
       console.log(response.data.success)
@@ -193,8 +235,9 @@ class SignUp extends React.Component {
       this.props.history.push({
       pathname: '/message/',
       // search: '?query=abc',
-      detail: this.state.name,
-      message:response.data.message
+      detail: this.state.fields.name,
+      message:response.data.message,
+      success:response.data.success
       })
     }
       else
@@ -202,8 +245,9 @@ class SignUp extends React.Component {
         this.props.history.push({
           pathname: '/message/',
           // search: '?query=abc',
-          detail: this.state.name,
-          message:response.data.message
+          detail: this.state.fields.name,
+          message:response.data.message,
+         success:response.data.success
           })
       }
     
@@ -213,6 +257,7 @@ class SignUp extends React.Component {
         this.setState({ showSuccessMessage: false })
         this.setState({ hasLoginFailed: true })
       })
+    }
   }
   render() {
     // this.refreshHelpedOne()
@@ -305,7 +350,25 @@ class SignUp extends React.Component {
                           <div className="col-sm-8 feild">
                             <div className="errorMessage">{this.state.errors.loc}</div>
                             <Locat
-                              onSelect={this.onPlaceSelected} name="loc" value={this.state.fields.loc} className="form-control" />
+                             name="loc" 
+                             value={this.state.fields.loc} 
+                             className={"form-control"}
+                            // onChange={this.onChange}
+                            //  onClick={this.onChange}
+                             fields={this.state.fields}
+                             callbackFromParent={this.getChildprops}
+                             onSelect={
+                               this.onPlaceSelected
+                              }
+                            />
+ 
+                            {/* <Locat
+                              name="loc" 
+                              value={this.state.fields.loc} 
+                              className="form-control" 
+                              onSelect={this.onPlaceSelected} 
+                              /> */}
+
 
                           </div>
                         </div>
@@ -324,7 +387,9 @@ class SignUp extends React.Component {
                           </div>
                           <div className="col-sm-8 feild">
                             <div className="errorMessage">{this.state.errors.city}</div>
-                            <input type="text" value={this.state.fields.city} name="city" defaultValue={this.state.city} className="form-control" required onChange={this.handleChange} required />
+                            <input type="text" value={this.state.fields.city} name="city"
+                           //  defaultValue={this.state.city} 
+                             className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -333,7 +398,9 @@ class SignUp extends React.Component {
                           </div>
                           <div className="col-sm-8 feild">
                             <div className="errorMessage">{this.state.errors.postcode}</div>
-                            <input type="text" value={this.state.fields.postcode} name="postcode" defaultValue={this.state.postcode} className="form-control" onChange={this.handleChange} required />
+                            <input type="text" value={this.state.fields.postcode} name="postcode"
+                         //    defaultValue={this.state.postcode} 
+                             className="form-control" onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">
@@ -341,10 +408,15 @@ class SignUp extends React.Component {
                             <label>Country</label>
                           </div>
                           <div className="col-sm-8 feild">
-                            <select class="form-control input-lg">
+                            <select class="form-control input-lg"
+                            onChange={this.handleChange}
+                            name="country"
+                             value={this.state.fields.country}>
                               <option>USA</option>
                               <option>UK</option>
-                              <option selected="selected">SPAIN</option>
+
+                          <option selected="selected">......</option>
+                              <option  >SPAIN</option>
                               <option>GERMANY</option>
                               <option>POLAND</option>
                             </select>
@@ -356,7 +428,7 @@ class SignUp extends React.Component {
                           </div>
                           <div className="col-sm-8 feild">
                             <div className="errorMessage">{this.state.errors.numb}</div>
-                            <input type="number" value={this.state.fields.numb} placeholder="*country code required--" name="numb" className="form-control" required onChange={this.handleChange} required />
+                            <input type="text" value={this.state.fields.numb} placeholder="*country code required--" name="numb" className="form-control" required onChange={this.handleChange} required />
                           </div>
                         </div>
                         <div className="row feild_entry">

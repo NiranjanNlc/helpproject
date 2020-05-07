@@ -11,7 +11,7 @@ class Message extends Component {
     }    
     componentDidMount() 
     {
-        if(this.props.location.message!=null)
+        if(this.props.location.success!=null)
         {
             this.setState(
                 {success:false}
@@ -42,11 +42,11 @@ class Message extends Component {
                                 <div className="mail">
                                     <span><i class="fas fa-envelope"></i></span>
                                 </div>
-                                <p>Verification email has been sent to you  </p>
-                                <b><h6><u>Check your inbox</u></h6></b>
+                                <p>Verification Sms  has been sent to you  </p>
+                                <b><h6><u>Check your message</u></h6></b>
                                </div>:
                                <div>
-                                   {this.props.location.message}
+                                  <h1>{this.props.location.message}</h1> 
                                </div>
                                }
                                 

@@ -24,7 +24,7 @@ function App() {
           <Switch>
             <Route path="/" exact component={Login} />
             <Route path="/add/" component={SelectPlace} />
-            <AuthenticatedRoute path="/chose/" component={Choice} />
+            <Route path="/chose/" component={Choice} />
             <AuthenticatedRoute path="/dash/" component={DashBoard} />
             <Route path="/login/" component={Login} />
             <Route path="/sign/" component={SignUp} />
