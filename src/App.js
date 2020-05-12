@@ -10,8 +10,8 @@ import Login from './Authenciation/Login';
 import MenuComponent from './NavBAr/MenuComponent';
 import ThankYOu from './Authenciation/ThankYou';
 import Message from './Authenciation/Message';
-import Soon from './Authenciation/Soon';
-import Sorry from './Authenciation/Sorry';
+import Soon from './Choice/Soon';
+import Sorry from './Choice/Sorry';
 import Verify from './Authenciation/Verify';
 import AuthenticatedRoute from './Authenciation/AuthenciatedRoute';
 

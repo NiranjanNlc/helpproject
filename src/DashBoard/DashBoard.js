@@ -13,7 +13,9 @@ class DashBoard extends React.Component {
         email:'raju_123@gmail.com',
         phone:'9867745342',
         helped:'12',
-        loading:true
+        loading:true,
+        helpedBy:'',
+        helpedTo:''
       }  
     }
    componentDidMount() {
@@ -34,19 +36,22 @@ class DashBoard extends React.Component {
           console.log(response.data.email)
           console.log(response.data.phone)
          this.setState( 
-          {name: response.data.firstName})
-          this.setState( 
+          {name: response.data.name})
+          this.setState(  
           {email: response.data.email})
-          this.setState( {phone: response.data.phoneNumber}
+          this.setState( {phone: response.data.phone}
           )
+          this.setState( 
+            {helpedBy: "Helped received from:"+response.data.helpedBy})
+            this.setState( 
+            {helpedTo:"Helped given to :" +response.data.helpedTo})
+            
         
       } 
       )
       this.setState(
           {loading:false}
       )
-     
-       
  }
  
     
@@ -79,13 +84,15 @@ class DashBoard extends React.Component {
                                   <img src="help.png" class="rounded-circle" alt="profile_photo"/>
                               </div>
                               <div class="no_people">
-                             <span>Number of people Helped :
+                             <span>Total number of people Helped :
                               <b> {this.state.helped}</b>   </span>
                               </div>
                               <ul class="info">
                                   <li>{this.state.name}</li>
                                   <li>{this.state.email}</li>
                                   <li>{this.state.phone}</li>
+                                  <li>{this.state.helpedTo}</li>
+                                  <li>{this.state.helpedBy}</li>
                               </ul>
                           </div>
                       </div>

@@ -95,12 +95,15 @@ class SignUp extends React.Component {
       formIsValid = false;
       errors["rid"] = "*Please enter Username.";
     }
-
+    if (!fields["country"]) {
+      formIsValid = false;
+      errors["country"] = "*required.";
+    }
     if (typeof fields["rid"] !== "undefined") {
 
       if (fields["rid"].length < 6) {
         formIsValid = false;
-        errors["rid"] = "*At Least 5 Character.";
+        errors["rid"] = "*At Least 6 Character.";
       }
     }
     if (!fields["psw"]) {
@@ -187,7 +190,7 @@ class SignUp extends React.Component {
             email:nlc.email,
             street:nlc.street,
             country:nlc.country,
-            homephone:nlc.hphn,
+            hphn:nlc.hphn,
             loc:results[0].formatted_address
           }
         });
@@ -408,6 +411,7 @@ class SignUp extends React.Component {
                             <label>Country</label>
                           </div>
                           <div className="col-sm-8 feild">
+                          <div className="errorMessage">{this.state.errors.country}</div>
                             <select class="form-control input-lg"
                             onChange={this.handleChange}
                             name="country"

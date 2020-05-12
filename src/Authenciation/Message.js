@@ -5,7 +5,7 @@ class Message extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            success:true,
+            success:false,
             loading:false
         }
     }    
@@ -13,9 +13,17 @@ class Message extends Component {
     {
         if(this.props.location.success!=null)
         {
-            this.setState(
-                {success:false}
-            )
+            console.log(this.props.location.success)
+            if(this.props.location.success===true)
+            {
+                this.setState(
+                    {success:true}
+                )
+            }
+            else
+            {
+            
+            }
         }
         this.setState(
             {loading:true}
@@ -25,7 +33,7 @@ class Message extends Component {
         console.log (this.props.location)
        console.log (this.props.location.message)
       
-       if(this.state.location==true)
+       if(this.state.loading==false)
        {
            return(<div></div>)
        }

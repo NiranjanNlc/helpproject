@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import './Message.css'
+import '../Authenciation/Message.css'
 import { Link, withRouter } from 'react-router-dom'
 class Sorry extends Component {
     render() {
@@ -11,8 +11,8 @@ class Sorry extends Component {
                             <div className="soonCov">
                                 <div className="mail">
                                     <span>Sorry !</span>
-                                </div>
-                                <p>No Helper online from this location, Please try another location</p>
+                                 </div>
+                                 <p>No Helper online from this location, Please try another location</p>
                                 <a href="#" className="btn back"><i class="fas fa-chevron-left"></i> Go back</a>
                             </div>
                         </div>

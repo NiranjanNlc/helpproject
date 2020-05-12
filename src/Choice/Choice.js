@@ -17,9 +17,9 @@ class Choice extends React.Component {
     {
       super(props)
         this.state = {
-        var1:'Resturant',
-        var2:'Affordable',
-        var3:'Fish' ,
+        var1:' ',
+        var2:'',
+        var3:'' ,
         lat:'',
         lang:'',
         location:'',
@@ -173,7 +173,12 @@ handleCo(cordinate) {
      ChoiceService.ChoiceService (help)
    .then((response) => {
      console.log(response) 
-     this.checkLogin()
+     this.props.history.push({
+      pathname: '/soon/',
+      // search: '?query=abc', 
+      success:response.data
+     })
+   //  this.checkLogin()
       }).catch(() => {
      console.log("error in adding ") 
   })
@@ -188,6 +193,110 @@ handleCo(cordinate) {
     
     render()
     {
+       
+      if(this.state.var1==='Resturant'||this.state.var1==='Takeaways') 
+      { 
+        var map=(<div>
+      <select name="var2" onChange={this.handleChange} className="form-control input-lg">
+      <option value="1">.......</option>
+                                 
+           <option value="Chinese"> Chinese </option>
+          <option value="Nepalese">Nepalese </option>
+          <option value="Top Rated">Top Rated</option>
+           <option value="Contenential">Continental</option>  
+      </select>
+      <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
+      <option value="1">.......</option>
+                                 
+      <option value="Meat">Meat </option>
+          <option value="Fish">Fish </option>
+          <option value="Vegeterian">Vegeterian</option> 
+          </select>
+          </div> 
+     )}
+          else if(this.state.var1==="Groceries")
+           {
+            var map=(<div>
+             <select name="var2" onChange={this.handleChange} className="form-control input-lg">
+             <option value="1">.......</option>
+                                 
+           <option value="Chinese"> Chinese </option>
+          <option value="Asian">Asian </option>
+          <option value="Top Rated">Top Rated</option>
+           </select>
+      <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
+      <option value="1">.......</option>
+                                 
+      <option value="Open now">Open now</option>
+          
+          </select>
+           </div>
+            )}
+           else if(this.state.var1==="Petrol Pump")
+           { 
+            var map=(<div>
+              <select name="var2" onChange={this.handleChange} className="form-control input-lg">
+              <option value="1">.......</option>
+              <option value="Open Now">Open now</option>
+           </select>
+      <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
+      <option value="1">.......</option>
+                                 
+      <option value="Open now">Open now</option>
+      </select>
+           </div>
+            )}
+           else if(this.state.var1==="Chemist")
+           {
+            var map=(<div>
+             <select name="var2" onChange={this.handleChange} className="form-control input-lg">
+             <option value="1">.......</option>
+                                 
+              <option value="Top rated">Top Rated</option>
+           </select>
+      <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
+      <option value="1">.......</option>
+                                 
+      <option value="Open now">Open now</option>
+      </select>
+           </div>)
+           }
+            else if(this.state.var1==="Hotels")
+            {
+              var map=(<div>
+             <select name="var2" onChange={this.handleChange} className="form-control input-lg">
+             <option value="1">.......</option>
+                                 
+              <option value="Top rated">Top Rated</option>
+              <option value="Bed and  Breakfast">Bed and  Breakfast</option>
+              <option value="Brand">Brand</option>
+           </select>
+      <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
+      <option value="1">.......</option>
+                                 
+      <option value="Affordable">Affordable</option>
+      <option value="Offers">Offers</option>
+          </select>
+          </div>
+              )}
+           else
+           { 
+            var map=(<div>
+          <select name="var2" onChange={this.handleChange} className="form-control input-lg">
+          <option value="1">.......</option>            
+          <option value="Park">Park </option>
+          <option value="Club">Club </option>
+          <option value="Muesum">Muesum</option>
+            </select>
+        <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
+        <option value="6"></option>
+         <option value="Free">Free</option>
+          <option value="Limited Edition">Limited Edition</option>
+          <option value="Affordable">Affordable</option>
+          </select>
+          </div> 
+            )}
+        
         return(
           <section id="detailWrap">
           <div className="container">
@@ -203,39 +312,22 @@ handleCo(cordinate) {
                               <span>I am looking for</span>
                           </div>
                           <form>
-                              <select name="var1" onChange={this.handleChange} className="form-control input-lg">
+                            <div>                              <select name="var1" onChange={this.handleChange} className="form-control input-lg">
                                   <option value="1">.......</option>
                                   <option value="Resturant">Resturant</option>
                                   <option value="Things To Do">Things To Do</option>  
+
+                                  <option value="Takeaways">Takeaways</option>  
+                                  <option value="Hotels">Hotels</option>  
+                                  <option value="Chemist">Chemist</option>  
+                                  <option value="Groceries">Groceries</option>  
+                                  <option value="Petrol Pump">Petrol Pump</option>  
                               </select>
-                              {this.state.var1==='Resturant' ?
-                              <div>
-                              <select name="var2" onChange={this.handleChange} className="form-control input-lg">
-                                   <option value="Affordable">Affordable</option>
-                                  <option value="Mid-Range">Mid-Range </option>
-                                  <option value="HighEnd">HighEnd</option> 
-                              </select>
-                              <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
-                              <option value="Meat">Meat </option>
-                                  <option value="Fish">Fish </option>
-                                  <option value="Vegeterian">Vegeterian</option> 
-                                  </select>
-                                  </div> 
-                                   :
-                                   <div>
-                              <select name="var2" onChange={this.handleChange} className="form-control input-lg">
-                                  <option value="Park">Park </option>
-                                  <option value="Club">Club </option>
-                                  <option value="Muesum">Muesum</option>
-                                    </select>
-                              <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
-                               <option value="Free">Free</option>
-                                  <option value="Limited Edition">Limited Edition</option>
-                                  <option value="Affordable">Affordable</option>
-                                  <option value="6"></option>
-                                  </select>
-                                  </div> 
-                                  }
+                              </div>
+                              {map}
+                              
+                              
+                             
                                                <b>in the location</b>   
                                   <Place
                                      
