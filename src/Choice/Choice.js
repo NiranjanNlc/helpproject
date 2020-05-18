@@ -3,11 +3,12 @@ import Geocode from "react-geocode";
 import axios from 'axios' 
 import { BrowserRouter as Router, Route, history, Redirect ,Link} from 'react-router-dom'
 import  './styleMedia.css' 
-
+import {refresh} from '../Authenciation/Redux/Actions/Actions'
 import { withRouter } from 'react-router';  
 import  './styleCommon.css'
 import ChoiceService from './ChoiceService'
 import Place from '../Authenciation/Place' 
+import {connect} from "react-redux"
 import AuthenciationService from '../Authenciation/AuthenciationService'
 import Locat from '../Authenciation/Locat';
 import LocationService from '../Authenciation/LocationService';
@@ -65,7 +66,8 @@ handleCo(cordinate) {
       );
   }
     componentDidMount() {
-       const helpedone= AuthenciationService.getToken()
+     this.props.dispatch(refresh())
+       const helpedone= this.props.data.currentUser
       this.setState(
         {helpedone:helpedone}
       )
@@ -279,6 +281,42 @@ handleCo(cordinate) {
           </select>
           </div>
               )}
+              else if(this.state.var1==="Garage")
+            {
+              var map=(<div>
+             <select name="var2" onChange={this.handleChange} className="form-control input-lg">
+             <option value="1">.......</option>
+                                 
+              <option value="Car Wash<">Car Wash</option>
+              <option value="Maintenance">Maintenance</option>
+              <option value="Bike Wash">Bike Wash</option>
+           </select>
+      <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
+      <option value="1">.......</option>
+                                 
+      <option value="Average">Average</option>
+      <option value="Top Rated">Top Rated</option>
+          </select>
+          </div>
+              )}
+              else if(this.state.var1==="clothestore")
+            {
+              var map=(<div>
+             <select name="var2" onChange={this.handleChange} className="form-control input-lg">
+             <option value="1">.......</option>
+                                 
+              <option value="Ladies">Ladies</option>
+              <option value="Gents">Gents</option>
+              <option value="All kind">All kind</option>
+           </select>
+      <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
+      <option value="1">.......</option>
+                                 
+      <option value="Average">Average</option>
+      <option value="Top Rated">Top Rated</option>
+          </select>
+          </div>
+              )}
            else
            { 
             var map=(<div>
@@ -316,7 +354,8 @@ handleCo(cordinate) {
                                   <option value="1">.......</option>
                                   <option value="Resturant">Resturant</option>
                                   <option value="Things To Do">Things To Do</option>  
-
+                                  <option value="Garage">Garage </option>
+                                  <option value="clothestore">Clothe Store</option>
                                   <option value="Takeaways">Takeaways</option>  
                                   <option value="Hotels">Hotels</option>  
                                   <option value="Chemist">Chemist</option>  
@@ -345,4 +384,11 @@ handleCo(cordinate) {
         )
     }
 }
-export default withRouter(Choice);
+const mapStateToProps = state => {
+  return {
+    data: state
+  };
+};
+
+export default 
+connect(mapStateToProps) (withRouter(Choice));

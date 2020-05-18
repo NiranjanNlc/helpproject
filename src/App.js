@@ -15,8 +15,11 @@ import Sorry from './Choice/Sorry';
 import Verify from './Authenciation/Verify';
 import AuthenticatedRoute from './Authenciation/AuthenciatedRoute';
 
-function App() {
-  return (
+class App extends React.Component {
+  
+   render()
+   {
+  return ( 
     <div>
 
 
@@ -24,9 +27,9 @@ function App() {
         <MenuComponent />
         <>
           <Switch>
-            <Route path="/" exact component={Login} />
+            <Route path="/" exact component={Login}/>
             <Route path="/add/" component={SelectPlace} />
-            <Route path="/chose/" component={Choice} />
+            <AuthenticatedRoute  path="/chose/" component={Choice} />
             <AuthenticatedRoute path="/dash/" component={DashBoard} />
             <Route path="/login/" component={Login} />
             <Route path="/sign/" component={SignUp} />
@@ -34,15 +37,15 @@ function App() {
             <Route path="/verify/" component={Verify} />
 
             <Route path="/Message/" component={Message} />
-            <Route path="/Soon/" component={Soon} />
-            <Route path="/Sorry/" component={Sorry} />
+            <AuthenticatedRoute path="/Soon/" component={Soon} />
+            <AuthenticatedRoute path="/Sorry/" component={Sorry} />
            />
         </Switch>
         </>
 
       </Router>
-    </div>
-  );
+    </div> 
+    );
 }
-
+}
 export default App;

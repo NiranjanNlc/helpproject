@@ -12,7 +12,7 @@ class AuthenticationService
 {
     executeJwtAuthenticationService($signin)
      {
-        return axios.post(`${API_URL}/api/auth/signin`,$signin)
+        return axios.post(`${API_URL}/api/auth/login`,$signin)
     } 
     registerSuccessfulLoginForJwt(username, token,role) {
       console.log(token)

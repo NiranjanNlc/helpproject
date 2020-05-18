@@ -4,6 +4,8 @@ import { BrowserRouter as Router, Route, history, Redirect ,Link} from 'react-ro
 import  './styleMedia.css'
 import  './styleCommon.css'
 import DashService from './DashService'
+import {connect} from 'react-redux'
+import {refresh} from '../Authenciation/Redux/Actions/Actions'
 
 class DashBoard extends React.Component {
     constructor(props) {
@@ -19,6 +21,7 @@ class DashBoard extends React.Component {
       }  
     }
    componentDidMount() {
+    // this.props.dispatch(refresh())
     console.log('Component did mount!')
     DashService.retrieveValue()
     .then(
@@ -28,11 +31,11 @@ class DashBoard extends React.Component {
       
     } 
     )
-    DashService.getData()
+    DashService.getData(this.props.data.currentUser)
     .then(
         response => {
           console.log(response);
-          console.log(response.data.firstName)
+          //console.log(response.data.firstName)
           console.log(response.data.email)
           console.log(response.data.phone)
          this.setState( 
@@ -44,14 +47,13 @@ class DashBoard extends React.Component {
           this.setState( 
             {helpedBy: "Helped received from:"+response.data.helpedBy})
             this.setState( 
-            {helpedTo:"Helped given to :" +response.data.helpedTo})
-            
-        
+            {helpedTo:"Helped given to :" +response.data.helpedTo})   
       } 
       )
       this.setState(
           {loading:false}
       )
+     this.props.dispatch(refresh())
  }
  
     
@@ -105,4 +107,11 @@ class DashBoard extends React.Component {
        )
     }
 }
-export default DashBoard;
+const mapStateToProps = state => {
+    return {
+      data: state
+    };
+  };
+
+export default 
+connect(mapStateToProps) (DashBoard);

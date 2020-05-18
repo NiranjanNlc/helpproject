@@ -2,6 +2,10 @@ import React from 'react'
 import AuthenciationService from './AuthenciationService'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
 import './login.css' 
+import  httpResource from './httpResource'
+import hutils from './hutils'
+import MyContext from './Context/MyContext'
+import {connect} from "react-redux" 
 // import Validation from './Validation'
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 class Login extends React.Component {
@@ -96,42 +100,67 @@ class Login extends React.Component {
       password: this.state.fields.psw
     };
     if (this.validateForm()) {
-      AuthenciationService
-        .executeJwtAuthenticationService(signIn)
-        .then((response) => {
-          console.log(response)
-          console.log(response.data.accessToken)
-          console.log(response.data.role)
-          AuthenciationService.registerSuccessfulLoginForJwt(response.data.role, response.data.accessToken)
-          console.log("trying to push ")
+      // AuthenciationService
+      //   .executeJwtAuthenticationService(signIn)
+      //   .then((response) => {
+      //     console.log(response)
+      //     console.log(response.data.accessToken)
+      //     console.log(response.data.role)
+      //     AuthenciationService.registerSuccessfulLoginForJwt(response.data.role, response.data.accessToken)
+      //     console.log("trying to push ")
+          
+      //     this.props.history.push("/dash/")
+      //     window.location.reload(false);
+      //     //  window.location.reload(false);   
 
-          this.props.history.push("/dash/")
-          window.location.reload(false);
-          //  window.location.reload(false);   
+      //   }).catch(() => {
 
+      //     let errors = {};
+      //     errors["rid"] = "*Incorrect username or password";
+      //     this.setState({
+      //       errors: errors
+      //     })
+      //     console.log("error")
+      //     this.setState({ showSuccessMessage: false })
+      //     this.setState({ hasLoginFailed: true })
+
+      //   })
+        httpResource.post("/api/auth/login",signIn)
+        .then((response) => 
+        {
+          if (response.status === 200) 
+          {
+          //  await  this.props.dispatch(getAuthenticatedUser());
+            console.log("logged in ..") 
+            console.log("trying to open login page")
+            this.props.history.push("/dash/")
+            window.location.reload(false);
+          } 
         }).catch(() => {
-
-          let errors = {};
-          errors["rid"] = "*Incorrect username or password";
-          this.setState({
-            errors: errors
-          })
-          console.log("error")
-          this.setState({ showSuccessMessage: false })
-          this.setState({ hasLoginFailed: true })
-
-        })
+              let errors = {};
+              errors["rid"] = "*Incorrect username or password";
+              this.setState({
+                errors: errors
+              })
+              console.log("error")
+              this.setState({ showSuccessMessage: false })
+              this.setState({ hasLoginFailed: true })
+            })
+   //   console.log(response)
+      
     }
     return;
   }
   checkLogin() {
-    if (AuthenciationService.isUserLoggedIn()) {
+      // console.log(store.getState())
+    if (this.props.data.isAuthenticated===true) {
       console.log("trying to open login page")
       this.props.history.push("/dash/")
       window.location.reload(false);
     }
   }
   componentDidMount() {
+   // this.checkLogin()
 
   }
 
@@ -140,7 +169,7 @@ class Login extends React.Component {
 
   render() {
     this.checkLogin()
-    return (
+    return ( 
       < section id="formWrap" >
         <div className="container">
           <div className="row">
@@ -181,4 +210,11 @@ class Login extends React.Component {
 
   }
 }
-export default Login;
+const mapStateToProps = state => {
+  return {
+    data: state
+  };
+};
+
+export default 
+connect(mapStateToProps) (Login);
