@@ -10,10 +10,10 @@ ReactDOM.render(
   <React.StrictMode>
     
   <Provider store={store}>
-     <App /> 
+     <App/> 
      </Provider>
   </React.StrictMode>,
-  document.getElementById("#help")
+  document.getElementById("help")
 );
 
 // If you want your app to work offline and load faster, you can change

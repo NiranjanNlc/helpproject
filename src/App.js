@@ -4,7 +4,7 @@ import './App.css';
 import Choice from './Choice/Choice';
 import SelectPlace from './SelectPlace/SelectPlace';
 import DashBoard from './DashBoard/DashBoard';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import SignUp from './Authenciation/SignUp';
 import Login from './Authenciation/Login';
 import MenuComponent from './NavBAr/MenuComponent';
@@ -14,16 +14,18 @@ import Soon from './Choice/Soon';
 import Sorry from './Choice/Sorry';
 import Verify from './Authenciation/Verify';
 import AuthenticatedRoute from './Authenciation/AuthenciatedRoute';
+import { createBrowserHistory } from "history";
 
 class App extends React.Component {
   
    render()
    {
+    const hist = createBrowserHistory();
   return ( 
     <div>
 
 
-      <Router>
+      <Router  history={hist}>
         <MenuComponent />
         <>
           <Switch>
