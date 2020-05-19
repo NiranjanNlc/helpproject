@@ -1,7 +1,7 @@
 import axios from 'axios' 
 const API_URL = 'http://localhost:8080/send' 
-const HELP_URL = `/send/getHelpedNumber`
-const DATA_URL = `/send/get`
+const HELP_URL = `http://dev3.pareva.umelimited.com/send/getHelpedNumber`
+const DATA_URL = `http://dev3.pareva.umelimited.com/send/get`
  export const TOKEN="token"
  export const headers = { 
   'Authorization': 'Bearer '+localStorage.getItem(TOKEN)

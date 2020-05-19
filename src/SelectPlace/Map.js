@@ -7,7 +7,7 @@ import Axios from 'axios';
 import { withRouter } from 'react-router';
 import './Map.css'  
 import LocationSearchInput from './LocationSearchInput';
-const API_URL = '/send/suggestion'
+const API_URL = 'http://dev3.pareva.umelimited.com/send/suggestion'
 const SUBMIT_URL = `${API_URL}`
 //Geocode.setApiKey("AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc");
 //Geocode.enableDebug();

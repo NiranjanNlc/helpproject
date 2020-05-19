@@ -1,5 +1,5 @@
 import axios from 'axios' 
-const API_URL = '/send/' 
+const API_URL = 'http://dev3.pareva.umelimited.com/send/' 
 const SUBMIT_URL = `${API_URL}`
 export const TOKEN="token"
 export const headers = { 
