@@ -29,18 +29,18 @@ class App extends React.Component {
         <MenuComponent />
         <>
           <Switch>
-            <Route path="/help/react/" exact component={Login}/>
-            <Route path="/help/react/add/" component={SelectPlace} />
-            <AuthenticatedRoute  path="/help/react/chose/" component={Choice} />
-            <AuthenticatedRoute path="/help/react/dash/" component={DashBoard} />
-            <Route path="/help/react/login/" component={Login} />
-            <Route path="/help/react/sign/" component={SignUp} />
-            <Route path="/help/react/thanks/" component={ThankYOu} />
-            <Route path="/help/react/verify/" component={Verify} />
+            <Route path="/" exact component={Login}/>
+            <Route path="/add/" component={SelectPlace} />
+            <AuthenticatedRoute  path="/chose/" component={Choice} />
+            <AuthenticatedRoute path="/dash/" component={DashBoard} />
+            <Route path="/login/" component={Login} />
+            <Route path="/sign/" component={SignUp} />
+            <Route path="/thanks/" component={ThankYOu} />
+            <Route path="/verify/" component={Verify} />
 
-            <Route path="/help/react/Message/" component={Message} />
-            <AuthenticatedRoute path="/help/react/Soon/" component={Soon} />
-            <AuthenticatedRoute path="/help/react/Sorry/" component={Sorry} />
+            <Route path="/Message/" component={Message} />
+            <AuthenticatedRoute path="/Soon/" component={Soon} />
+            <AuthenticatedRoute path="/Sorry/" component={Sorry} />
            />
         </Switch>
         </>

@@ -1,7 +1,7 @@
 {
   "name": "helpproject",
   "version": "0.1.0",
-  "homepage": "http://www.studentprojectnepal.org.np/help/react",
+  "homepage": "http://studentprojectnepal.org.np/help/react/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.10",
