@@ -6,6 +6,7 @@ class Forgot extends Component {
         return (
             <div>
                 <section id="topHeader">
+                    <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12" align="center">
@@ -13,7 +14,6 @@ class Forgot extends Component {
                             </div>
                         </div>
                     </div>
-                    <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                 </section>
                 <section id="forgetForm" className="secGap">
                     <div className="container">

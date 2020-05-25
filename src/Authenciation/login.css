@@ -154,6 +154,19 @@ label {
     #formWrap .formWrap {
         padding: 0;
     }
+    #topHeader img {
+        position: inherit !important;
+        top: auto !important;
+        left: auto !important;
+        height: 85px !important;
+        margin-bottom: 15px !important;
+    }
+    #topHeader h1 {
+        font-size: 1.9rem !important;
+    }
+    #topHeader {
+        text-align: center;
+    }
 }
 
 @media (min-width: 768px) {}
