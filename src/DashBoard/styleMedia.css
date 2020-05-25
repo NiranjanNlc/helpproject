@@ -1,4 +1,32 @@
 @media (max-width: 767px) {
+    .secGap {
+        padding: 30px 0 !important;
+    }
+    #mainFace h1 {
+        line-height: 1.2 !important;
+        font-size: 1.75rem !important;
+        font-stretch: normal;
+        font-style: normal;
+        line-height: normal;
+        letter-spacing: normal;
+        color: #111;
+    }
+    #mainFace .vMore.watch {
+        margin-bottom: 15px;
+    }
+    .mobile, .testiModal {
+        display: none;
+    }
+    #offer {
+        padding: 50px 0 !important;
+    }
+    .mobPad {
+        padding: 10px 30px;
+    }
+    #testimonial {
+        background: #e6e6ec;
+    }
+    /* old  */
     .detailBlock {
         width: 100% !important;
     }
@@ -12,5 +40,22 @@
 @media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
     .detailBlock {
         width: 60% !important;
+    }
+    .mobile {
+        max-width: 88% !important;
+        right: -170px !important;
+        bottom: -120px !important;
+    }
+    #mainFace .vMore.watch {
+        margin-bottom: 15px;
+    }
+    #home {
+        overflow: hidden;
+    }
+    .mobPad {
+        padding: 10px 30px;
+    }
+    .tImage {
+        display: none;
     }
 }

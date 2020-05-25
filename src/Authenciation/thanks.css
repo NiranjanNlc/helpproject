@@ -31,7 +31,7 @@
 
 #topHeader {
     position: relative;
-    padding: 25px 0;
+    padding: 30px 0;
 }
 
 #topHeader h1 {
@@ -41,11 +41,13 @@
 
 #topHeader img {
     position: absolute;
-    left: 0;
+    top: 7px;
+    left: 30px;
+    height: 95px;
 }
 
 #forgetForm {
-    min-height: calc(100vh - 96px);
+    min-height: calc(100vh - 106px);
     background: #f0f2f4;
 }
 

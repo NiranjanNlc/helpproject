@@ -1,13 +1,17 @@
 import React from 'react'
 import AuthenciationService from './AuthenciationService'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
-import './login.css' 
-import  httpResource from './httpResource'
+import './login.css'
+import httpResource from './httpResource'
 
+<<<<<<< HEAD
 import {getAuthenticatedUser, login, logout } from "./Redux/Actions/Actions"
+=======
+import { getAuthenticatedUser } from "./Redux/Actions/Actions"
+>>>>>>> 196d055fe491454ff6d667325879582ebe7425da
 import hutils from './hutils'
 import MyContext from './Context/MyContext'
-import {connect} from "react-redux" 
+import { connect } from "react-redux"
 // import Validation from './Validation'
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 class Login extends React.Component {
@@ -110,7 +114,7 @@ class Login extends React.Component {
       //     console.log(response.data.role)
       //     AuthenciationService.registerSuccessfulLoginForJwt(response.data.role, response.data.accessToken)
       //     console.log("trying to push ")
-          
+
       //     this.props.history.push("/dash/")
       //     window.location.reload(false);
       //     //  window.location.reload(false);   
@@ -127,6 +131,7 @@ class Login extends React.Component {
       //     this.setState({ hasLoginFailed: true })
 
       //   })
+<<<<<<< HEAD
  
         httpResource.post("/api/auth/login",signIn)
         .then((response) => 
@@ -153,19 +158,42 @@ class Login extends React.Component {
    //   console.log(response)
   
        
+=======
+      httpResource.post("/api/auth/login", signIn)
+        .then((response) => {
+          if (response.status === 200) {
+            this.props.dispatch(getAuthenticatedUser());
+            console.log("logged in ..")
+            console.log("trying to open login page")
+            this.props.history.push("/dash/")
+            window.location.reload(false);
+          }
+        }).catch(() => {
+          let errors = {};
+          errors["rid"] = "*Incorrect username or password";
+          this.setState({
+            errors: errors
+          })
+          console.log("error")
+          this.setState({ showSuccessMessage: false })
+          this.setState({ hasLoginFailed: true })
+        })
+      //   console.log(response)
+
+>>>>>>> 196d055fe491454ff6d667325879582ebe7425da
     }
     return;
   }
   checkLogin() {
-      // console.log(store.getState())
-    if (this.props.data.isAuthenticated===true) {
+    // console.log(store.getState())
+    if (this.props.data.isAuthenticated === true) {
       console.log("trying to open login page")
       this.props.history.push("/dash/")
       window.location.reload(false);
     }
   }
   componentDidMount() {
-   // this.checkLogin()
+    // this.checkLogin()
 
   }
 
@@ -174,7 +202,7 @@ class Login extends React.Component {
 
   render() {
     this.checkLogin()
-    return ( 
+    return (
       < section id="formWrap" >
         <div className="container">
           <div className="row">
@@ -221,5 +249,5 @@ const mapStateToProps = state => {
   };
 };
 
-export default 
-connect(mapStateToProps) (Login);
+export default
+  connect(mapStateToProps)(Login);
