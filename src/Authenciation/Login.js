@@ -3,6 +3,8 @@ import AuthenciationService from './AuthenciationService'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
 import './login.css' 
 import  httpResource from './httpResource'
+
+import {getAuthenticatedUser } from "./Redux/Actions/Actions"
 import hutils from './hutils'
 import MyContext from './Context/MyContext'
 import {connect} from "react-redux" 
@@ -130,7 +132,7 @@ class Login extends React.Component {
         {
           if (response.status === 200) 
           {
-          //  await  this.props.dispatch(getAuthenticatedUser());
+             this.props.dispatch(getAuthenticatedUser());
             console.log("logged in ..") 
             console.log("trying to open login page")
             this.props.history.push("/dash/")

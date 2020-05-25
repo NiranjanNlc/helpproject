@@ -9,7 +9,7 @@ const isHandlerEnabled = (config = {}) => {
 // axiosInstance.get('/v2/api-endpoint', { handlerEnabled: false })
 
 const instance = axios.create({
-  baseURL: "http://localhost:8084/",
+  baseURL: "http://dev3.pareva.umelimited.com/",
   withCredentials: true,
   timeout: 10000
 });

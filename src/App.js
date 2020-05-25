@@ -4,7 +4,7 @@ import './App.css';
 import Choice from './Choice/Choice';
 import SelectPlace from './SelectPlace/SelectPlace';
 import DashBoard from './DashBoard/DashBoard';
-import {BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import {HashRouter as Router, Route, Switch } from 'react-router-dom'
 import SignUp from './Authenciation/SignUp';
 import Login from './Authenciation/Login';
 import MenuComponent from './NavBAr/MenuComponent';
@@ -25,7 +25,7 @@ class App extends React.Component {
     <div>
 
 
-      <Router  history={hist}>
+      <Router   >
         <MenuComponent />
         <>
           <Switch>

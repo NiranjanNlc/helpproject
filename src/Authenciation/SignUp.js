@@ -166,7 +166,7 @@ class SignUp extends React.Component {
     })
   }
   onPlaceSelected(loc) {
-    console.log("fffff")
+    console.log(loc)
     var nlc=this.state.fields
     console.log(this.state.fields)
      console.log(this.state.fields.loc)
@@ -176,6 +176,7 @@ class SignUp extends React.Component {
         console.log(addressArray)
         const cit = LocationService.getArea(addressArray)
         const postal = LocationService.getpostal(addressArray)
+        const street = LocationService.getStreet(addressArray)
         console.log(postal)
         console.log(results[0].formatted_address)
         this.setState({
@@ -188,7 +189,7 @@ class SignUp extends React.Component {
             name:nlc.name,
             sname:nlc.sname,
             email:nlc.email,
-            street:nlc.street,
+            street:street,
             country:nlc.country,
             hphn:nlc.hphn,
             loc:results[0].formatted_address
@@ -352,7 +353,7 @@ class SignUp extends React.Component {
                           </div>
                           <div className="col-sm-8 feild">
                             <div className="errorMessage">{this.state.errors.loc}</div>
-                            <Locat
+                            <Locat className="col-sm-8 feild"
                              name="loc" 
                              value={this.state.fields.loc} 
                              className={"form-control"}

@@ -22,6 +22,7 @@ class AuthenticatedRoute extends Component
         }
     }
     async componentDidMount(){
+        console.log(this.props.data)
         await this.props.dispatch(getAuthenticatedUser());
        
         this.setState(

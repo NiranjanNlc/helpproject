@@ -86,51 +86,123 @@ class Locat extends React.Component {
   };
 
   render() {
-    const renderInput = ({ getInputProps, getSuggestionItemProps, suggestions }) => (
-
-      <div className="autocomplete-root"
-      >
-        <input className="form-control"
-
-          {...getInputProps({
-            placeholder: '--Type full address--'
-          })}
-          {...getInputProps()} />
-        <div className="autocomplete-dropdown-container">
-          {suggestions.map(suggestion => (
-            // <!-- Add a style of "suggestion" to the suggested locations -->
-            <div {...getSuggestionItemProps(suggestion)} className="suggestion">
-              <span>{suggestion.description}</span>
-            </div>
-
-          ))}
-        </div>
-
-      </div>
-    );
-
-    // Limit the suggestions to show only cities in the US
-    /*const searchOptions = {
-     types: ['(cities)'],
-     componentRestrictions: {country: "us"}
-    }
-*/
-    return (
-      <PlacesAutocomplete
-        value={this.state.address}
-        onChange={this.handleChange}
-        onSelect={this.handleSelect} 
-      //  onClick={this.onChange}
-        renderInput={{ placeholder: 'Enter address' }}
-        fields={this.props.fields}
-        // Pass the search options prop
-        //searchOptions={searchOptions}
-        
-      >
-        {renderInput}
-      </PlacesAutocomplete>
     
-    );
+//     const renderInput = ({ getInputProps, getSuggestionItemProps, suggestions }) => (
+      
+//       <div className="autocomplete-root"
+//       >
+//         <input className="form-control" 
+
+//           {...getInputProps({
+//             placeholder: '--Type full address--'
+//           })}
+//           {...getInputProps()} />
+//         <div className="autocomplete-dropdown-container">
+          
+//           {suggestions.map(suggestion => 
+//           {
+//             const className = suggestion.active
+//               ? 'suggestion-item--active'
+//               : 'suggestion-item';
+//             // inline style for demonstration purpose
+//             const style = suggestion.active
+//               ? { backgroundColor: '#aaafa', cursor: 'pointer' }
+//               : { backgroundColor: '#ffffff', cursor: 'pointer' };
+//             return (
+//               <div
+//                 {...getSuggestionItemProps(suggestion, {
+//                   className,
+//                   style,
+//                 })}
+//               >
+//                 <span>{suggestion.description}</span>
+//               </div>
+//             );
+//           }
+//           )}
+//         </div>
+
+//       </div>
+//     );
+
+//     // Limit the suggestions to show only cities in the US
+//     /*const searchOptions = {
+//      types: ['(cities)'],
+//      componentRestrictions: {country: "us"}
+//     }
+// */
+//     return (
+//       <PlacesAutocomplete highlightFirstSuggestion
+//         value={this.state.address}
+//         onChange={this.handleChange}
+//         onSelect={this.handleSelect} 
+//       //  onClick={this.onChange}
+//         renderInput={{ placeholder: 'Enter address' }}
+//         fields={this.props.fields}
+//         // Pass the search options prop
+//         //searchOptions={searchOptions}
+        
+//       >
+//         {renderInput}
+//       </PlacesAutocomplete>
+    
+//     );
+const renderInput= 
+({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+  <div >
+  <div className="autocomplete-root" >
+    <input  className="form-control"
+      {...getInputProps({
+        placeholder: 'Search Places ...',
+     //   className: 'location-search-input',
+      })
+    }
+    {...getInputProps()}
+    /> 
+    <div className="autocomplete-dropdown-container">
+       
+             {loading && <div>Loading...</div>}
+      {suggestions.map(suggestion => {
+        const className = suggestion.active
+          ? 'suggestion-item--active'
+          : 'suggestion-item';
+        // inline style for demonstration purpose
+        const style = suggestion.active
+          ? { backgroundColor: '#faaafa', cursor: 'pointer' }
+          : { backgroundColor: '#ffffff', cursor: 'pointer' };
+        return (
+          <div className="form-control"
+          >
+          <div className="suggestion" 
+            {...getSuggestionItemProps(suggestion, {
+             className,
+              style,
+            })
+          }
+          >
+            <span  
+            >{suggestion.description}</span>
+          </div>
+          </div>
+        );
+      })}
+    </div> 
+  </div>
+  </div>
+)
+return(  
+  <div>
+<PlacesAutocomplete
+value={this.state.address}
+onChange={this.handleChange}
+onSelect={this.handleSelect}
+fields={this.props.fields} 
+renderInput={{ placeholder: 'Enter address' }}
+>
+  {renderInput}
+</PlacesAutocomplete>
+</div> 
+);
   }
 
 }

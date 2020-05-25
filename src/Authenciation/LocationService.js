@@ -18,6 +18,24 @@ class LocationService
              
         }
     }
+    getStreet(addressArray)
+    {
+        for( let i = 0; i < addressArray.length; i++ )
+        {
+            if ( addressArray[ i ].types[0]  ) {
+                for ( let j = 0; j < addressArray[ i ].types.length; j++ ) {
+                  if ( 'route' === addressArray[ i ].types[j] || 'route' === addressArray[ i ].types[j] )
+                   {
+                   var  area =  addressArray[ i ].long_name;
+                    //this.setState({area : area})
+                    console.log(area)
+                    return area;
+                  }
+                }
+              }
+             
+        }
+    }
     getCity(addressArray)
     { 
         let city=''
