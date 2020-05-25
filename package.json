@@ -1,7 +1,7 @@
 {
   "name": "helpproject",
   "version": "0.1.0",
-   "private": true,
+  "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.10",
     "@material-ui/icons": "^4.9.1",
@@ -9,6 +9,7 @@
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
+    "i": "^0.3.6",
     "jquery": "^3.5.1",
     "react": "^16.13.1",
     "react-autocomplete": "^1.8.1",
@@ -23,6 +24,7 @@
     "react-scripts": "3.4.1",
     "react-vue": "0.0.5",
     "react-vuex": "^0.3.1",
+    "reactstrap": "^8.4.1",
     "redux": "^4.0.5",
     "redux-thunk": "^2.3.0",
     "vuera": "^0.2.7"

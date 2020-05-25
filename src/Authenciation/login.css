@@ -46,27 +46,8 @@
     padding: 55px;
 }
 
-#formWrap {
-    padding: 50px 0;
-    display: flex;
-    height: calc(100vh - 64px);
-    flex-direction: column;
-    justify-content: center;
-    /* background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #00c0f1), color-stop(100%, #10e281)); */
-    background: #3f51b5;
-}
-
 #formWrap .formWrap {
-    padding: 25px;
-    background: #fff;
-    border-radius: 0;
-    width: 37%;
-    margin: 0 auto;
-    border: 1px solid #ddd;
-}
-
-#formWrap .form-control {
-    margin-bottom: 15px;
+    padding: 15px;
 }
 
 #formWrap .profile_photo {
@@ -77,11 +58,18 @@
 
 #formWrap .form-control {
     height: 45px;
+    margin-bottom: 10px;
+}
+
+label {
+    font-size: 18px;
+    font-weight: 500;
 }
 
 #formWrap .cov-rem.clearfix {
     margin-top: 20px;
     font-size: 17px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 #formWrap .rem:first-child {
@@ -104,18 +92,21 @@
 
 #formWrap .small a {
     color: #333;
+    font-weight: 600;
 }
 
 #formWrap p.noac {
     text-align: center;
     margin: 0;
     margin-top: 15px;
-    font-size: 17px;
+    font-size: 18px;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
 }
 
 #formWrap p.noac a {
-    color: #3f51b5;
+    color: #000000;
     font-weight: 600;
+    text-decoration: underline;
 }
 
 #formWrap .rem input[type="checkbox"] {
@@ -125,7 +116,7 @@
 .btn.sub_help {
     background: #ffc600;
     border-radius: 25px;
-    padding: 12px 71px;
+    padding: 15px 75px;
     color: #252525;
     cursor: pointer;
     font-weight: 600;
@@ -145,9 +136,6 @@
 }
 
 @media (max-width: 767px) {
-    #formWrap .formWrap {
-        width: 100%;
-    }
     .help_cov {
         margin-bottom: 15px;
     }
@@ -159,6 +147,12 @@
     }
     #formWrap p.noac {
         font-size: 16px;
+    }
+    .modal-body {
+        padding: 15px 0;
+    }
+    #formWrap .formWrap {
+        padding: 0;
     }
 }
 

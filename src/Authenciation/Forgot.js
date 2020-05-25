@@ -9,11 +9,11 @@ class Forgot extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12" align="center">
-                                <h1>Sign up</h1>
+                                <h1>Set Your New Password</h1>
                             </div>
                         </div>
                     </div>
-                    <img src="help.png" className="img-fluid" alt="Logo" />
+                    <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                 </section>
                 <section id="forgetForm" className="secGap">
                     <div className="container">
@@ -21,14 +21,18 @@ class Forgot extends Component {
                             <div className="col-sm-6">
                                 <form>
                                     <div className="form-group">
+                                        <label>Username</label>
+                                        <input type="text" name='rid' className="form-control" placeholder="" required />
                                         <div className="errorMessage"></div>
-                                        <input type="text" name='rid' className="form-control" placeholder="Username " required />
+                                        <label>Phone Number</label>
+                                        <input type="number" className="form-control" placeholder="" required />
                                         <div className="errorMessage"></div>
-                                        <input type="number" className="form-control" placeholder="Phone Number" required />
+                                        <label>New Password</label>
+                                        <input type="password" className="form-control" placeholder="" required />
                                         <div className="errorMessage"></div>
-                                        <input type="password" className="form-control" placeholder="New Password" required />
+                                        <label>Confirm Password</label>
+                                        <input type="password" name='psw' className="form-control" placeholder="" required />
                                         <div className="errorMessage"></div>
-                                        <input type="password" name='psw' className="form-control" placeholder="Confirm Password" required />
                                     </div>
                                     <div className="col-sm-12" align="center">
                                         <button type="submit" className="btn sub_help"> CONTINUE</button>
