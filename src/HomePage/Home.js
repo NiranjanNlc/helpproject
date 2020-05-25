@@ -19,7 +19,7 @@ class Home extends Component {
                         <div className="row">
                             <div className="col-sm-12 logo">
                                 <a href="#">
-                                    <img src="help.png" className="imgfluid" alt="logo" />
+                                    <img src= {window.location.origin + '/images/help.png'}className="imgfluid" alt="logo" />
                                 </a>
                                 <a href="#">Log in</a>
                             </div>
