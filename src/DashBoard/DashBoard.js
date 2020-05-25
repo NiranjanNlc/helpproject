@@ -53,7 +53,7 @@ class DashBoard extends React.Component {
     this.setState(
       { loading: false }
     )
-    this.props.dispatch(refresh())
+   // this.props.dispatch(refresh())
   }
 
 

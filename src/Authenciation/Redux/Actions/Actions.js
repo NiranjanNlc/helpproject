@@ -1,18 +1,52 @@
 import * as types from "./types";
 import store from '../store';
 import httpService from '../httpService'
-export function login(user) {
-  return {
-    type: types.LOGIN,
-    payload: user
-  }
+
+export function login() {
+  return async function(dispatch)
+    {
+      console.log("login through dispatch")
+      dispatch({ type: "LOGIN" });
+  
+//   return {
+//     type: types.LOGIN
+//   }
+ }
 }
 
-export function logout(user) {
-  return {
-    type: types.LOGOUT,
-    payload: user
-  }
+export function logout() {
+  return async function(dispatch)
+    {
+      await httpService.post("/api/auth/delete")
+        .then((response) => 
+            {
+              if (response.status === 200)
+              {
+                console.log("deleted from  from server")
+            const intervalName = store.getState().intervalName
+          console.log(intervalName)
+          if (intervalName) clearInterval(intervalName);
+          dispatch({ type: "LOGOUT"});
+              } 
+              else{
+               performLogout()
+              }
+            })
+        .catch(() => 
+        {
+        console.log("couldnot refresh token")
+        console.log("deleted from  from server")
+        const intervalName = store.getState().intervalName
+      console.log(intervalName)
+      if (intervalName) clearInterval(intervalName);
+      dispatch({ type: "LOGOUT"});
+        })
+       
+  // return {
+  //   type: types.LOGOUT,
+  //   payload: user
+  // }
+      }
 }
   export function refresh ()
    {

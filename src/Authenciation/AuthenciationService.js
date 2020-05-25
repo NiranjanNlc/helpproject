@@ -27,6 +27,12 @@ class AuthenticationService
    signUpRequest($signup) {
         console.log(($signup))
         //  console.log($school+$subjet+$time)
+      return   axios.post(`${API_URL}/api/auth/forget`,$signup)
+       
+      }
+      forgetpassword($signup) {
+        console.log(($signup))
+        //  console.log($school+$subjet+$time)
       return   axios.post(`${API_URL}/api/auth/signup`,$signup)
        
       }

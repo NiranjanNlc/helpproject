@@ -1,7 +1,78 @@
 import React, { Component } from 'react'
 import './thanks.css'
 import { Link, withRouter } from 'react-router-dom'
+import AuthenciationService from './AuthenciationService'
 class Forgot extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+          fields: {},
+          errors: {}
+        }
+        this.handleChange = this.handleChange.bind(this)
+        this.submitData = this.submitData.bind(this)
+         this.validateForm = this.validateForm.bind(this)
+    }
+    handleChange(e) {
+        console.log(e.target.value)
+        // const { name, value } = event.target
+        // this.setState({
+        //   [name]: value
+        // })
+        let fields = this.state.fields;
+        let errors = this.state.errors;
+        fields[e.target.name] = e.target.value;
+        errors[e.target.name] = ''
+        this.setState({
+          fields
+        });
+        console.log(fields)
+      }
+      submitData(event) {
+        event.preventDefault()
+         const loc1 =this.state.fields.loc
+        if(this.validateForm(event))
+       {
+    
+    const signup = {
+          phoneNumber: this.state.fields.numb,
+          rId: this.state.fields.rid,
+          psw: this.state.fields.psw,
+           
+        }
+        console.log(signup)
+        AuthenciationService.forgetpassword(signup)
+          .then((response) => {
+          console.log(response.data.success)
+          if(response.data.success==="false")
+          {
+          this.props.history.push({
+          pathname: '/message/',
+          // search: '?query=abc',
+          detail: this.state.fields.name,
+          message:response.data.message,
+          success:response.data.success
+          })
+        }
+          else
+          {
+            this.props.history.push({
+              pathname: '/message/',
+              // search: '?query=abc',
+              detail: this.state.fields.name,
+              message:response.data.message,
+             success:response.data.success
+              })
+          }
+        
+         }).catch((error) => {
+            console.log("error in adding")
+            // this.props.history.push("/login/")
+            this.setState({ showSuccessMessage: false })
+            this.setState({ hasLoginFailed: true })
+          })
+        }
+      }
     render() {
         return (
             <div>
@@ -9,7 +80,7 @@ class Forgot extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12" align="center">
-                                <h1>Sign up</h1>
+                                <h1>Reset Password...</h1>
                             </div>
                         </div>
                     </div>

@@ -55,6 +55,12 @@ class Message extends Component {
                                </div>:
                                <div>
                                   <h1>{this.props.location.message}</h1> 
+                                  <Link to="/Forgot" >
+                                      <a href="#" className="btn back">
+                                          <i class="fas fa-chevron-left"></i>
+                                            Reset password
+                                           </a>
+                                  </Link>
                                </div>
                                }
                                 

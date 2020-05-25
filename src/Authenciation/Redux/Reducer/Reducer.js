@@ -18,9 +18,11 @@ const initialState = {
     switch (action.type) {
         
     case types.LOGIN:
+        console.log("Autenciated")
         return{
-            ...state, 
-        currentUser: action.payload
+            isAuthenticated: true,
+            currentUser:"",
+            intervalName:""     
         };
         break;
     case types.LOGOUT:

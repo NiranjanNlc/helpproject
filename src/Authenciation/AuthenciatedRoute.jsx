@@ -3,6 +3,8 @@ import {Route, Redirect } from 'react-router-dom'
 import hutils from './hutils'
 import {connect} from "react-redux"
 import {getAuthenticatedUser } from "./Redux/Actions/Actions"
+
+import {refreshTokenInternal,login } from "./Redux/Actions/Actions"
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
  
 // function mapDispatchToProps(dispatch) {
@@ -23,8 +25,8 @@ class AuthenticatedRoute extends Component
     }
     async componentDidMount(){
         console.log(this.props.data)
-        await this.props.dispatch(getAuthenticatedUser());
-       
+        await this.props.dispatch(getAuthenticatedUser())
+   
         this.setState(
            { loading:false}
         )

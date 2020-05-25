@@ -1,4 +1,7 @@
 import React, { Component } from 'react'
+
+import {getAuthenticatedUser, login, logout } from "../Authenciation/Redux/Actions/Actions"
+import  httpResource from '../Authenciation/httpResource'
 import './Home.css'
 import { Link, withRouter } from 'react-router-dom'
 class Home extends Component {
@@ -9,7 +12,7 @@ class Home extends Component {
                     <div className="container">
                         <div className="row ">
                             <div className="col-sm-12" align="center">
-                                <a href="#">Need urgent support? Get help from a crisis service →</a>
+                                <Link to="#">Need urgent support? Get help from a crisis service →</Link>
                             </div>
                         </div>
                     </div>
@@ -18,10 +21,10 @@ class Home extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12 logo">
-                                <a href="#">
+                                <Link to="#">
                                     <img src= {window.location.origin + '/images/help.png'}className="imgfluid" alt="logo" />
-                                </a>
-                                <a href="#">Log in</a>
+                                </Link>
+                                <Link to="/login">Log in </Link>
                             </div>
                         </div>
                         <div className="row secGap">
@@ -30,8 +33,8 @@ class Home extends Component {
                                     Welcome to the help app !
                                 </h1>
                                 <p>Free, safe and anonymous support</p>
-                                <a href="#" className="btn vMore watch"><i class="fas fa-play"></i> Watch our Video</a>
-                                <a href="#" className="btn vMore">Learn More</a>
+                                <Link to="#" className="btn vMore watch"><i class="fas fa-play"></i> Watch our Video</Link>
+                                <Link to="#" className="btn vMore">Learn More</Link>
                             </div>
                         </div>
                     </div>
@@ -83,7 +86,7 @@ class Home extends Component {
                         <div className="row ">
                             <div className="col-sm-6">
                                 <h3>Our community is here to support you through anything. Big or small.</h3>
-                                <a href="#" className="vMore">Join Us</a>                            </div>
+                                <Link to="#" className="vMore">Join Us</Link>                            </div>
                             <div className="col-sm-6">
                                 <img src="" className="img-fluid" alt="" />
                             </div>
@@ -96,10 +99,10 @@ class Home extends Component {
                             <div className="row ">
                                 <div className="col-sm-12">
                                     <ul>
-                                        <li><a href="#">Meet the team</a></li>
-                                        <li><a href="#">Privacy and Safety</a></li>
-                                        <li><a href="#">Terms of Use</a></li>
-                                        <li><a href="#">Confidentiality</a></li>
+                                        <li><Link to="#">Meet the team</Link></li>
+                                        <li><Link to="#">Privacy and Safety</Link></li>
+                                        <li><Link to="#">Terms of Use</Link></li>
+                                        <li><Link to="#">Confidentiality</Link></li>
                                     </ul>
                                 </div>
                             </div>

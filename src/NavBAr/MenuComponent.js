@@ -19,7 +19,7 @@ import '../HomePage/Home.css'
 // import Link from '@material-ui/core/Link';
 import './Bootstrap.css'
 import hutils from '../Authenciation/hutils'
-import { performLogout } from '../Authenciation/Redux/Actions/Actions'
+import { performLogout, logout } from '../Authenciation/Redux/Actions/Actions'
 
 class MenuComponent extends Component {
     constructor(props) {
@@ -27,7 +27,7 @@ class MenuComponent extends Component {
         this.onSubmit = this.onSubmit.bind(this)
     }
     onSubmit(event) {
-        { this.props.dispatch(performLogout()) }
+        { this.props.dispatch(logout()) }
     }
     render() {
         const loggedIn = this.props.data.isAuthenticated

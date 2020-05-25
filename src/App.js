@@ -7,7 +7,7 @@ import DashBoard from './DashBoard/DashBoard';
 import {HashRouter as Router, Route, Switch } from 'react-router-dom'
 import SignUp from './Authenciation/SignUp';
 import Login from './Authenciation/Login';
-// import MenuComponent from './NavBAr/MenuComponent';
+ import MenuComponent from './NavBAr/MenuComponent';
 import ThankYOu from './Authenciation/ThankYou';
 import Message from './Authenciation/Message';
 import Soon from './Choice/Soon';
@@ -27,13 +27,13 @@ class App extends React.Component {
 
 
         <Router history={hist}>
-          {/* <MenuComponent /> */}
+          <MenuComponent />
           <>
             <Switch>
               <Route path="/" exact component={Home} />
               <Route path="/add/" component={SelectPlace} />
               <AuthenticatedRoute path="/chose/" component={Choice} />
-              <Route path="/dash/" component={DashBoard} />
+              <AuthenticatedRoute path="/dash/" component={DashBoard} />
               <Route path="/login/" component={Login} />
               <Route path="/sign/" component={SignUp} />
               <Route path="/thanks/" component={ThankYOu} />

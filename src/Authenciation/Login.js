@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-r
 import './login.css' 
 import  httpResource from './httpResource'
 
-import {getAuthenticatedUser } from "./Redux/Actions/Actions"
+import {getAuthenticatedUser, login, logout } from "./Redux/Actions/Actions"
 import hutils from './hutils'
 import MyContext from './Context/MyContext'
 import {connect} from "react-redux" 
@@ -88,7 +88,7 @@ class Login extends React.Component {
   }
 
 
-  submitData(event) {
+  async submitData(event) {
 
     event.preventDefault();
     console.log("hello hunny bunny ")
@@ -127,16 +127,17 @@ class Login extends React.Component {
       //     this.setState({ hasLoginFailed: true })
 
       //   })
+ 
         httpResource.post("/api/auth/login",signIn)
         .then((response) => 
         {
           if (response.status === 200) 
           {
-             this.props.dispatch(getAuthenticatedUser());
+           // this.props.dispatch(getAuthenticatedUser());
             console.log("logged in ..") 
             console.log("trying to open login page")
             this.props.history.push("/dash/")
-            window.location.reload(false);
+           // window.location.reload(false);
           } 
         }).catch(() => {
               let errors = {};
@@ -144,12 +145,14 @@ class Login extends React.Component {
               this.setState({
                 errors: errors
               })
+              this.props.dispatch(logout)
               console.log("error")
               this.setState({ showSuccessMessage: false })
               this.setState({ hasLoginFailed: true })
             })
    //   console.log(response)
-      
+  
+       
     }
     return;
   }
