@@ -7,47 +7,50 @@ import DashBoard from './DashBoard/DashBoard';
 import {HashRouter as Router, Route, Switch } from 'react-router-dom'
 import SignUp from './Authenciation/SignUp';
 import Login from './Authenciation/Login';
-import MenuComponent from './NavBAr/MenuComponent';
+// import MenuComponent from './NavBAr/MenuComponent';
 import ThankYOu from './Authenciation/ThankYou';
 import Message from './Authenciation/Message';
 import Soon from './Choice/Soon';
 import Sorry from './Choice/Sorry';
+import Home from './HomePage/Home';
+import Forgot from './Authenciation/Forgot';
 import Verify from './Authenciation/Verify';
 import AuthenticatedRoute from './Authenciation/AuthenciatedRoute';
 import { createBrowserHistory } from "history";
 
 class App extends React.Component {
-  
-   render()
-   {
+
+  render() {
     const hist = createBrowserHistory();
-  return ( 
-    <div>
+    return (
+      <div>
 
 
-      <Router   >
-        <MenuComponent />
-        <>
-          <Switch>
-            <Route path="/" exact component={Login}/>
-            <Route path="/add/" component={SelectPlace} />
-            <AuthenticatedRoute  path="/chose/" component={Choice} />
-            <AuthenticatedRoute path="/dash/" component={DashBoard} />
-            <Route path="/login/" component={Login} />
-            <Route path="/sign/" component={SignUp} />
-            <Route path="/thanks/" component={ThankYOu} />
-            <Route path="/verify/" component={Verify} />
+        <Router history={hist}>
+          {/* <MenuComponent /> */}
+          <>
+            <Switch>
+              <Route path="/" exact component={Home} />
+              <Route path="/add/" component={SelectPlace} />
+              <AuthenticatedRoute path="/chose/" component={Choice} />
+              <Route path="/dash/" component={DashBoard} />
+              <Route path="/login/" component={Login} />
+              <Route path="/sign/" component={SignUp} />
+              <Route path="/thanks/" component={ThankYOu} />
+              <Route path="/verify/" component={Verify} />
 
-            <Route path="/Message/" component={Message} />
-            <AuthenticatedRoute path="/Soon/" component={Soon} />
-            <AuthenticatedRoute path="/Sorry/" component={Sorry} />
+              <Route path="/Message/" component={Message} />
+              <AuthenticatedRoute path="/Soon/" component={Soon} />
+              <AuthenticatedRoute path="/Sorry/" component={Sorry} />
+              <Route path="/Home/" component={Home} />
+              <Route path="/Forgot/" component={Forgot} />
            />
         </Switch>
-        </>
+          </>
 
-      </Router>
-    </div> 
+        </Router>
+      </div>
     );
-}
+  }
 }
 export default App;

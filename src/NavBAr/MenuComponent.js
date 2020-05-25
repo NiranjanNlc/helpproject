@@ -14,21 +14,20 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import {connect} from "react-redux"
+import { connect } from "react-redux"
 import '../HomePage/Home.css'
 // import Link from '@material-ui/core/Link';
 import './Bootstrap.css'
 import hutils from '../Authenciation/hutils'
-import {performLogout} from '../Authenciation/Redux/Actions/Actions'
+import { performLogout } from '../Authenciation/Redux/Actions/Actions'
 
 class MenuComponent extends Component {
     constructor(props) {
         super(props);
         this.onSubmit = this.onSubmit.bind(this)
     }
-    onSubmit(event)
-    {
-        {this.props.dispatch(performLogout())}
+    onSubmit(event) {
+        { this.props.dispatch(performLogout()) }
     }
     render() {
         const loggedIn = this.props.data.isAuthenticated
@@ -53,13 +52,10 @@ class MenuComponent extends Component {
                                 {!loggedIn && <li><Link className="nav-link" to="/login/">Login</Link></li>}
                                 {!loggedIn && <li><Link className="nav-link" to="/sign">SignUp </Link></li>}
                                 {loggedIn && <li><Button className="nav-link"
-                                 onClick={this.onSubmit}
-                >Logout</Button></li>}
-                                {/* {loggedIn && <li><Link className="nav-link" to="/Message">Message </Link></li>}
-                            */}
-
+                                    onClick={this.onSubmit}
+                                >Logout</Button></li>}
+                                {loggedIn && <li><Link className="nav-link" to="/Home">Home</Link></li>}
                             </ul>
-
                         </Toolbar>
                     </AppBar>
                 </nav>
@@ -69,8 +65,8 @@ class MenuComponent extends Component {
 }
 const mapStateToProps = state => {
     return {
-      data: state
+        data: state
     };
-  };
+};
 
-export default connect(mapStateToProps) (withRouter(MenuComponent))
+export default connect(mapStateToProps)(withRouter(MenuComponent))
