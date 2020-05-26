@@ -165,6 +165,9 @@ label {
     #topHeader {
         text-align: center;
     }
+    .logo img {
+        height: 55px;
+    }
 }
 
 @media (min-width: 768px) {}
