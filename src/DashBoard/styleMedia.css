@@ -42,9 +42,7 @@
         width: 60% !important;
     }
     .mobile {
-        max-width: 88% !important;
-        right: -170px !important;
-        bottom: -120px !important;
+        max-width: 60% !important;
     }
     #mainFace .vMore.watch {
         margin-bottom: 15px;

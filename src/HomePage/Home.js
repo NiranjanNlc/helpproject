@@ -247,12 +247,12 @@ class Home extends Component {
                                 <h1>
                                     Welcome to the help app !
                                 </h1>
-                                <p>Reliable and highly rated recommendation and suggestion</p>
-                                <Link to="#" className="btn vMore watch"><i class="fas fa-play"></i> Watch our Video</Link>
-                                <Link to="#" className="btn vMore">Learn More</Link>
+                                <p>Free, safe and anonymous support</p>
+                                <a href="#" className="btn vMore watch"><i class="fas fa-play"></i> Watch our Video</a>
+                                <a href="#" className="btn vMore">Join Help App</a>
                             </div>
                             <div className="mobile">
-                                <img src={window.location.origin + '/images/mobile.png'} className="img-fluid" alt="logo" />
+                                <img src={window.location.origin + '/images/test2.png'} className="img-fluid" alt="logo" />
                             </div>
                         </div>
                     </div>
@@ -298,7 +298,7 @@ class Home extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-6 tImage">
-                                <img src={window.location.origin + '/images/modal.png'} className="img-fluid testiModal" alt="image" />
+                                <img src={window.location.origin + '/images/modal1.png'} className="img-fluid testiModal" alt="image" />
                             </div>
                             <div className="col-md-12 col-lg-6 col-sm-6">
                                 <h4>What Does our Community Saying</h4>

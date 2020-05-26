@@ -116,7 +116,7 @@ class Forgot extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12" align="center">
-                                <h1>Reset Password...</h1>
+                                <h1>Reset</h1>
                             </div>
                         </div>
                     </div>
@@ -124,7 +124,7 @@ class Forgot extends Component {
                 <section id="forgetForm" className="secGap">
                     <div className="container">
                         <div className="row justify-content-center">
-                            <div className="col-sm-6">
+                            <div className="col-sm-8">
                                 <form>
                                     <div className="form-group">
                                         <label>Username</label>

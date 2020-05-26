@@ -4,7 +4,7 @@ import './register.css'
 import AuthenciationService from './AuthenciationService'
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 
-import Place from './Place' 
+import Place from './Place'
 import LocationService from './LocationService'
 import Autocomplete from 'react-autocomplete'
 import Locat from './Locat'
@@ -33,18 +33,19 @@ class SignUp extends React.Component {
     this.handleCo = this.handleCo.bind(this)
     this.onPlaceSelected = this.onPlaceSelected.bind(this)
     this.validateForm = this.validateForm.bind(this)
-    this.getChildprops=this.getChildprops.bind(this)
+    this.getChildprops = this.getChildprops.bind(this)
   }
-  getChildprops(fields)
-  {
-    this.setState({fields})
+  getChildprops(fields) {
+    this.setState({ fields })
     console.log(this.state.fields)
   }
   onChange = (add) => {
     console.log(add)
-    this.setState({fields:{
-      loc:add
-    } })
+    this.setState({
+      fields: {
+        loc: add
+      }
+    })
     console.log(this.state.fields.loc)
   }
 
@@ -167,9 +168,9 @@ class SignUp extends React.Component {
   }
   onPlaceSelected(loc) {
     console.log(loc)
-    var nlc=this.state.fields
+    var nlc = this.state.fields
     console.log(this.state.fields)
-     console.log(this.state.fields.loc)
+    console.log(this.state.fields.loc)
     geocodeByAddress(loc)
       .then(results => {
         const addressArray = results[0].address_components
@@ -180,19 +181,19 @@ class SignUp extends React.Component {
         console.log(postal)
         console.log(results[0].formatted_address)
         this.setState({
-          fields:{
-            postcode:postal,
-            city:cit,
-            psw:nlc.psw,
-            rid:nlc.rid,
-            psw1:nlc.psw1,
-            name:nlc.name,
-            sname:nlc.sname,
-            email:nlc.email,
-            street:street,
-            country:nlc.country,
-            hphn:nlc.hphn,
-            loc:results[0].formatted_address
+          fields: {
+            postcode: postal,
+            city: cit,
+            psw: nlc.psw,
+            rid: nlc.rid,
+            psw1: nlc.psw1,
+            name: nlc.name,
+            sname: nlc.sname,
+            email: nlc.email,
+            street: street,
+            country: nlc.country,
+            hphn: nlc.hphn,
+            loc: results[0].formatted_address
           }
         });
         console.log(this.state.fields)
@@ -207,166 +208,173 @@ class SignUp extends React.Component {
 
 
       })
-      console.log(this.state.fields.loc)
-      console.log("In place select ")
+    console.log(this.state.fields.loc)
+    console.log("In place select ")
   }
   submitData(event) {
     event.preventDefault()
-     const loc1 =this.state.fields.loc
-    if(this.validateForm(event))
-   {
+    const loc1 = this.state.fields.loc
+    if (this.validateForm(event)) {
 
-    const signup = {
-      firstName: this.state.fields.name,
-      surname: this.state.fields.sname,
-      email: this.state.fields.email,
-      phoneNumber: this.state.fields.numb,
-      postalCode: this.state.fields.postcode,
-      rId: this.state.fields.rid,
-      psw: this.state.fields.psw,
-      loc:loc1,
-      street:this.state.fields.street,
-      city:this.state.fields.city,
-      country:this.state.fields.country,
-      homephone:this.state.fields.hphn
-    }
-    console.log(signup)
-    AuthenciationService.signUpRequest(signup)
-      .then((response) => {
-      console.log(response.data.success)
-      if(response.data.success==="false")
-      {
-      this.props.history.push({
-      pathname: '/message/',
-      // search: '?query=abc',
-      detail: this.state.fields.name,
-      message:response.data.message,
-      success:response.data.success
-      })
-    }
-      else
-      {
-        this.props.history.push({
-          pathname: '/message/',
-          // search: '?query=abc',
-          detail: this.state.fields.name,
-          message:response.data.message,
-         success:response.data.success
-          })
+      const signup = {
+        firstName: this.state.fields.name,
+        surname: this.state.fields.sname,
+        email: this.state.fields.email,
+        phoneNumber: this.state.fields.numb,
+        postalCode: this.state.fields.postcode,
+        rId: this.state.fields.rid,
+        psw: this.state.fields.psw,
+        loc: loc1,
+        street: this.state.fields.street,
+        city: this.state.fields.city,
+        country: this.state.fields.country,
+        homephone: this.state.fields.hphn
       }
-    
-     }).catch((error) => {
-        console.log("error in adding")
-        // this.props.history.push("/login/")
-        this.setState({ showSuccessMessage: false })
-        this.setState({ hasLoginFailed: true })
-      })
+      console.log(signup)
+      AuthenciationService.signUpRequest(signup)
+        .then((response) => {
+          console.log(response.data.success)
+          if (response.data.success === "false") {
+            this.props.history.push({
+              pathname: '/message/',
+              // search: '?query=abc',
+              detail: this.state.fields.name,
+              message: response.data.message,
+              success: response.data.success
+            })
+          }
+          else {
+            this.props.history.push({
+              pathname: '/message/',
+              // search: '?query=abc',
+              detail: this.state.fields.name,
+              message: response.data.message,
+              success: response.data.success
+            })
+          }
+
+        }).catch((error) => {
+          console.log("error in adding")
+          // this.props.history.push("/login/")
+          this.setState({ showSuccessMessage: false })
+          this.setState({ hasLoginFailed: true })
+        })
     }
   }
   render() {
     // this.refreshHelpedOne()
     return (
-      <section id="signUpWrap">
-        <div className="container">
-          <div className="row">
-            <div className="col-sm-7">
-              <div className="formWrap">
-                <form>
-                  <div className="form-group">
-                    <h3>Create an Account</h3>
-                    <div className="form-divider">
-                      <div className="feild_title">
-                        <h4>Your Details</h4>
-                      </div>
-                      <div className="feildCov">
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>First Name</label>
-                          </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.name}</div>
-                            <input type="text" onChange={this.handleChange} name="name" value={this.state.fields.name} className="form-control" />
-                          </div>
+      <div>
+        <section id="topHeader">
+          <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+          <div className="container">
+            <div className="row">
+              <div className="col-sm-12" align="center">
+                <h1>Sign up</h1>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="signUpWrap" className="secGap">
+          <div className="container">
+            <div className="row justify-content-center">
+              <div className="col-sm-8">
+                <div className="formWrap">
+                  <form>
+                    <div className="form-group">
+                      <div className="form-divider">
+                        <div className="feild_title">
+                          <h4>Your Details</h4>
                         </div>
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>Last Name</label>
+                        <div className="feildCov">
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>First Name</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.name}</div>
+                              <input type="text" onChange={this.handleChange} name="name" value={this.state.fields.name} className="form-control" />
+                            </div>
                           </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.sname}</div>
-                            <input type="text" onChange={this.handleChange} name="sname" value={this.state.fields.sname} className="form-control" />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="form-divider">
-                      <div className="feild_title">
-                        <h4>Email and password</h4>
-                      </div>
-                      <div className="feildCov">
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>Email address</label>
-                          </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.email}</div>
-                            <input type="email" value={this.state.fields.email} placeholder="example@gmail.com" onChange={this.handleChange} name="email" className="form-control" />
-                          </div>
-                        </div>
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>UserName</label>
-                          </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.rid}</div>
-                            <input type="text" value={this.state.fields.rid} onChange={this.handleChange} name="rid" className="form-control" />
-                          </div>
-                        </div>
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>Password</label>
-                          </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.psw}</div>
-                            <input type="password" name="psw" value={this.state.fields.psw} className="form-control" required onChange={this.handleChange} required />
-                          </div>
-                        </div>
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>Confirm Password</label>
-                          </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.psw1}</div>
-                            <input type="password" name="psw1" value={this.state.fields.psw1} className="form-control" required onChange={this.handleChange} required />
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>Last Name</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.sname}</div>
+                              <input type="text" onChange={this.handleChange} name="sname" value={this.state.fields.sname} className="form-control" />
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="form-divider">
-                      <div className="feild_title">
-                        <h4>Your address</h4>
-                      </div>
-                      <div className="feildCov">
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>* Location</label>
+                      <div className="form-divider">
+                        <div className="feild_title">
+                          <h4>Email and password</h4>
+                        </div>
+                        <div className="feildCov">
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>Email address</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.email}</div>
+                              <input type="email" value={this.state.fields.email} placeholder="example@gmail.com" onChange={this.handleChange} name="email" className="form-control" />
+                            </div>
                           </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.loc}</div>
-                            <Locat className="col-sm-8 feild"
-                             name="loc" 
-                             value={this.state.fields.loc} 
-                             className={"form-control"}
-                            // onChange={this.onChange}
-                            //  onClick={this.onChange}
-                             fields={this.state.fields}
-                             callbackFromParent={this.getChildprops}
-                             onSelect={
-                               this.onPlaceSelected
-                              }
-                            />
- 
-                            {/* <Locat
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>UserName</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.rid}</div>
+                              <input type="text" value={this.state.fields.rid} onChange={this.handleChange} name="rid" className="form-control" />
+                            </div>
+                          </div>
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>Password</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.psw}</div>
+                              <input type="password" name="psw" value={this.state.fields.psw} className="form-control" required onChange={this.handleChange} required />
+                            </div>
+                          </div>
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>Confirm Password</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.psw1}</div>
+                              <input type="password" name="psw1" value={this.state.fields.psw1} className="form-control" required onChange={this.handleChange} required />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="form-divider">
+                        <div className="feild_title">
+                          <h4>Your address</h4>
+                        </div>
+                        <div className="feildCov">
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>* Location</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.loc}</div>
+                              <Locat className="col-sm-8 feild"
+                                name="loc"
+                                value={this.state.fields.loc}
+                                className={"form-control"}
+                                // onChange={this.onChange}
+                                //  onClick={this.onChange}
+                                fields={this.state.fields}
+                                callbackFromParent={this.getChildprops}
+                                onSelect={
+                                  this.onPlaceSelected
+                                }
+                              />
+
+                              {/* <Locat
                               name="loc" 
                               value={this.state.fields.loc} 
                               className="form-control" 
@@ -374,100 +382,101 @@ class SignUp extends React.Component {
                               /> */}
 
 
+                            </div>
                           </div>
-                        </div>
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>Street</label>
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>Street</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.street}</div>
+                              <input type="text" value={this.state.fields.street} onChange={this.handleChange} name="street" className="form-control" />
+                            </div>
                           </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.street}</div>
-                            <input type="text" value={this.state.fields.street} onChange={this.handleChange} name="street" className="form-control" />
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>City or Town</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.city}</div>
+                              <input type="text" value={this.state.fields.city} name="city"
+                                //  defaultValue={this.state.city} 
+                                className="form-control" required onChange={this.handleChange} required />
+                            </div>
                           </div>
-                        </div>
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>City or Town</label>
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>Post Code</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.postcode}</div>
+                              <input type="text" value={this.state.fields.postcode} name="postcode"
+                                //    defaultValue={this.state.postcode} 
+                                className="form-control" onChange={this.handleChange} required />
+                            </div>
                           </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.city}</div>
-                            <input type="text" value={this.state.fields.city} name="city"
-                           //  defaultValue={this.state.city} 
-                             className="form-control" required onChange={this.handleChange} required />
-                          </div>
-                        </div>
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>Post Code</label>
-                          </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.postcode}</div>
-                            <input type="text" value={this.state.fields.postcode} name="postcode"
-                         //    defaultValue={this.state.postcode} 
-                             className="form-control" onChange={this.handleChange} required />
-                          </div>
-                        </div>
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>Country</label>
-                          </div>
-                          <div className="col-sm-8 feild">
-                          <div className="errorMessage">{this.state.errors.country}</div>
-                            <select class="form-control input-lg"
-                            onChange={this.handleChange}
-                            name="country"
-                             value={this.state.fields.country}>
-                              <option>USA</option>
-                              <option>UK</option>
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>Country</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.country}</div>
+                              <select class="form-control input-lg"
+                                onChange={this.handleChange}
+                                name="country"
+                                value={this.state.fields.country}>
+                                <option>USA</option>
+                                <option>UK</option>
 
-                          <option selected="selected">......</option>
-                              <option  >SPAIN</option>
-                              <option>GERMANY</option>
-                              <option>POLAND</option>
-                            </select>
+                                <option selected="selected">......</option>
+                                <option  >SPAIN</option>
+                                <option>GERMANY</option>
+                                <option>POLAND</option>
+                              </select>
+                            </div>
                           </div>
-                        </div>
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>Phone Number</label>
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>Phone Number</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <div className="errorMessage">{this.state.errors.numb}</div>
+                              <input type="text" value={this.state.fields.numb} placeholder="*country code required--" name="numb" className="form-control" required onChange={this.handleChange} required />
+                            </div>
                           </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.numb}</div>
-                            <input type="text" value={this.state.fields.numb} placeholder="*country code required--" name="numb" className="form-control" required onChange={this.handleChange} required />
-                          </div>
-                        </div>
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>Home Phone Number</label>
-                          </div>
-                          <div className="col-sm-8 feild">
-                            <input type="number" name="hphn" className="form-control" required onChange={this.handleChange} required />
+                          <div className="row feild_entry">
+                            <div className="col-sm-4 label">
+                              <label>Home Phone Number</label>
+                            </div>
+                            <div className="col-sm-8 feild">
+                              <input type="number" name="hphn" className="form-control" required onChange={this.handleChange} required />
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="form-divider">
-                      <div className="feild_title">
-                        <h4>Keeping you informed</h4>
-                      </div>
-                      <div className="row feild_entry">
-                        <div className="col-sm-12 text">
-                          <p> You will be recieving the text message whenever the
-                          new user tries to seek the places or recommendation near
-                          the address you have registered .
-                          By signing up  you agreed to our privacy policy and
-                          allows us to send sms in the provided number as per needed  .
+                      <div className="form-divider">
+                        <div className="feild_title">
+                          <h4>Keeping you informed</h4>
+                        </div>
+                        <div className="feildCov">
+                          <div className="row feild_entry">
+                            <div className="col-sm-12 text">
+                              <p> You will be recieving the text message whenever the
+                              new user tries to seek the places or recommendation near
+                              the address you have registered .
+                              By signing up  you agreed to our privacy policy and
+                              allows us to send sms in the provided number as per needed  .
 
                           </p>
-                        </div>
-                        <div className="col-sm-12 checkBox">
-                          <ul>
-                            <li>
-                              <label for="remember">
-                                <input type="checkbox" />
+                            </div>
+                            <div className="col-sm-12 checkBox">
+                              <ul>
+                                <li>
+                                  <label for="remember">
+                                    <input type="checkbox" />
                                 I agree to the terms and conditions and privacy policy statement </label>
-                            </li>
-                            {/*      <li>
+                                </li>
+                                {/*      <li>
                               <input type="checkbox" /><label for="remember"> Telephone</label>
                             </li>
                             <li>
@@ -477,32 +486,34 @@ class SignUp extends React.Component {
                               <input type="checkbox" /><label for="remember"> Text</label>
                             </li>
                             */}
-                          </ul>
+                              </ul>
+                            </div>
+                          </div>
                         </div>
                       </div>
-                    </div>
 
 
 
-                    {/*<input type="text" onChange={this.handleChange} name="postcode"   className="form-control" placeholder="PostCode"/>
+                      {/*<input type="text" onChange={this.handleChange} name="postcode"   className="form-control" placeholder="PostCode"/>
                                     */}
-                    {/* <Place
+                      {/* <Place
 
                         onSelect={this.handleCo} name="postcode" className="form-control" /> */}
 
 
 
 
-                  </div>
-                  <div className="col-sm-12 submitBtn" >
-                    <button type="submit" className="btn sub_help" onClick={this.submitData}> Register </button>
-                  </div>
-                </form>
+                    </div>
+                    <div className="col-sm-12 submitBtn" >
+                      <button type="submit" className="btn sub_help" onClick={this.submitData}> Register </button>
+                    </div>
+                  </form>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
     )
   }
 }

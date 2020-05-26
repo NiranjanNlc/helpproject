@@ -118,10 +118,10 @@
 }
 
 .mobile {
-    max-width: 59%;
+    max-width: 38%;
     position: absolute;
-    right: -130px;
-    bottom: -135px;
+    right: -60px;
+    bottom: -25px;
 }
 
 .logo {
@@ -131,7 +131,7 @@
 }
 
 .logo img {
-    height: 95px;
+    height: 65px;
 }
 
 #offer, #footNav {
@@ -160,8 +160,12 @@
     margin-bottom: 20px;
 }
 
-#offer p {
+#offer p, .text p {
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+}
+
+.text p {
+    font-size: 17px;
 }
 
 #testimonial {
@@ -174,7 +178,8 @@
 .testiModal {
     position: absolute;
     bottom: -60;
-    left: 0;
+    left: 30px;
+    height: 365px;
 }
 
 #testimonial h4 {
