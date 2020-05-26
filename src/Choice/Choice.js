@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Route, history, Redirect ,Link} from 'react-ro
 import  './styleMedia.css' 
 import {refresh} from '../Authenciation/Redux/Actions/Actions'
 import { withRouter } from 'react-router';  
+import MenuComponent from '../NavBAr/MenuComponent';
 import  './styleCommon.css'
 import ChoiceService from './ChoiceService'
 import Place from '../Authenciation/Place' 
@@ -337,6 +338,7 @@ handleCo(cordinate) {
         
         return(
           <section id="detailWrap">
+            <MenuComponent/>
           <div className="container">
               <div className="row">
                   <div className="col-sm-12">

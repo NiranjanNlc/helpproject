@@ -40,12 +40,12 @@ class MenuComponent extends Component {
                         <Toolbar>
                             <div><a href="#" className="navbar-brand">KlyGo</a></div>
                             <ul className="navbar-nav">
-                                {loggedIn && <li><Link className="nav-link" to="/add">Select Place</Link></li>}
+                                {/* {loggedIn && <li><Link className="nav-link" to="/add">Select Place</Link></li>}
                                 {loggedIn && <li><Link className="nav-link" to="/chose">Ask for help</Link></li>}
                                 {loggedIn && <li><Link className="nav-link" to="/dash">DashBoard</Link></li>}
-                                {/* 
-                     {loggedIn &&   <li><Link className="nav-link" to="/add">TeacherForm</Link></li>}
-                     {loggedIn &&   <li><Link className="nav-link" to="/register">RegisterSchool</Link></li>} */}
+                                {/*  */}
+                     {/* {loggedIn &&   <li><Link className="nav-link" to="/add">TeacherForm</Link></li>}
+                     {loggedIn &&   <li><Link className="nav-link" to="/register">RegisterSchool</Link></li>} */} 
 
                             </ul>
                             <ul className="navbar-nav navbar-collapse justify-content-end">
@@ -54,7 +54,7 @@ class MenuComponent extends Component {
                                 {loggedIn && <li><Button className="nav-link"
                                     onClick={this.onSubmit}
                                 >Logout</Button></li>}
-                                {loggedIn && <li><Link className="nav-link" to="/Home">Home</Link></li>}
+                                {/* {loggedIn && <li><Link className="nav-link" to="/Home">Home</Link></li>} */}
                             </ul>
                         </Toolbar>
                     </AppBar>

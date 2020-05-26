@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
-
+import MenuComponent from '../NavBAr/MenuComponent';
 import './styleMedia.css'
 import './styleCommon.css'
 import DashService from './DashService'
@@ -67,6 +67,7 @@ class DashBoard extends React.Component {
     return (
 
       <section id="detailWrap">
+        <MenuComponent/>
         <div class="container">
           <div class="row">
             <div class="col-sm-12">

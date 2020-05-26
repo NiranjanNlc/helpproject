@@ -41,7 +41,7 @@ class AuthenticatedRoute extends Component
        console.log(this.props.data)
         if (this.props.data.isAuthenticated===false)
         {
-            return  <Redirect to='/login' /> 
+            return  <Redirect to='/home' /> 
         }
          else 
         { 

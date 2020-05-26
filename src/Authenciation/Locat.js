@@ -197,6 +197,7 @@ value={this.state.address}
 onChange={this.handleChange}
 onSelect={this.handleSelect}
 fields={this.props.fields} 
+highlightFirstSuggestion
 renderInput={{ placeholder: 'Enter address' }}
 >
   {renderInput}

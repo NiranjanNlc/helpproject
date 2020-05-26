@@ -4,11 +4,7 @@ import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-r
 import './login.css'
 import httpResource from './httpResource'
 
-<<<<<<< HEAD
 import {getAuthenticatedUser, login, logout } from "./Redux/Actions/Actions"
-=======
-import { getAuthenticatedUser } from "./Redux/Actions/Actions"
->>>>>>> 196d055fe491454ff6d667325879582ebe7425da
 import hutils from './hutils'
 import MyContext from './Context/MyContext'
 import { connect } from "react-redux"
@@ -131,34 +127,6 @@ class Login extends React.Component {
       //     this.setState({ hasLoginFailed: true })
 
       //   })
-<<<<<<< HEAD
- 
-        httpResource.post("/api/auth/login",signIn)
-        .then((response) => 
-        {
-          if (response.status === 200) 
-          {
-           // this.props.dispatch(getAuthenticatedUser());
-            console.log("logged in ..") 
-            console.log("trying to open login page")
-            this.props.history.push("/dash/")
-           // window.location.reload(false);
-          } 
-        }).catch(() => {
-              let errors = {};
-              errors["rid"] = "*Incorrect username or password";
-              this.setState({
-                errors: errors
-              })
-              this.props.dispatch(logout)
-              console.log("error")
-              this.setState({ showSuccessMessage: false })
-              this.setState({ hasLoginFailed: true })
-            })
-   //   console.log(response)
-  
-       
-=======
       httpResource.post("/api/auth/login", signIn)
         .then((response) => {
           if (response.status === 200) {
@@ -180,7 +148,6 @@ class Login extends React.Component {
         })
       //   console.log(response)
 
->>>>>>> 196d055fe491454ff6d667325879582ebe7425da
     }
     return;
   }

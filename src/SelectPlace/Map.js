@@ -270,6 +270,49 @@ class Map extends Component {
 	}
 
 	render() {
+        const renderInput= 
+({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+  <div >
+  <div className="autocomplete-root" >
+    <input  className="form-control"
+      {...getInputProps({
+        placeholder: 'Search Places ...',
+     //   className: 'location-search-input',
+      })
+    }
+    {...getInputProps()}
+    /> 
+    <div className="autocomplete-dropdown-container">
+       
+             {loading && <div>Loading...</div>}
+      {suggestions.map(suggestion => {
+        const className = suggestion.active
+          ? 'suggestion-item--active'
+          : 'suggestion-item';
+        // inline style for demonstration purpose
+        const style = suggestion.active
+          ? { backgroundColor: '#faaafa', cursor: 'pointer' }
+          : { backgroundColor: '#ffffff', cursor: 'pointer' };
+        return (
+          <div className="form-control"
+          >
+          <div className="suggestion" 
+            {...getSuggestionItemProps(suggestion, {
+             className,
+              style,
+            })
+          }
+          >
+            <span  
+            >{suggestion.description}</span>
+          </div>
+          </div>
+        );
+      })}
+    </div> 
+  </div>
+  </div>
+)
 		const searchOptions = {
 			location: new google.maps.LatLng(-34, 151),
 			radius: 2000,
@@ -352,22 +395,25 @@ class Map extends Component {
 									 name="sugg"
 									 className="form-control" 
 									 ref="inputOfName"
-									 
+									 placeholder="Your suggestion appears here "
 									 value = {this.state.add}
-									onChange={this.onSuggestion} />
+									onChange={this.onSuggestion} 
+									readOnly/>
 								</div>
 							</div>
 							<div className="col-sm-6">
 								<div className="form-group">
 									<label htmlFor="">Please type your suggestion</label>
-									<Autocomplete className="form-control"
+									<Autocomplete className="form-control" 
 								onPlaceSelected={this.onPlaceSelected}
 								onClick={this.onChange}
 								onSelect={this.onChange}
 								onChange={this.onChange}
 								name='add'
 								types={['establishment']}
-							/>
+							>
+							{/* {renderInput}	 */}
+							</Autocomplete>
 								 </div>
 							</div>
 							<div className="col-sm-12">

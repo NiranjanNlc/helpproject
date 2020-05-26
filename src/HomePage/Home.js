@@ -1,12 +1,13 @@
 import React, { Component } from 'react'
 
+import { connect } from "react-redux"
 import {getAuthenticatedUser, login, logout } from "../Authenciation/Redux/Actions/Actions"
-import  httpResource from '../Authenciation/httpResource'
+//import  httpResource from '../Authenciation/httpResource'
 import './Home.css'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import { Link, withRouter } from 'react-router-dom'
 import httpResource from '../Authenciation/httpResource'
-import { getAuthenticatedUser, login, logout } from "../Authenciation/Redux/Actions/Actions"
+//import { getAuthenticatedUser, login, logout } from "../Authenciation/Redux/Actions/Actions"
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
 class Home extends Component {
     constructor(props) {
@@ -131,7 +132,7 @@ class Home extends Component {
             httpResource.post("/api/auth/login", signIn)
                 .then((response) => {
                     if (response.status === 200) {
-                        this.props.dispatch(getAuthenticatedUser());
+                    //    this.props.dispatch(getAuthenticatedUser());
                         console.log("logged in ..")
                         console.log("trying to open login page")
                         this.props.history.push("/dash/")
@@ -165,10 +166,18 @@ class Home extends Component {
 
     }
 
-
+    checkLogin() {
+        // console.log(store.getState())
+        if (this.props.data.isAuthenticated === true) {
+          console.log("trying to open login page")
+          this.props.history.push("/dash/")
+          window.location.reload(false);
+        }
+      }
 
 
     render() {
+          this.checkLogin()
         return (
             <div id="home">
                 <section id="topRibbon">
@@ -184,12 +193,6 @@ class Home extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12 logo">
-<<<<<<< HEAD
-                                <Link to="#">
-                                    <img src= {window.location.origin + '/images/help.png'}className="imgfluid" alt="logo" />
-                                </Link>
-                                <Link to="/login">Log in </Link>
-=======
                                 <a href="#">
                                     <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                                 </a>
@@ -205,11 +208,12 @@ class Home extends Component {
                                                             <form>
                                                                 <div className="form-group">
                                                                     <label>Username</label>
-                                                                    <input type="text" name='rid' value={this.state.fields.rid} onChange={this.handleChange} className="form-control" placeholder="" required />
                                                                     <div className="errorMessage">{this.state.errors.rid}</div>
+                                                                        <input type="text" name='rid' value={this.state.fields.rid} onChange={this.handleChange} className="form-control" placeholder="" required />
                                                                     <label>Password</label>
-                                                                    <input type="password" name='psw' value={this.state.fields.psw} onChange={this.handleChange} className="form-control" placeholder="" required />
                                                                     <div className="errorMessage">{this.state.errors.psw}</div>
+                                                                    <input type="password" name='psw' value={this.state.fields.psw} onChange={this.handleChange} className="form-control" placeholder="" required />
+                                                                
                                                                 </div>
                                                                 <div className="col-sm-12" align="center">
                                                                     <button type="submit" onClick={this.submitData} className="btn sub_help"> LOGIN </button>
@@ -223,7 +227,7 @@ class Home extends Component {
                                                                         <label for="remember"> Remember Me?</label>
                                                                     </div>
                                                                     <div className="rem">
-                                                                        <p className=" small"><a href="#">Forgot Password?</a></p>
+                                                                        <p className=" small"><Link to="/forgot">Forgot Password?</Link></p>
                                                                     </div>
                                                                 </div>
                                                                 <hr />
@@ -236,7 +240,6 @@ class Home extends Component {
                                         </section >
                                     </ModalBody>
                                 </Modal>
->>>>>>> 196d055fe491454ff6d667325879582ebe7425da
                             </div>
                         </div>
                         <div className="row secGap">
@@ -244,7 +247,7 @@ class Home extends Component {
                                 <h1>
                                     Welcome to the help app !
                                 </h1>
-                                <p>Free, safe and anonymous support</p>
+                                <p>Reliable and highly rated recommendation and suggestion</p>
                                 <Link to="#" className="btn vMore watch"><i class="fas fa-play"></i> Watch our Video</Link>
                                 <Link to="#" className="btn vMore">Learn More</Link>
                             </div>
@@ -262,23 +265,31 @@ class Home extends Component {
                             </div>
                             <div className="col-md-6 col-lg-3 col-sm-6 mobPad">
                                 <i class="far fa-newspaper"></i>
-                                <h3>Magazine</h3>
-                                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer .</p>
+                                <h3>Resturant</h3>
+                                <p>
+                                    Recommendation of the asian, chinese and contienental food
+                                    based on your cost. 
+                                     </p>
                             </div>
                             <div className="col-md-6 col-lg-3 col-sm-6 mobPad">
                                 <i class="fas fa-users"></i>
-                                <h3>Discussion Boards</h3>
-                                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer .</p>
+                                <h3>Garage</h3>
+                                <p> Know about the nearest garage with the suggestion of the nearby user of ours</p>
                             </div>
                             <div className="col-md-6 col-lg-3 col-sm-6 mobPad">
                                 <i class="fas fa-comment-alt"></i>
-                                <h3>Chat with the team</h3>
-                                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer .</p>
+                                <h3>Groceries</h3>
+                                <p>
+                                 Get the help and suggestion about the groccery nearby of any location
+                                 </p>
                             </div>
                             <div className="col-md-6 col-lg-3 col-sm-6 mobPad">
                                 <i class="fas fa-book-open"></i>
-                                <h3>Daily Journal</h3>
-                                <p>Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer .</p>
+                                <h3>Other</h3>
+                                <p>
+                                    New to places,know about  chemist,takeaways,hotels and the other
+                                    with the help of our user.
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -297,7 +308,7 @@ class Home extends Component {
                                     backgroundSize: '4.688rem 4.563rem',
                                     paddingBottom: '1.25rem',
                                     backgroundRepeat: 'no-repeat'
-                                }}>"I really like how we can find help anonymously and have help from others. It makes me feel accepted and that people will not judge me. Great App Nice Job !"</blockquote>
+                                }}>"I really like how we can find help   and have help from others. It makes me feel to give and talk help from this platform. Great App Nice Job !"</blockquote>
                             </div>
                         </div>
                     </div>
@@ -306,16 +317,10 @@ class Home extends Component {
                     <div className="container">
                         <div className="row ">
                             <div className="col-md-7 col-lg-6 col-sm-6">
-                                <h3>Our community is here to support you through anything. Big or small.</h3>
-<<<<<<< HEAD
-                                <Link to="#" className="vMore">Join Us</Link>                            </div>
-                            <div className="col-sm-6">
-                                <img src="" className="img-fluid" alt="" />
-=======
-                                <a href="#" className="vMore">Join Us</a>                            </div>
+                                <h3>Our community is here to support you through anything in any location.Near or far.</h3>
+                                <Link to="/sign" className="vMore">Join Us</Link>                            </div>
                             <div className="col-md-5 col-lg-6 col-sm-6 needTalk">
                                 <img src={window.location.origin + '/images/needHelp.png'} className="img-fluid" alt="helpIcon" />
->>>>>>> 196d055fe491454ff6d667325879582ebe7425da
                             </div>
                         </div>
                     </div>
@@ -349,5 +354,11 @@ class Home extends Component {
         )
     }
 }
-
-export default Home
+const mapStateToProps = state => {
+    return {
+      data: state
+    };
+  };
+  
+  export default
+    connect(mapStateToProps) (Home)

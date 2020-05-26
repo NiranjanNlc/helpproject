@@ -90,12 +90,30 @@ class Place extends React.Component {
       placeholder: 'Type and chose from suggestion'})}
       {...getInputProps()}  />
         <div className="autocomplete-dropdown-container">
-          {suggestions.map(suggestion => (
-           // <!-- Add a style of "suggestion" to the suggested locations -->
-            <div {...getSuggestionItemProps(suggestion)} className="suggestion">
-              <span>{suggestion.description}</span>
-            </div>
-          ))}
+          {suggestions.map(suggestion => { 
+           const className = suggestion.active
+           ? 'suggestion-item--active'
+           : 'suggestion-item';
+         // inline style for demonstration purpose
+         const style = suggestion.active
+           ? { backgroundColor: '#faaafa', cursor: 'pointer' }
+           : { backgroundColor: '#ffffff', cursor: 'pointer' };
+         return (
+           <div className="form-control"
+           >
+           <div className="suggestion" 
+             {...getSuggestionItemProps(suggestion, {
+              className,
+               style,
+             })
+           }
+           >
+             <span  
+             >{suggestion.description}</span>
+           </div>
+           </div>
+         );
+  })}
         </div>
          	<div className="form-group"> 
 						<input type="text"  placeholder = 'City' name="city" className="form-control" onChange={ this.onChange }   value={ this.state.city }/>
@@ -114,7 +132,7 @@ class Place extends React.Component {
      }
 */
     return (
-      <PlacesAutocomplete
+      <PlacesAutocomplete highlightFirstSuggestion
         value={this.state.address}
         onChange={this.handleChange}
         onSelect={this.handleSelect} 

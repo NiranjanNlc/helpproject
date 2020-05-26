@@ -13,6 +13,8 @@ import Message from './Authenciation/Message';
 import Soon from './Choice/Soon';
 import Sorry from './Choice/Sorry';
 import Home from './HomePage/Home';
+
+import ForgetS from './Authenciation/ForgetS';
 import Forgot from './Authenciation/Forgot';
 import Verify from './Authenciation/Verify';
 import AuthenticatedRoute from './Authenciation/AuthenciatedRoute';
@@ -25,7 +27,7 @@ class App extends React.Component {
     return (
       <div>
         <Router history={hist}>
-          <MenuComponent />
+          {/* <MenuComponent /> */}
           <>
             <Switch>
               <Route path="/" exact component={Home} />
@@ -42,6 +44,8 @@ class App extends React.Component {
               <AuthenticatedRoute path="/Sorry/" component={Sorry} />
               <Route path="/Home/" component={Home} />
               <Route path="/Forgot/" component={Forgot} />
+              <Route path="/forgets/" component={ForgetS} />
+           
            />
         </Switch>
           </>

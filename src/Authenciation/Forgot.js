@@ -13,6 +13,46 @@ class Forgot extends Component {
         this.submitData = this.submitData.bind(this)
          this.validateForm = this.validateForm.bind(this)
     }
+    validateForm() {
+        let formIsValid = true;
+        console.log(this.state.rid)
+        let fields = this.state.fields;
+        let errors = {};
+        //    let formIsValid = true;
+    
+        if (!fields["rid"]) {
+          formIsValid = false;
+          errors["rid"] = "*Please enter your username.";
+        }
+        if (!fields["psw"]) {
+          formIsValid = false;
+          errors["psw"] = "*Please enter your password.";
+        }
+        if (typeof fields["psw"] !== "undefined") {
+            if (fields["psw"].length < 6) {
+              formIsValid = false;
+              errors["psw"] = "*Please enter secure and strong password.";
+            }
+          }
+          if (!fields["psw1"]) {
+            formIsValid = false;
+            errors["psw1"] = "*Required";
+          }
+          if (typeof fields["psw1"] !== "undefined") {
+            if (fields["psw1"] !== fields["psw"]) {
+              formIsValid = false;
+              errors["psw1"] = "*Confirm your Password.";
+            }
+          }
+        if (!fields["numb"]) {
+            formIsValid = false;
+            errors["numb"] = "*Required";
+          }
+        this.setState({
+          errors: errors
+        })
+        return formIsValid;
+    }
     handleChange(e) {
         console.log(e.target.value)
         // const { name, value } = event.target
@@ -33,8 +73,8 @@ class Forgot extends Component {
          const loc1 =this.state.fields.loc
         if(this.validateForm(event))
        {
-    
-    const signup = {
+       console.log("Validated")
+      const signup = {
           phoneNumber: this.state.fields.numb,
           rId: this.state.fields.rid,
           psw: this.state.fields.psw,
@@ -43,33 +83,28 @@ class Forgot extends Component {
         console.log(signup)
         AuthenciationService.forgetpassword(signup)
           .then((response) => {
+              console.log(response)
           console.log(response.data.success)
-          if(response.data.success==="false")
+          if(response.data==="Success")
           {
-          this.props.history.push({
-          pathname: '/message/',
-          // search: '?query=abc',
-          detail: this.state.fields.name,
-          message:response.data.message,
-          success:response.data.success
-          })
+          this.props.history.push("/forgets")
         }
           else
           {
-            this.props.history.push({
-              pathname: '/message/',
-              // search: '?query=abc',
-              detail: this.state.fields.name,
-              message:response.data.message,
-             success:response.data.success
-              })
+            let errors = {};
+            errors["rid"] = "Phonenumber and username not matched ";
+            this.setState({
+              errors: errors
+            })
           }
         
          }).catch((error) => {
             console.log("error in adding")
-            // this.props.history.push("/login/")
-            this.setState({ showSuccessMessage: false })
-            this.setState({ hasLoginFailed: true })
+            let errors = {};
+          errors["rid"] = "User not found with given phone number and username";
+          this.setState({
+            errors: errors
+          })
           })
         }
       }
@@ -81,11 +116,7 @@ class Forgot extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12" align="center">
-<<<<<<< HEAD
                                 <h1>Reset Password...</h1>
-=======
-                                <h1>Set Your New Password</h1>
->>>>>>> 196d055fe491454ff6d667325879582ebe7425da
                             </div>
                         </div>
                     </div>
@@ -97,20 +128,24 @@ class Forgot extends Component {
                                 <form>
                                     <div className="form-group">
                                         <label>Username</label>
-                                        <input type="text" name='rid' className="form-control" placeholder="" required />
-                                        <div className="errorMessage"></div>
+                                        <div className="errorMessage">{this.state.errors.rid}</div>
+                                        <input type="text" name='rid' value={this.state.fields.rid} onChange={this.handleChange} className="form-control" placeholder="" required />
+                                        
                                         <label>Phone Number</label>
-                                        <input type="number" className="form-control" placeholder="" required />
-                                        <div className="errorMessage"></div>
+                                        <div className="errorMessage">{this.state.errors.numb}</div>
+                                        <input type="text" name='numb' value={this.state.fields.numb} onChange={this.handleChange}  className="form-control" placeholder="" required />
+                                        
                                         <label>New Password</label>
-                                        <input type="password" className="form-control" placeholder="" required />
-                                        <div className="errorMessage"></div>
+                                        <div className="errorMessage">{this.state.errors.psw}</div>
+                                        <input type="password" name='psw' value={this.state.fields.psw} onChange={this.handleChange}className="form-control" placeholder="" required />
+                                        
                                         <label>Confirm Password</label>
-                                        <input type="password" name='psw' className="form-control" placeholder="" required />
-                                        <div className="errorMessage"></div>
+                                        <div className="errorMessage">{this.state.errors.psw1}</div>
+                                        <input type="password" name='psw1' value={this.state.fields.psw1} onChange={this.handleChange} className="form-control" placeholder="" required />
+                                        
                                     </div>
                                     <div className="col-sm-12" align="center">
-                                        <button type="submit" className="btn sub_help"> CONTINUE</button>
+                                        <button type="submit" className="btn sub_help" onClick={this.submitData} > CONTINUE</button>
                                     </div>
                                 </form>
                             </div>
