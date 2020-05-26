@@ -155,11 +155,9 @@ label {
         padding: 0;
     }
     #topHeader img {
-        position: inherit !important;
-        top: auto !important;
-        left: auto !important;
-        height: 85px !important;
-        margin-bottom: 15px !important;
+        top: 3px !important;
+        left: 3px !important;
+        height: 38px !important;
     }
     #topHeader h1 {
         font-size: 1.9rem !important;

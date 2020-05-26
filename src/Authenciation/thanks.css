@@ -31,7 +31,7 @@
 
 #topHeader {
     position: relative;
-    padding: 30px 0;
+    padding: 25px 0;
 }
 
 #topHeader h1 {
@@ -41,17 +41,17 @@
 
 #topHeader img {
     position: absolute;
-    top: 7px;
+    top: 13px;
     left: 30px;
-    height: 95px;
+    height: 65px;
 }
 
-#forgetForm {
+#forgetForm, #signUpWrap {
     min-height: calc(100vh - 106px);
     background: #f0f2f4;
 }
 
 .form-control {
-    height: 50px;
+    height: 45px;
     border-radius: 0;
 }

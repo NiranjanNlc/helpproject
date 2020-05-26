@@ -10,7 +10,7 @@ class Forgot extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12" align="center">
-                                <h1>Set Your New Password</h1>
+                                <h1>login</h1>
                             </div>
                         </div>
                     </div>
@@ -18,21 +18,52 @@ class Forgot extends Component {
                 <section id="forgetForm" className="secGap">
                     <div className="container">
                         <div className="row justify-content-center">
-                            <div className="col-sm-6">
+                            <div className="col-sm-8">
                                 <form>
                                     <div className="form-group">
-                                        <label>Username</label>
-                                        <input type="text" name='rid' className="form-control" placeholder="" required />
-                                        <div className="errorMessage"></div>
-                                        <label>Phone Number</label>
-                                        <input type="number" className="form-control" placeholder="" required />
-                                        <div className="errorMessage"></div>
-                                        <label>New Password</label>
-                                        <input type="password" className="form-control" placeholder="" required />
-                                        <div className="errorMessage"></div>
-                                        <label>Confirm Password</label>
-                                        <input type="password" name='psw' className="form-control" placeholder="" required />
-                                        <div className="errorMessage"></div>
+                                        <div className="form-divider">
+                                            <div className="feild_title">
+                                                <h4>Set Your New Password</h4>
+                                            </div>
+                                            <div className="feildCov">
+                                                <div className="row feild_entry">
+                                                    <div className="col-sm-4 label">
+                                                        <label>Username</label>
+                                                    </div>
+                                                    <div className="col-sm-8 feild">
+                                                        <input type="text" name='rid' className="form-control" placeholder="" required />
+                                                        <div className="errorMessage"></div>
+                                                    </div>
+                                                </div>
+                                                <div className="row feild_entry">
+                                                    <div className="col-sm-4 label">
+                                                        <label>Phone Number</label>
+                                                    </div>
+                                                    <div className="col-sm-8 feild">
+                                                        <input type="number" className="form-control" placeholder="" required />
+                                                        <div className="errorMessage"></div>
+                                                    </div>
+                                                </div>
+                                                <div className="row feild_entry">
+                                                    <div className="col-sm-4 label">
+                                                        <label>New Password</label>
+                                                    </div>
+                                                    <div className="col-sm-8 feild">
+                                                        <input type="password" className="form-control" placeholder="" required />
+                                                        <div className="errorMessage"></div>
+                                                    </div>
+                                                </div>
+                                                <div className="row feild_entry">
+                                                    <div className="col-sm-4 label">
+                                                        <label>Confirm Password</label>
+                                                    </div>
+                                                    <div className="col-sm-8 feild">
+                                                        <input type="password" name='psw' className="form-control" placeholder="" required />
+                                                        <div className="errorMessage"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="col-sm-12" align="center">
                                         <button type="submit" className="btn sub_help"> CONTINUE</button>
