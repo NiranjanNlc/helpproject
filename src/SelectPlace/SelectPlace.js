@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link, withRouter } from 'react-router-dom'
 import LocationPicker from 'react-location-picker';
 import Map from './Map'
 import queryString from 'querystring'
@@ -23,8 +24,8 @@ class SelectPlace extends Component {
       lng: 73.8567,
       loc: '',
       loading: true,
-      rid:'',
-      hid:''
+      rid: '',
+      hid: ''
     }
   }
   componentDidMount() {
@@ -44,8 +45,8 @@ class SelectPlace extends Component {
         lat: parseFloat(values.lat),
         lng: parseFloat(values.lng)
       })
-      this.setState({rid: values.id})
-      this.setState({hid: values.hid})
+    this.setState({ rid: values.id })
+    this.setState({ hid: values.hid })
     console.log(this.state.var1)
     console.log(this.state.var2, this.state.var3)
     Geocode.fromLatLng(values.lat, values.lng).then(
@@ -71,21 +72,35 @@ class SelectPlace extends Component {
     }
     else {
       return (
-        <div id="mapWrap">
-          <div className="container">
-            <Map
-              google={this.props.google}
-              center={{ lat: this.state.lat, lng: this.state.lng }}
-              //   center={{ lat: 18.5204, lng: 73.8567 }}
-              var1={this.state.var1}
-              var2={this.state.var2}
-              var3={this.state.var3}
-              loc={this.state.loc}
-              rid={this.state.rid}
-              hid={this.state.hid}
-              zoom={15}
-            />
-          </div>
+        <div>
+          <section id="topHeader">
+            <Link to="/">
+              <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+            </Link>
+            <div className="container">
+              <div className="row">
+                <div className="col-sm-12" align="center">
+                  <h1>Need Help</h1>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section id="mapWrap" className="secGap">
+            <div className="container">
+              <Map
+                google={this.props.google}
+                center={{ lat: this.state.lat, lng: this.state.lng }}
+                //   center={{ lat: 18.5204, lng: 73.8567 }}
+                var1={this.state.var1}
+                var2={this.state.var2}
+                var3={this.state.var3}
+                loc={this.state.loc}
+                rid={this.state.rid}
+                hid={this.state.hid}
+                zoom={15}
+              />
+            </div>
+          </section>
         </div>
       )
     }

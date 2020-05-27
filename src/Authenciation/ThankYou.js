@@ -18,15 +18,25 @@ class ThankYOu extends React.Component {
     render() {
         // this.refreshHelpedOne()
         return (
-            <section id="main">
-                <section id="formWrap">
+            <div>
+                <section id="topHeader">
+                    <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+                    <div className="container">
+                        <div className="row">
+                            <div className="col-sm-12" align="center">
+                                <h1>Thank You !</h1>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <section id="thanksWrap">
                     <div class="container">
-                        <div class="row">
-                            <div class="col-sm-12">
+                        <div class="row justify-content-center">
+                            <div class="col-sm-7">
 
                                 <div class="formWrap" align="center">
                                     <div className="thanksWrap">
-                                        <p className="thanks"><span>Thanks a lot !</span></p>
+                                        <p className="thanks"><span>Username</span></p>
                                         <p>You have been of great help . One step to bring a master in your area.</p>
                                     </div>
                                 </div>
@@ -34,7 +44,7 @@ class ThankYOu extends React.Component {
                         </div>
                     </div>
                 </section>
-            </section>
+            </div>
         )
 
     }

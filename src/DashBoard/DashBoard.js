@@ -5,6 +5,7 @@ import './styleMedia.css'
 import './styleCommon.css'
 import DashService from './DashService'
 import { connect } from 'react-redux'
+import NavbarPage from '../HomePage/NavbarPage';
 import { refresh } from '../Authenciation/Redux/Actions/Actions'
 
 class DashBoard extends React.Component {
@@ -53,7 +54,7 @@ class DashBoard extends React.Component {
     this.setState(
       { loading: false }
     )
-   // this.props.dispatch(refresh())
+    // this.props.dispatch(refresh())
   }
 
 
@@ -65,44 +66,33 @@ class DashBoard extends React.Component {
     }
     // this.refreshHelpedOne()
     return (
-
-      <section id="detailWrap">
-        <MenuComponent/>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-12">
-              <div class="row">
-                <div class="col-sm-12 help_cov">
-                  <a class="btn help" href="#">
-                    <Link to="/chose">
-                      Ask help
-                                    </Link>
-                  </a>
-                </div>
-              </div>
-              <div class="detailBlock">
-                <div class="profile_photo">
-                  <img src="help.png" class="rounded-circle" alt="profile_photo" />
-                </div>
-                <div class="no_people">
-                  <span>Total number of people Helped :
+      <div>
+        <NavbarPage />
+        <section id="detailWrap" className="secGap">
+          <div class="container">
+            <div class="row justify-content-center">
+              <div class="col-sm-6">
+                <div class="detailBlock">
+                  <div class="profile_photo">
+                    <img src="/images/user.png" class="rounded-circle" alt="profile_photo" />
+                  </div>
+                  <div class="no_people">
+                    <span>Total number of people Helped :
                               <b> {this.state.helped}</b>   </span>
+                  </div>
+                  <ul class="info">
+                    <li>{this.state.name}</li>
+                    <li>{this.state.email}</li>
+                    <li>{this.state.phone}</li>
+                    <li>{this.state.helpedTo}</li>
+                    <li>{this.state.helpedBy}</li>
+                  </ul>
                 </div>
-                <ul class="info">
-                  <li>{this.state.name}</li>
-                  <li>{this.state.email}</li>
-                  <li>{this.state.phone}</li>
-                  <li>{this.state.helpedTo}</li>
-                  <li>{this.state.helpedBy}</li>
-                </ul>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-
-
+        </section>
+      </div>
     )
   }
 }

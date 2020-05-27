@@ -26,34 +26,37 @@
     #testimonial {
         background: #e6e6ec;
     }
-    /* old  */
-    .detailBlock {
-        width: 100% !important;
+    .no_people {
+        margin: 20px 0;
     }
-    .help_cov {
-        margin-bottom: 15px;
+    .detailBlock {
+        padding: 15px !important;
+        padding-top: 30px !important;
+    }
+    .profile_photo {
+        width: 100px !important;
+        height: 100px !important;
+    }
+    .navbar img {
+        height: 55px !important;
+    }
+    #topHeader {
+        padding: 20px 0 !important;
+    }
+    #policyWrap .row {
+        padding: 20px 5px !important;
+        background: #fff;
+        padding-top: 15px !important;
+    }
+    #policyWrap.secGap {
+        padding: 0 !important;
+        padding-top: 10px !important;
+    }
+    #policyWrap h2 {
+        font-size: 1.5rem !important;
     }
 }
 
 @media (min-width: 768px) {}
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
-    .detailBlock {
-        width: 60% !important;
-    }
-    .mobile {
-        max-width: 60% !important;
-    }
-    #mainFace .vMore.watch {
-        margin-bottom: 15px;
-    }
-    #home {
-        overflow: hidden;
-    }
-    .mobPad {
-        padding: 10px 30px;
-    }
-    .tImage {
-        display: none;
-    }
-}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {}

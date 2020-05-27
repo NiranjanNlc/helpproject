@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import { connect } from "react-redux"
-import {getAuthenticatedUser, login, logout } from "../Authenciation/Redux/Actions/Actions"
+import { getAuthenticatedUser, login, logout } from "../Authenciation/Redux/Actions/Actions"
 //import  httpResource from '../Authenciation/httpResource'
 import './Home.css'
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -132,7 +132,7 @@ class Home extends Component {
             httpResource.post("/api/auth/login", signIn)
                 .then((response) => {
                     if (response.status === 200) {
-                    //    this.props.dispatch(getAuthenticatedUser());
+                        //    this.props.dispatch(getAuthenticatedUser());
                         console.log("logged in ..")
                         console.log("trying to open login page")
                         this.props.history.push("/dash/")
@@ -169,15 +169,15 @@ class Home extends Component {
     checkLogin() {
         // console.log(store.getState())
         if (this.props.data.isAuthenticated === true) {
-          console.log("trying to open login page")
-          this.props.history.push("/dash/")
-          window.location.reload(false);
+            console.log("trying to open login page")
+            this.props.history.push("/dash/")
+            window.location.reload(false);
         }
-      }
+    }
 
 
     render() {
-          this.checkLogin()
+        this.checkLogin()
         return (
             <div id="home">
                 <section id="topRibbon">
@@ -193,9 +193,9 @@ class Home extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12 logo">
-                                <a href="#">
+                                <Link to="/Home/">
                                     <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
-                                </a>
+                                </Link>
                                 <a href="#" onClick={this.toggle}>Log in</a>
                                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                                     <ModalHeader toggle={this.toggle}>Log in</ModalHeader>
@@ -208,12 +208,12 @@ class Home extends Component {
                                                             <form>
                                                                 <div className="form-group">
                                                                     <label>Username</label>
+                                                                    <input type="text" name='rid' value={this.state.fields.rid} onChange={this.handleChange} className="form-control" placeholder="" required />
                                                                     <div className="errorMessage">{this.state.errors.rid}</div>
-                                                                        <input type="text" name='rid' value={this.state.fields.rid} onChange={this.handleChange} className="form-control" placeholder="" required />
                                                                     <label>Password</label>
-                                                                    <div className="errorMessage">{this.state.errors.psw}</div>
                                                                     <input type="password" name='psw' value={this.state.fields.psw} onChange={this.handleChange} className="form-control" placeholder="" required />
-                                                                
+                                                                    <div className="errorMessage">{this.state.errors.psw}</div>
+
                                                                 </div>
                                                                 <div className="col-sm-12" align="center">
                                                                     <button type="submit" onClick={this.submitData} className="btn sub_help"> LOGIN </button>
@@ -245,11 +245,11 @@ class Home extends Component {
                         <div className="row secGap">
                             <div className="col-sm-7">
                                 <h1>
-                                    Welcome to the help app !
+                                    Welcome to klyg !
                                 </h1>
                                 <p>Free, safe and anonymous support</p>
                                 <a href="#" className="btn vMore watch"><i class="fas fa-play"></i> Watch our Video</a>
-                                <a href="#" className="btn vMore">Join Help App</a>
+                                <Link to="/sign/" className="btn vMore">Join klyg</Link>
                             </div>
                             <div className="mobile">
                                 <img src={window.location.origin + '/images/test2.png'} className="img-fluid" alt="logo" />
@@ -261,30 +261,30 @@ class Home extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12 secTitle">
-                                <h2>Just some of the things you'll find on Help App</h2>
+                                <h2>Just some of the things you'll find on klyg</h2>
                             </div>
                             <div className="col-md-6 col-lg-3 col-sm-6 mobPad">
-                                <i class="far fa-newspaper"></i>
+                                <i class="fas fa-utensils"></i>
                                 <h3>Resturant</h3>
                                 <p>
                                     Recommendation of the asian, chinese and contienental food
-                                    based on your cost. 
+                                    based on your cost.
                                      </p>
                             </div>
                             <div className="col-md-6 col-lg-3 col-sm-6 mobPad">
-                                <i class="fas fa-users"></i>
+                                <i class="fas fa-car"></i>
                                 <h3>Garage</h3>
                                 <p> Know about the nearest garage with the suggestion of the nearby user of ours</p>
                             </div>
                             <div className="col-md-6 col-lg-3 col-sm-6 mobPad">
-                                <i class="fas fa-comment-alt"></i>
+                                <i class="fas fa-shopping-cart"></i>
                                 <h3>Groceries</h3>
                                 <p>
-                                 Get the help and suggestion about the groccery nearby of any location
+                                    Get the help and suggestion about the groccery nearby of any location
                                  </p>
                             </div>
                             <div className="col-md-6 col-lg-3 col-sm-6 mobPad">
-                                <i class="fas fa-book-open"></i>
+                                <i class="fas fa-comment-alt"></i>
                                 <h3>Other</h3>
                                 <p>
                                     New to places,know about  chemist,takeaways,hotels and the other
@@ -344,7 +344,7 @@ class Home extends Component {
                         <div className="container">
                             <div className="row ">
                                 <div className="col-sm-12">
-                                    <p>© Help App 2020</p>
+                                    <p>© klyg 2020</p>
                                 </div>
                             </div>
                         </div>
@@ -356,9 +356,9 @@ class Home extends Component {
 }
 const mapStateToProps = state => {
     return {
-      data: state
+        data: state
     };
-  };
-  
-  export default
-    connect(mapStateToProps) (Home)
+};
+
+export default
+    connect(mapStateToProps)(Home)

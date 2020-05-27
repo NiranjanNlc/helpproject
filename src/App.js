@@ -7,12 +7,13 @@ import DashBoard from './DashBoard/DashBoard';
 import { HashRouter as Router, Route, Switch } from 'react-router-dom'
 import SignUp from './Authenciation/SignUp';
 import Login from './Authenciation/Login';
- import MenuComponent from './NavBAr/MenuComponent';
+import MenuComponent from './NavBAr/MenuComponent';
 import ThankYOu from './Authenciation/ThankYou';
 import Message from './Authenciation/Message';
 import Soon from './Choice/Soon';
 import Sorry from './Choice/Sorry';
 import Home from './HomePage/Home';
+import Policy from './HomePage/Policy';
 
 import ForgetS from './Authenciation/ForgetS';
 import Forgot from './Authenciation/Forgot';
@@ -40,12 +41,13 @@ class App extends React.Component {
               <Route path="/verify/" component={Verify} />
 
               <Route path="/Message/" component={Message} />
-              <AuthenticatedRoute path="/Soon/" component={Soon} />
-              <AuthenticatedRoute path="/Sorry/" component={Sorry} />
+              <Route path="/Soon/" component={Soon} />
+              <Route path="/Sorry/" component={Sorry} />
               <Route path="/Home/" component={Home} />
+              <Route path="/Policy/" component={Policy} />
               <Route path="/Forgot/" component={Forgot} />
               <Route path="/forgets/" component={ForgetS} />
-           
+
            />
         </Switch>
           </>
