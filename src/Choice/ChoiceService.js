@@ -1,6 +1,6 @@
-import axios from 'axios' 
-const API_URL = 'http://dev3.pareva.umelimited.com/send/' 
-const SUBMIT_URL = `${API_URL}`
+import axios from 'axios'
+import {API_URL} from '../Constant' 
+const SUBMIT_URL = `${API_URL}/send`
 export const TOKEN="token"
 export const headers = { 
   'Authorization': 'Bearer '+localStorage.getItem(`${TOKEN}`)

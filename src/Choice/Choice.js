@@ -156,8 +156,17 @@ class Choice extends React.Component {
     this.setState({
       [name]: value
     })
+    var var5 = this.state.var1;
+    if (this.state.var1 === "Buy" || this.state.var1 === 'Adopt' || this.state.var1 === 'Take Care') {
+      const var1 = this.state.var1;
+      const var4 = this.state.var4;
+      var5 = 'To ' + var1 + ' ' + var4
+
+
+    }
+    console.log(var5)
     const help = {
-      var1: this.state.var1,
+      var1: var5,
       var2: this.state.var2,
       var3: this.state.var3,
       location: this.state.location,
@@ -191,7 +200,68 @@ class Choice extends React.Component {
   }
 
   render() {
+    if (this.state.var2 === "Dog") {
+      var dog = (<div>
+        <select name="var3" onChange={this.handleChange} className="form-control input-lg">
+          <option value="1" selected>............</option>
+          <option value="Jack Russell">Jack Russell</option>
+          <option value="Doberman Pinscher">Doberman Pinscher</option>
+          <option value="Dachshund (sausage dog)">Dachshund (sausage dog)</option>
+          <option value="Weimaraner">Weimaraner</option>
+          <option value="Welsh Terrier">Welsh Terrier</option>
+          <option value="Cavachon">Cavachon</option>
+          <option value="Dandie Dinmont Terrier">Dandie Dinmont Terrier</option>
+          <option value="Labradoodle">Labradoodle</option>
+          <option value="Miniature Schnauzer">Miniature Schnauzer</option>
+          <option value="Flat-coated Retriever">Flat-coated Retriever</option>
+          <option value="Mixed Breed">Mixed Breed</option>
+          <option value="Golden Retriever">Golden Retriever</option>
+          <option value="German Shepherd">German Shepherd</option>
+          <option value="Border Collie">Border Collie</option>
+          <option value="Boxer">Boxer</option>
+          <option value="Cocker Spaniel">Cocker Spaniel</option>
+          <option value="Springer Spaniel">Springer Spaniel</option>
+          <option value="Labrador Retriever">Labrador Retriever</option>
+          <option value="Cockapoo">Cockapoo</option>
+          <option value="Staffordshire Bull Terrier">Staffordshire Bull Terrier</option>
+          <option value="Any Breed">Any Breed</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>)
+    }
+    else {
+      var dog = (
+        <div>
+          <select name="var3" onChange={this.handleChange} className="form-control input-lg">
+            <option value="1" selected>............</option>
 
+            <option value="Persian">Persian</option>
+            <option value="Exotic"> Exotic</option>
+            <option value="Maine Coon Cat"> Maine Coon Cat</option>
+            <option value="Ragdoll"> Ragdoll</option>
+            <option value="British Shorthair"> British Shorthair</option>
+            <option value="Abyssinian"> Abyssinian</option>
+            <option value="American Shorthair"> American Shorthair</option>
+            <option value="Sphynx"> Sphynx</option>
+            <option value="Siamese">  Siamese</option>
+            <option value="Devon Rex">  Devon Rex</option>
+            <option value="Norwegian Forest Cat"> Norwegian Forest Cat</option>
+            <option value="Oriental">  Oriental</option>
+            <option value="Scottish Fold"> Scottish Fold</option>
+            <option value="Cornish Rex"> Cornish Rex</option>
+            <option value="Birman">  Birman</option>
+            <option value="Burmese">  Burmese</option>
+            <option value="Tonkinese"> Tonkinese</option>
+            <option value="Siberian">  Siberian</option>
+            <option value="Russian Blue">  Russian Blue</option>
+            <option value="Egyptian Mau">  Egyptian Mau</option>
+            <option value="Other">  Other </option>
+            <option value="Mixed Breed">  Mixed Breed</option>
+            <option value="Any Breed">  Any Breed</option>
+          </select>
+        </div>
+      )
+    }
     if (this.state.var1 === 'Resturant' || this.state.var1 === 'Takeaways') {
       var map = (<div>
         <select name="var2" onChange={this.handleChange} className="form-control input-lg">
@@ -208,6 +278,24 @@ class Choice extends React.Component {
           <option value="Meat">Meat </option>
           <option value="Fish">Fish </option>
           <option value="Vegeterian">Vegeterian</option>
+        </select>
+      </div>
+      )
+    }
+    else if (this.state.var1 === "Buy" || this.state.var1 === 'Adopt' || this.state.var1 === 'Take Care') {
+      var map = (<div>
+        <select name="var2" onChange={this.handleChange} className="form-control input-lg">
+          <option value="1" selected>.......</option>
+          <option value="Dog">Dog</option>
+          <option value="Cat">Cat</option>
+        </select>
+        {dog}
+        <select name="var4" onChange={this.handleChange} className="form-control input-lg">
+          <option value="1" selected>.......</option>
+          <option value="Puppy ">Puppy (2m-1y)</option>
+          <option value="Young Adult">Young Adult (1y-5y)</option>
+          <option value="Adult">Adult (5y-9y)</option>
+          <option value="Senior">Senior (+10 years)</option>
         </select>
       </div>
       )
@@ -297,14 +385,13 @@ class Choice extends React.Component {
     else if (this.state.var1 === "clothestore") {
       var map = (<div>
         <select name="var2" onChange={this.handleChange} className="form-control input-lg">
-          <option value="1">.......</option>
-
+          <option value="1" selected >.......</option>
           <option value="Ladies">Ladies</option>
           <option value="Gents">Gents</option>
           <option value="All kind">All kind</option>
         </select>
         <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
-          <option value="1">.......</option>
+          <option value="1" selected>.......</option>
 
           <option value="Average">Average</option>
           <option value="Top Rated">Top Rated</option>
