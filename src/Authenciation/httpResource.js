@@ -1,5 +1,5 @@
 import axios from "axios";
-
+import {API_URL} from '../Constant'
 const isHandlerEnabled = (config = {}) => {
   return config.hasOwnProperty("handlerEnabled") && !config.handlerEnabled
     ? false
@@ -9,7 +9,7 @@ const isHandlerEnabled = (config = {}) => {
 // axiosInstance.get('/v2/api-endpoint', { handlerEnabled: false })
 
 const instance = axios.create({
-  baseURL: "http://dev3.pareva.umelimited.com/",
+  baseURL:API_URL,
   withCredentials: true,
   timeout: 10000
 });
