@@ -6,6 +6,7 @@ import  './styleMedia.css'
 import {refresh} from '../Authenciation/Redux/Actions/Actions'
 import { withRouter } from 'react-router';  
 import MenuComponent from '../NavBAr/MenuComponent';
+import httpService from '../Authenciation/Redux/httpService'
 import  './styleCommon.css'
 import ChoiceService from './ChoiceService'
 import Place from '../Authenciation/Place' 
@@ -66,12 +67,28 @@ handleCo(cordinate) {
         }
       );
   }
-    componentDidMount() {
+  async  componentDidMount() {
      this.props.dispatch(refresh())
+     console.log(this.props.data.currentUser)
+     await httpService.get("/profile/me")
+     .then((response) => 
+      {
+        if (response.status === 200) 
+        {
+          this.setState(
+            {helpedone:response.data}
+          )
+        }
+      }
+     )
+     .catch((error) => 
+     {
+       console.log("user not  responded 200")
+       console.log(error)
+      // performLogout();
+     })
        const helpedone= this.props.data.currentUser
-      this.setState(
-        {helpedone:helpedone}
-      )
+      
       console.log(helpedone)
     /*    console.log('Component did mount!')
         navigator.geolocation.getCurrentPosition((position) => {
