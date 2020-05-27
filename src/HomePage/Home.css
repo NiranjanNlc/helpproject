@@ -82,10 +82,10 @@
 }
 
 .close {
-    color: #000;
-    text-shadow: 0 1px 0 #fff;
-    opacity: 1;
-    font-size: 2.2rem;
+    color: #000 !important;
+    text-shadow: 0 1px 0 #fff !important;
+    opacity: 1 !important;
+    font-size: 2.2rem !important;
 }
 
 #mainFace h1 {
@@ -179,7 +179,7 @@
     position: absolute;
     bottom: -60;
     left: 30px;
-    height: 365px;
+    height: 365px !important;
 }
 
 #testimonial h4 {
@@ -259,4 +259,30 @@ blockquote {
     .modal-dialog {
         max-width: 460px;
     }
+}
+
+/* nav  */
+
+nav.navbar-dark.default-color.navbar.navbar-expand-md {
+    background: darkblue;
+}
+
+.cMenu {
+    position: absolute;
+    width: 79%;
+    flex-direction: inherit;
+    justify-content: center;
+}
+
+.navbar {
+    border-bottom: 1px solid #000;
+}
+
+.navbar img {
+    height: 65px;
+}
+
+.navbar-expand-md .navbar-nav .nav-link {
+    font-weight: 700;
+    font-size: 17px;
 }
