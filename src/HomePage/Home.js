@@ -132,7 +132,7 @@ class Home extends Component {
             httpResource.post("/api/auth/login", signIn)
                 .then((response) => {
                     if (response.status === 200) {
-                       //     this.props.dispatch(getAuthenticatedUser());
+                        //     this.props.dispatch(getAuthenticatedUser());
                         console.log("logged in ..")
                         console.log("trying to open login page")
                         this.props.history.push("/dash/")
@@ -153,7 +153,7 @@ class Home extends Component {
         }
         return;
     }
-     
+
     componentDidMount() {
         // this.checkLogin()
 
@@ -242,7 +242,6 @@ class Home extends Component {
                                     Welcome to Klygo !
                                 </h1>
                                 <p>Free, safe and anonymous support</p>
-                                <a href="#" className="btn vMore watch"><i class="fas fa-play"></i> Watch our Video</a>
                                 <Link to="/sign/" className="btn vMore">Join Klygo</Link>
                             </div>
                             <div className="mobile">

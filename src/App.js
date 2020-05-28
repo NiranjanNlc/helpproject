@@ -13,7 +13,8 @@ import Message from './Authenciation/Message';
 import Soon from './Choice/Soon';
 import Sorry from './Choice/Sorry';
 import Home from './HomePage/Home';
-import Policy from './HomePage/Policy';
+import Policy from './HomePage/Terms';
+import Terms from './HomePage/Policy';
 
 import ForgetS from './Authenciation/ForgetS';
 import Forgot from './Authenciation/Forgot';
@@ -45,11 +46,12 @@ class App extends React.Component {
               <Route path="/Sorry/" component={Sorry} />
               <Route path="/Home/" component={Home} />
               <Route path="/Policy/" component={Policy} />
+              <Route path="/Terms/" component={Terms} />
               <Route path="/Forgot/" component={Forgot} />
               <Route path="/forgets/" component={ForgetS} />
 
-           {/* /> */}
-        </Switch>
+              {/* /> */}
+            </Switch>
           </>
 
         </Router>

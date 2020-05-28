@@ -11,52 +11,52 @@ import { performLogout, logout } from '../Authenciation/Redux/Actions/Actions'
 class NavbarPage extends Component {
     state = {
         isOpen: false,
-        username:''
+        username: ''
     };
-  
-onSubmit=(event) =>{
-    { this.props.dispatch(logout()) }
-}
+
+    onSubmit = (event) => {
+        { this.props.dispatch(logout()) }
+    }
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
-    
+
 
     render() {
         const loggedIn = this.props.data.isAuthenticated
         console.log(loggedIn)
         return (
             // <Router>
-                <header>
-                    <MDBNavbar color="default-color" light expand="md">
-                        <MDBNavbarBrand>
-                            <Link to="/home">
-                                <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
-                            </Link>
-                        </MDBNavbarBrand>
-                        <MDBNavbarToggler onClick={this.toggleCollapse} />
-                        <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-                            <MDBNavbarNav left className="cMenu">
-                                <MDBNavItem active>
-                                    {/* <MDBNavLink to="/#/chose">Home</MDBNavLink> */}
-                                    {loggedIn &&  <Link className="nav-link" to="/home"><button className="nav-link"
-                                    
-                                >Home</button></Link>}
-                                </MDBNavItem>
-                                <MDBNavItem>
-                                    {/* <MDBNavLink to="#!">Ask Help</MDBNavLink> */}
-                                    {loggedIn && <Link className="nav-link" to="/chose" ><button className="nav-link"
-                                     
-                                >Chose </button></Link>}
-                                </MDBNavItem>
-                            </MDBNavbarNav>
-                            <MDBNavbarNav right>
+            <header>
+                <MDBNavbar color="default-color" light expand="md">
+                    <MDBNavbarBrand>
+                        <Link to="/home">
+                            <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+                        </Link>
+                    </MDBNavbarBrand>
+                    <MDBNavbarToggler onClick={this.toggleCollapse} />
+                    <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+                        <MDBNavbarNav left className="cMenu">
+                            <MDBNavItem active>
+                                {/* <MDBNavLink to="/#/chose">Home</MDBNavLink> */}
+                                {loggedIn && <Link className="nav-link" to="/home"><button className="nav-link"
 
-                                <MDBNavItem>
-                                {loggedIn && <li><button className="nav-link"
+                                >Home</button></Link>}
+                            </MDBNavItem>
+                            <MDBNavItem>
+                                {/* <MDBNavLink to="#!">Ask Help</MDBNavLink> */}
+                                {loggedIn && <Link className="nav-link" to="/chose" ><button className="nav-link"
+
+                                >Chose </button></Link>}
+                            </MDBNavItem>
+                        </MDBNavbarNav>
+                        <MDBNavbarNav right>
+
+                            <MDBNavItem>
+                                {loggedIn && <li><button className="nav-link user"
                                     onClick={this.onSubmit}
                                 >Logout</button></li>}
-                                    {/* <MDBDropdown>
+                                {/* <MDBDropdown>
                                         <MDBDropdownToggle nav caret>
                                             Username
                                     </MDBDropdownToggle>
@@ -64,11 +64,11 @@ onSubmit=(event) =>{
                                             <MDBDropdownItem href="#!">Logout</MDBDropdownItem>
                                         </MDBDropdownMenu>
                                     </MDBDropdown> */}
-                                </MDBNavItem>
-                            </MDBNavbarNav>
-                        </MDBCollapse>
-                    </MDBNavbar>
-                </header>
+                            </MDBNavItem>
+                        </MDBNavbarNav>
+                    </MDBCollapse>
+                </MDBNavbar>
+            </header>
             // </Router>
         );
     }

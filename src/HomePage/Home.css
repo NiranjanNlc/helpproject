@@ -1,277 +1,7 @@
-.secGap {
-    padding: 50px 0;
-}
-
-.secTitle {
-    margin-bottom: 20px;
-}
-
-.vMore {
-    padding: 14px 35px !important;
-    background: #ffc600 !important;
-    margin-right: 10px !important;
-    color: #000 !important;
-    font-weight: 600 !important;
-    border-radius: 25px !important;
-    text-decoration: underline !important;
-    display: inline-block;
-}
-
-.vMore:hover {
-    background: #f9cd33 !important;
-}
-
-#topRibbon {
-    padding: 10px 0;
-}
-
-#topRibbon a {
-    font-size: 15px;
-    color: #00857a;
-    font-weight: 700;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-}
-
-#mainFace {
-    background: #f0f2f4;
-    padding: 25px 0;
-}
-
-#mainFace .secGap {
-    position: relative;
-}
-
-#mainFace a {
-    color: #000;
-}
-
-.modal-body {
-    background: #f1f2f4;
-}
-
-.modal-title {
-    width: 100%;
-    text-align: center;
-    font-size: 22px;
-    font-weight: 600;
-}
-
-.modal-header {
-    padding: 10px 15px;
-}
-
-.modal-content {
-    border-radius: 0;
-    box-shadow: 0 0 6px rgba(0, 0, 0, .25), 0 10px 20px rgba(0, 0, 0, .2);
-    border: 0;
-}
-
-.modal.show .modal-dialog {
-    min-height: calc(100vh - 100px);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.modal-backdrop.show {
-    opacity: .9;
-}
-
-.modal-backdrop {
-    background-color: #fff;
-}
-
-.close {
-    color: #000 !important;
-    text-shadow: 0 1px 0 #fff !important;
-    opacity: 1 !important;
-    font-size: 2.2rem !important;
-}
-
-#mainFace h1 {
-    line-height: 1.3;
-    font-size: 2.2rem;
-    font-weight: 800 !important;
-}
-
-#mainFace p {
-    font-size: 18px;
-    font-weight: 600;
-    padding: 15px 0;
-}
-
-#mainFace .logo a {
-    text-decoration: underline;
-    font-weight: 700;
-}
-
-#mainFace .logo a:hover {
-    text-decoration: none;
-}
-
-#mainFace .vMore.watch {
-    background: #fff !important;
-}
-
-#mainFace .vMore.watch i {
-    margin-right: 7px;
-}
-
-.mobile {
-    max-width: 38%;
-    position: absolute;
-    right: -60px;
-    bottom: -25px;
-}
-
-.logo {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo img {
-    height: 65px;
-}
-
-#offer, #footNav {
-    background: #00cfbb;
-}
-
-#offer {
-    padding: 90px 0;
-    text-align: center;
-}
-
-#offer h2 {
-    font-size: 1.5rem;
-    font-weight: 700;
-    line-height: 1.25;
-}
-
-#offer h3 {
-    font-size: 1.125rem;
-    font-weight: 600 !important;
-    line-height: normal;
-}
-
-#offer i {
-    font-size: 50px;
-    margin-bottom: 20px;
-}
-
-#offer p, .text p {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
-}
-
-.text p {
-    font-size: 17px;
-}
-
-#testimonial {
-    background: #f7f7f9;
-    text-align: center;
-    padding: 60px 0;
-    position: relative;
-}
-
-.testiModal {
-    position: absolute;
-    bottom: -60;
-    left: 30px;
-    height: 365px !important;
-}
-
-#testimonial h4 {
-    font-size: 17px;
-    font-weight: 600 !important;
-    margin-bottom: 15px;
-}
-
-blockquote {
-    font-size: 1.5rem;
-}
-
-#needTalk h3 {
-    font-size: 24px;
-    margin-bottom: 15px;
-    line-height: 1.4;
-    font-weight: 700 !important;
-}
-
-#needTalk .row {
-    flex-direction: row;
-    align-items: center;
-}
-
-.needTalk {
-    text-align: right;
-}
-
-.needTalk img {
-    height: 220px;
-}
-
-#footBTM {
-    padding: 20px 0;
-    background: #000;
-    color: #fff;
-}
-
-#footBTM p {
-    margin-bottom: 0;
-}
-
-#footNav {
-    padding: 25px 0;
-}
-
-#footNav ul {
-    padding: 0;
-}
-
-#footNav ul li:not(:last-child) {
-    margin-right: 20px;
-}
-
-#footNav ul li {
-    list-style: none;
-    float: left;
-}
-
-#footNav ul li a {
-    text-decoration: underline;
-    font-size: 15px;
-    font-weight: 700;
-}
-
-#footNav ul li a:hover {
-    text-decoration: none;
-}
-
-@media (min-width: 1200px) {
-    .container {
-        max-width: 925px !important;
-    }
-}
-
-@media (min-width: 576px) {
-    .modal-dialog {
-        max-width: 460px;
-    }
-}
-
 /* nav  */
 
 nav.navbar-dark.default-color.navbar.navbar-expand-md {
     background: darkblue;
-}
-
-.cMenu {
-    position: absolute;
-    width: 79%;
-    flex-direction: inherit;
-    justify-content: center;
 }
 
 .navbar {
@@ -285,4 +15,36 @@ nav.navbar-dark.default-color.navbar.navbar-expand-md {
 .navbar-expand-md .navbar-nav .nav-link {
     font-weight: 700;
     font-size: 17px;
+}
+
+button.nav-link {
+    background: transparent;
+    border: 0;
+}
+
+button.nav-link:hover {
+    cursor: pointer;
+}
+
+button.nav-link.user {
+    color: #fc4c01 !important;
+    text-transform: uppercase;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.99);
+}
+
+.navbar-light .navbar-nav .active>.nav-link {
+    color: rgb(252, 76, 1);
+}
+
+button.navbar-toggler {
+    border: 0;
+    border-radius: 0;
+}
+
+button:focus {
+    outline: 0px dotted !important;
+    outline: 0px auto -webkit-focus-ring-color !important;
 }

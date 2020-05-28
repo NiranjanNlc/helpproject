@@ -52,11 +52,154 @@
         padding: 0 !important;
         padding-top: 10px !important;
     }
-    #policyWrap h2 {
-        font-size: 1.5rem !important;
+    .help_cov {
+        margin-bottom: 15px;
+    }
+    .register, .signIn {
+        width: 80%;
+    }
+    #formWrap .small, #formWrap .cov-rem.clearfix {
+        font-size: 15px !important;
+    }
+    #formWrap p.noac {
+        font-size: 16px;
+    }
+    .modal-body {
+        padding: 15px 0;
+    }
+    #formWrap .formWrap {
+        padding: 0;
+    }
+    #topHeader img {
+        top: 3px !important;
+        left: 3px !important;
+        height: 38px !important;
+    }
+    #topHeader h1 {
+        font-size: 1.9rem !important;
+    }
+    #topHeader {
+        text-align: center;
+    }
+    .logo img {
+        height: 55px;
+    }
+    .submitBtn {
+        text-align: left;
+    }
+    .form-divider {
+        padding: 12px 0 !important;
+    }
+    .feild .form-control {
+        width: 100% !important;
+    }
+    .feild {
+        display: flex;
+        flex-direction: column-reverse;
+    }
+    button.nav-link.user {
+        text-transform: capitalize !important;
     }
 }
 
-@media (min-width: 768px) {}
+@media (min-width: 1200px) {
+    .container {
+        max-width: 925px !important;
+    }
+}
 
-@media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {}
+@media (min-width: 576px) {
+    .modal-dialog {
+        max-width: 460px;
+    }
+}
+
+@media (min-width: 768px) {
+    .cMenu {
+        position: absolute;
+        width: 79%;
+        flex-direction: inherit;
+        justify-content: center;
+    }
+    .label label {
+        font-size: 16px !important;
+        margin: 0;
+    }
+    .feild_entry .label {
+        text-align: right;
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+    .register, .signIn {
+        width: 70%;
+    }
+    .mobile {
+        right: -20px !important;
+    }
+    .testiModal {
+        display: none;
+    }
+    #detailWrap, #mapWrap {
+        min-height: calc(100vh - 92px);
+    }
+}
+
+@media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
+    #detailWrap, #mapWrap {
+        min-height: calc(100vh - 92px);
+    }
+}
+
+@media (min-width: 768px) {
+    .messageCov {
+        min-height: 400px;
+    }
+}
+
+@media (max-width: 767px) {
+    .mail {
+        font-size: 18px;
+        margin: 8px 0;
+    }
+    .messageCov h1 {
+        font-size: 1.6rem;
+    }
+    .soonCov {
+        padding: 30px 15px;
+    }
+    .soonCov .mail span {
+        font-size: 23px;
+    }
+    .soonCov p {
+        font-size: 16px;
+    }
+    #thanksWrap .formWrap {
+        background: #fff;
+        padding: 30px 20px !important;
+    }
+    #thanksWrap {
+        height: calc(100vh - 84px);
+    }
+}
+
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
+    .messageCov {
+        margin: 0 90px;
+        min-height: auto;
+    }
+    .messageCov h1 {
+        font-size: 2rem;
+    }
+    .messageCov {
+        display: flex;
+        background: #fff;
+        padding: 40px 20px;
+    }
+}
+
+#thanksWrap .formWrap {
+    background: #fff;
+    padding: 70px 50px;
+    border: 8px solid #58646f
+}
