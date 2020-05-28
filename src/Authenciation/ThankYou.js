@@ -20,7 +20,9 @@ class ThankYOu extends React.Component {
         return (
             <div>
                 <section id="topHeader">
+                <Link to="/home">
                     <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+                    </Link>
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12" align="center">
@@ -36,7 +38,7 @@ class ThankYOu extends React.Component {
 
                                 <div class="formWrap" align="center">
                                     <div className="thanksWrap">
-                                        <p className="thanks"><span>Username</span></p>
+                                        <p className="thanks"><span></span></p>
                                         <p>You have been of great help . One step to bring a master in your area.</p>
                                     </div>
                                 </div>

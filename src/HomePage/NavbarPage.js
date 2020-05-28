@@ -5,22 +5,32 @@ import {
 } from "mdbreact";
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Link, withRouter } from 'react-router-dom';
+import { connect } from "react-redux"
+import { performLogout, logout } from '../Authenciation/Redux/Actions/Actions'
+
 class NavbarPage extends Component {
     state = {
-        isOpen: false
+        isOpen: false,
+        username:''
     };
-
+  
+onSubmit=(event) =>{
+    { this.props.dispatch(logout()) }
+}
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
+    
 
     render() {
+        const loggedIn = this.props.data.isAuthenticated
+        console.log(loggedIn)
         return (
-            <Router>
+            // <Router>
                 <header>
                     <MDBNavbar color="default-color" light expand="md">
                         <MDBNavbarBrand>
-                            <Link to="#">
+                            <Link to="/home">
                                 <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                             </Link>
                         </MDBNavbarBrand>
@@ -28,31 +38,45 @@ class NavbarPage extends Component {
                         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                             <MDBNavbarNav left className="cMenu">
                                 <MDBNavItem active>
-                                    <MDBNavLink to="/chose">Home</MDBNavLink>
+                                    {/* <MDBNavLink to="/#/chose">Home</MDBNavLink> */}
+                                    {loggedIn &&  <Link className="nav-link" to="/home"><button className="nav-link"
+                                    
+                                >Home</button></Link>}
                                 </MDBNavItem>
                                 <MDBNavItem>
-                                    <MDBNavLink to="#!">Ask Help</MDBNavLink>
+                                    {/* <MDBNavLink to="#!">Ask Help</MDBNavLink> */}
+                                    {loggedIn && <Link className="nav-link" to="/chose" ><button className="nav-link"
+                                     
+                                >Chose </button></Link>}
                                 </MDBNavItem>
                             </MDBNavbarNav>
                             <MDBNavbarNav right>
 
                                 <MDBNavItem>
-                                    <MDBDropdown>
+                                {loggedIn && <li><button className="nav-link"
+                                    onClick={this.onSubmit}
+                                >Logout</button></li>}
+                                    {/* <MDBDropdown>
                                         <MDBDropdownToggle nav caret>
                                             Username
                                     </MDBDropdownToggle>
                                         <MDBDropdownMenu className="dropdown-default">
                                             <MDBDropdownItem href="#!">Logout</MDBDropdownItem>
                                         </MDBDropdownMenu>
-                                    </MDBDropdown>
+                                    </MDBDropdown> */}
                                 </MDBNavItem>
                             </MDBNavbarNav>
                         </MDBCollapse>
                     </MDBNavbar>
                 </header>
-            </Router>
+            // </Router>
         );
     }
 }
+const mapStateToProps = state => {
+    return {
+        data: state
+    };
+};
 
-export default NavbarPage;
+export default connect(mapStateToProps)(NavbarPage);

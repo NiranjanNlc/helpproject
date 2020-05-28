@@ -6,8 +6,9 @@ class Policy extends Component {
         return (
             <div>
                 <section id="topHeader">
-                    <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
-                    <div className="container">
+                   
+                <Link to="/home"> <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+                   </Link> <div className="container">
                         <div className="row">
                             <div className="col-sm-12" align="center">
                                 <h1>Policies</h1>

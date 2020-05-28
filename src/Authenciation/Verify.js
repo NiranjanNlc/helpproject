@@ -58,7 +58,9 @@ class Verify extends Component {
         return (
             <div>
                 <section id="topHeader">
+                <Link to="/home">
                     <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+                    </Link>
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12" align="center">
@@ -77,7 +79,7 @@ class Verify extends Component {
                                         <span><i class="fas fa-envelope"></i></span>
                                     </div>
                                     <p>Enjoy our platform </p>
-                                    <b><Link to="/login/"> <h6><u>click to login</u></h6></Link></b>
+                                    <b><Link to="/home/"> <h6><u>click to login</u></h6></Link></b>
                                 </div>
                             </div>
                         </div>

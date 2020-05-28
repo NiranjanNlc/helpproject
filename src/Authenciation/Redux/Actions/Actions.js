@@ -85,7 +85,14 @@ export function logout() {
          {
            console.log("user not  responded 200")
            console.log(error)
-          performLogout();
+           console.log("couldnot refresh token")
+        console.log("deleted from  from server")
+        const intervalName = store.getState().intervalName
+      console.log(intervalName)
+      if (intervalName) clearInterval(intervalName);
+      dispatch({ type: "LOGOUT"});
+        
+         // performLogout();
          })
         }
     }

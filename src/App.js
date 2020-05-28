@@ -27,7 +27,7 @@ class App extends React.Component {
     const hist = createBrowserHistory();
     return (
       <div>
-        <Router history={hist}>
+        <Router >
           {/* <MenuComponent /> */}
           <>
             <Switch>
@@ -48,7 +48,7 @@ class App extends React.Component {
               <Route path="/Forgot/" component={Forgot} />
               <Route path="/forgets/" component={ForgetS} />
 
-           />
+           {/* /> */}
         </Switch>
           </>
 

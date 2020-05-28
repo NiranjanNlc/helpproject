@@ -12,10 +12,10 @@ class DashBoard extends React.Component {
   constructor(props) {
     super(props)
     this.state = {
-      name: 'Raju Tamang daii ',
-      email: 'raju_123@gmail.com',
-      phone: '9867745342',
-      helped: '12',
+      name: '',
+      email: '',
+      phone: '',
+      helped: '',
       loading: true,
       helpedBy: '',
       helpedTo: ''

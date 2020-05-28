@@ -266,7 +266,9 @@ class SignUp extends React.Component {
     return (
       <div>
         <section id="topHeader">
+          <Link to="/home">
           <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+          </Link>
           <div className="container">
             <div className="row">
               <div className="col-sm-12" align="center">

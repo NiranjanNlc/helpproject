@@ -132,7 +132,7 @@ class Home extends Component {
             httpResource.post("/api/auth/login", signIn)
                 .then((response) => {
                     if (response.status === 200) {
-                        //    this.props.dispatch(getAuthenticatedUser());
+                       //     this.props.dispatch(getAuthenticatedUser());
                         console.log("logged in ..")
                         console.log("trying to open login page")
                         this.props.history.push("/dash/")
@@ -153,14 +153,7 @@ class Home extends Component {
         }
         return;
     }
-    checkLogin() {
-        // console.log(store.getState())
-        if (this.props.data.isAuthenticated === true) {
-            console.log("trying to open login page")
-            this.props.history.push("/dash/")
-            window.location.reload(false);
-        }
-    }
+     
     componentDidMount() {
         // this.checkLogin()
 
@@ -168,6 +161,7 @@ class Home extends Component {
 
     checkLogin() {
         // console.log(store.getState())
+        console.log(this.props.data)
         if (this.props.data.isAuthenticated === true) {
             console.log("trying to open login page")
             this.props.history.push("/dash/")
@@ -245,11 +239,11 @@ class Home extends Component {
                         <div className="row secGap">
                             <div className="col-sm-7">
                                 <h1>
-                                    Welcome to klyg !
+                                    Welcome to Klygo !
                                 </h1>
                                 <p>Free, safe and anonymous support</p>
                                 <a href="#" className="btn vMore watch"><i class="fas fa-play"></i> Watch our Video</a>
-                                <Link to="/sign/" className="btn vMore">Join klyg</Link>
+                                <Link to="/sign/" className="btn vMore">Join Klygo</Link>
                             </div>
                             <div className="mobile">
                                 <img src={window.location.origin + '/images/test2.png'} className="img-fluid" alt="logo" />
@@ -261,7 +255,7 @@ class Home extends Component {
                     <div className="container">
                         <div className="row">
                             <div className="col-sm-12 secTitle">
-                                <h2>Just some of the things you'll find on klyg</h2>
+                                <h2>Just some of the things you'll find on Klygo</h2>
                             </div>
                             <div className="col-md-6 col-lg-3 col-sm-6 mobPad">
                                 <i class="fas fa-utensils"></i>
@@ -331,10 +325,10 @@ class Home extends Component {
                             <div className="row ">
                                 <div className="col-sm-12">
                                     <ul>
-                                        <li><Link to="#">Meet the team</Link></li>
-                                        <li><Link to="#">Privacy and Safety</Link></li>
+                                        {/* <li><Link to="#">Meet the team</Link></li> */}
+                                        <li><Link to="/policy">Privacy policy</Link></li>
                                         <li><Link to="#">Terms of Use</Link></li>
-                                        <li><Link to="#">Confidentiality</Link></li>
+                                        {/* <li><Link to="#">Confidentiality</Link></li> */}
                                     </ul>
                                 </div>
                             </div>
@@ -344,7 +338,7 @@ class Home extends Component {
                         <div className="container">
                             <div className="row ">
                                 <div className="col-sm-12">
-                                    <p>© klyg 2020</p>
+                                    <p>© Klygo 2020</p>
                                 </div>
                             </div>
                         </div>

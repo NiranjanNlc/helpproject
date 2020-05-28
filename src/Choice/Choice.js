@@ -6,12 +6,8 @@ import './styleMedia.css'
 import { refresh } from '../Authenciation/Redux/Actions/Actions'
 import { withRouter } from 'react-router';
 import MenuComponent from '../NavBAr/MenuComponent';
-<<<<<<< HEAD
 import httpService from '../Authenciation/Redux/httpService'
 import  './styleCommon.css'
-=======
-import './styleCommon.css'
->>>>>>> a99acf4e476e8c3bbf0eec96a56e3dcba728dbf6
 import ChoiceService from './ChoiceService'
 import NavbarPage from '../HomePage/NavbarPage';
 import Place from '../Authenciation/Place'
@@ -72,9 +68,8 @@ class Choice extends React.Component {
       }
     );
   }
-<<<<<<< HEAD
   async  componentDidMount() {
-     this.props.dispatch(refresh())
+   //  this.props.dispatch(refresh())
      console.log(this.props.data.currentUser)
      await httpService.get("/profile/me")
      .then((response) => 
@@ -96,15 +91,6 @@ class Choice extends React.Component {
        const helpedone= this.props.data.currentUser
       
       console.log(helpedone)
-=======
-  componentDidMount() {
-    this.props.dispatch(refresh())
-    const helpedone = this.props.data.currentUser
-    this.setState(
-      { helpedone: helpedone }
-    )
-    console.log(helpedone)
->>>>>>> a99acf4e476e8c3bbf0eec96a56e3dcba728dbf6
     /*    console.log('Component did mount!')
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position)
@@ -296,7 +282,7 @@ class Choice extends React.Component {
     if (this.state.var1 === 'Resturant' || this.state.var1 === 'Takeaways') {
       var map = (<div>
         <select name="var2" onChange={this.handleChange} className="form-control input-lg">
-          <option value="1">.......</option>
+          <option value="1" selected>.......</option>
 
           <option value="Chinese"> Chinese </option>
           <option value="Nepalese">Nepalese </option>
@@ -304,7 +290,7 @@ class Choice extends React.Component {
           <option value="Contenential">Continental</option>
         </select>
         <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
-          <option value="1">.......</option>
+          <option value="1" selected>.......</option>
 
           <option value="Meat">Meat </option>
           <option value="Fish">Fish </option>
@@ -334,7 +320,7 @@ class Choice extends React.Component {
     else if (this.state.var1 === "Groceries") {
       var map = (<div>
         <select name="var2" onChange={this.handleChange} className="form-control input-lg">
-          <option value="1">.......</option>
+          <option value="1" selected>.......</option>
 
           <option value="Chinese"> Chinese </option>
           <option value="Asian">Asian </option>
@@ -352,11 +338,11 @@ class Choice extends React.Component {
     else if (this.state.var1 === "Petrol Pump") {
       var map = (<div>
         <select name="var2" onChange={this.handleChange} className="form-control input-lg">
-          <option value="1">.......</option>
+          <option value="1" selected>.......</option>
           <option value="Open Now">Open now</option>
         </select>
         <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
-          <option value="1">.......</option>
+          <option value="1" selected>.......</option>
 
           <option value="Open now">Open now</option>
         </select>
@@ -366,12 +352,12 @@ class Choice extends React.Component {
     else if (this.state.var1 === "Chemist") {
       var map = (<div>
         <select name="var2" onChange={this.handleChange} className="form-control input-lg">
-          <option value="1">.......</option>
+          <option value="1" selected>.......</option>
 
           <option value="Top rated">Top Rated</option>
         </select>
         <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
-          <option value="1">.......</option>
+          <option value="1" selected>.......</option>
 
           <option value="Open now">Open now</option>
         </select>
@@ -380,7 +366,7 @@ class Choice extends React.Component {
     else if (this.state.var1 === "Hotels") {
       var map = (<div>
         <select name="var2" onChange={this.handleChange} className="form-control input-lg">
-          <option value="1">.......</option>
+          <option value="1" selected>.......</option>
 
           <option value="Top rated">Top Rated</option>
           <option value="Bed and  Breakfast">Bed and  Breakfast</option>
@@ -398,9 +384,9 @@ class Choice extends React.Component {
     else if (this.state.var1 === "Garage") {
       var map = (<div>
         <select name="var2" onChange={this.handleChange} className="form-control input-lg">
-          <option value="1">.......</option>
+          <option value="1" selected>.......</option>
 
-          <option value="Car Wash<">Car Wash</option>
+          <option value="Car Wash">Car Wash</option>
           <option value="Maintenance">Maintenance</option>
           <option value="Bike Wash">Bike Wash</option>
         </select>
@@ -433,13 +419,13 @@ class Choice extends React.Component {
     else {
       var map = (<div>
         <select name="var2" onChange={this.handleChange} className="form-control input-lg">
-          <option value="1">.......</option>
+          <option value="1" selected>.......</option>
           <option value="Park">Park </option>
           <option value="Club">Club </option>
           <option value="Muesum">Muesum</option>
         </select>
         <select name='var3' className="form-control input-lg" onChange={this.handleChange}>
-          <option value="6"></option>
+          <option value="6" selected>......</option>
           <option value="Free">Free</option>
           <option value="Limited Edition">Limited Edition</option>
           <option value="Affordable">Affordable</option>
@@ -501,4 +487,4 @@ const mapStateToProps = state => {
 };
 
 export default
-  connect(mapStateToProps)(withRouter(Choice));
+  connect(mapStateToProps)(Choice);
