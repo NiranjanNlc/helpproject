@@ -2,12 +2,10 @@ import React from 'react'
 import Geocode from "react-geocode";
 import axios from 'axios'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
-import './styleMedia.css'
 import { refresh } from '../Authenciation/Redux/Actions/Actions'
 import { withRouter } from 'react-router';
 import MenuComponent from '../NavBAr/MenuComponent';
 import httpService from '../Authenciation/Redux/httpService'
-import  './styleCommon.css'
 import ChoiceService from './ChoiceService'
 import NavbarPage from '../HomePage/NavbarPage';
 import Place from '../Authenciation/Place'
@@ -30,7 +28,8 @@ class Choice extends React.Component {
       state: '',
       area: '',
       postal_code: '',
-      helpedone: ''
+      helpedone: '',
+      frez: 'true'
     }
     this.handleChange = this.handleChange.bind(this)
     this.getpostal = this.getpostal.bind(this)
@@ -69,28 +68,25 @@ class Choice extends React.Component {
     );
   }
   async  componentDidMount() {
-   //  this.props.dispatch(refresh())
-     console.log(this.props.data.currentUser)
-     await httpService.get("/profile/me")
-     .then((response) => 
-      {
-        if (response.status === 200) 
-        {
+    //  this.props.dispatch(refresh())
+    console.log(this.props.data.currentUser)
+    await httpService.get("/profile/me")
+      .then((response) => {
+        if (response.status === 200) {
           this.setState(
-            {helpedone:response.data}
+            { helpedone: response.data }
           )
         }
       }
-     )
-     .catch((error) => 
-     {
-       console.log("user not  responded 200")
-       console.log(error)
-      // performLogout();
-     })
-       const helpedone= this.props.data.currentUser
-      
-      console.log(helpedone)
+      )
+      .catch((error) => {
+        console.log("user not  responded 200")
+        console.log(error)
+        // performLogout();
+      })
+    const helpedone = this.props.data.currentUser
+
+    console.log(helpedone)
     /*    console.log('Component did mount!')
         navigator.geolocation.getCurrentPosition((position) => {
             console.log(position)
@@ -166,6 +162,9 @@ class Choice extends React.Component {
   }
 
   submitData(event) {
+    this.setState({
+      frez: false
+    })
     //  this.getLocation()
     event.preventDefault()
     console.log("hello hunny bunny ")
@@ -469,6 +468,7 @@ class Choice extends React.Component {
                       onSelect={this.handleCo} name="postcode" className="form-control" />
                     <button type="submit"
                       className="btn sub_help"
+                      disabled={!this.state.frez}
                       onClick={(e) => this.submitData(e)}> Help </button>
                   </form>
                 </div>

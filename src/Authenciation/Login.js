@@ -1,10 +1,9 @@
 import React from 'react'
 import AuthenciationService from './AuthenciationService'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
-import './login.css'
 import httpResource from './httpResource'
 
-import {getAuthenticatedUser, login, logout } from "./Redux/Actions/Actions"
+import { getAuthenticatedUser, login, logout } from "./Redux/Actions/Actions"
 import hutils from './hutils'
 import MyContext from './Context/MyContext'
 import { connect } from "react-redux"

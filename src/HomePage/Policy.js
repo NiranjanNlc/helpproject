@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '../Authenciation/Message.css'
 import { Link, withRouter } from 'react-router-dom'
 class Policy extends Component {
     render() {
@@ -15,14 +14,15 @@ class Policy extends Component {
                             </div>
                         </div>
                     </div>
+                    <div id="backS">
+                        <Link to="/sign"><i class="fas fa-chevron-left"></i> Back to Signup</Link>
+                    </div>
                 </section>
                 <section id="policyWrap" className="secGap">
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-sm-12">
                                 <article>
-
-
                                     <h2>Privacy policy</h2>
 
                                     <p>This privacy policy ("Policy") describes how Mobile Application Developer ("Mobile Application Developer", "we", "us" or "our") collects, protects and uses the personally identifiable information ("Personal Information") you ("User", "you" or "your") may provide in the Klygo mobile application and any of its products or services (collectively, "Mobile Application" or "Services").</p>

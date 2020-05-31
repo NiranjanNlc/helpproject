@@ -5,8 +5,7 @@ import Autocomplete from 'react-google-autocomplete';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 import Axios from 'axios';
 import { withRouter } from 'react-router';
-import {API_URL} from '../Constant'
-import './Map.css'  
+import { API_URL } from '../Constant'
 import LocationSearchInput from './LocationSearchInput';
 const SUBMIT_URL = `${API_URL}/send/suggestion`
 //Geocode.setApiKey("AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc");
@@ -26,7 +25,7 @@ class Map extends Component {
 			area: '',
 			state: '',
 			sugg: '',
-			add:'',
+			add: '',
 			mapPosition: {
 				lat: this.props.center.lat,
 				lng: this.props.center.lng
@@ -39,8 +38,8 @@ class Map extends Component {
 			var2: this.props.var2,
 			var3: this.props.var3,
 			loc: this.props.loc,
-			rid:this.props.rid,
-			hid:this.props.hid
+			rid: this.props.rid,
+			hid: this.props.hid
 
 		}
 		this.onSuggestion = this.onSuggestion.bind(this)
@@ -150,12 +149,12 @@ class Map extends Component {
 		this.setState({ [event.target.name]: event.target.value });
 		this.refs.inputOfName.value = event.target.value
 		console.log(this.state.add)
-		
+
 	};
 	handleChange = (add) => {
 		this.setState({ add })
 		console.log(this.state.add)
-	  }
+	}
 	/**
 	 * This Event triggers when the marker window is closed
 	 *
@@ -209,7 +208,7 @@ class Map extends Component {
 	 * @param place
 	*/
 	onPlaceSelected = (place) => {
-	//	this.onChange()
+		//	this.onChange()
 		console.log('plc', place);
 		const address = place.formatted_address,
 			addressArray = place.address_components
@@ -230,8 +229,9 @@ class Map extends Component {
 						lat: parseFloat(lat),
 						lng: parseFloat(lng)
 					},
-				},function(){
-					console.log(lat, lng)})
+				}, function () {
+					console.log(lat, lng)
+				})
 				console.log(lat, lng);
 			},
 			error => {
@@ -249,7 +249,7 @@ class Map extends Component {
 			sugg: this.state.sugg,
 			location: this.state.address,
 			rid: this.state.rid,
-			hid:this.state.hid
+			hid: this.state.hid
 		}
 		console.log(help)
 		Axios.post(`${SUBMIT_URL}`, help)
@@ -271,56 +271,56 @@ class Map extends Component {
 
 	render() {
 		console.log(SUBMIT_URL)
-        const renderInput= 
-({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
-  <div >
-  <div className="autocomplete-root" >
-    <input  className="form-control"
-      {...getInputProps({
-        placeholder: 'Search Places ...',
-     //   className: 'location-search-input',
-      })
-    }
-    {...getInputProps()}
-    /> 
-    <div className="autocomplete-dropdown-container">
-       
-             {loading && <div>Loading...</div>}
-      {suggestions.map(suggestion => {
-        const className = suggestion.active
-          ? 'suggestion-item--active'
-          : 'suggestion-item';
-        // inline style for demonstration purpose
-        const style = suggestion.active
-          ? { backgroundColor: '#faaafa', cursor: 'pointer' }
-          : { backgroundColor: '#ffffff', cursor: 'pointer' };
-        return (
-          <div className="form-control"
-          >
-          <div className="suggestion" 
-            {...getSuggestionItemProps(suggestion, {
-             className,
-              style,
-            })
-          }
-          >
-            <span  
-            >{suggestion.description}</span>
-          </div>
-          </div>
-        );
-      })}
-    </div> 
-  </div>
-  </div>
-)
+		const renderInput =
+			({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
+				<div >
+					<div className="autocomplete-root" >
+						<input className="form-control"
+							{...getInputProps({
+								placeholder: 'Search Places ...',
+								//   className: 'location-search-input',
+							})
+							}
+							{...getInputProps()}
+						/>
+						<div className="autocomplete-dropdown-container">
+
+							{loading && <div>Loading...</div>}
+							{suggestions.map(suggestion => {
+								const className = suggestion.active
+									? 'suggestion-item--active'
+									: 'suggestion-item';
+								// inline style for demonstration purpose
+								const style = suggestion.active
+									? { backgroundColor: '#faaafa', cursor: 'pointer' }
+									: { backgroundColor: '#ffffff', cursor: 'pointer' };
+								return (
+									<div className="form-control"
+									>
+										<div className="suggestion"
+											{...getSuggestionItemProps(suggestion, {
+												className,
+												style,
+											})
+											}
+										>
+											<span
+											>{suggestion.description}</span>
+										</div>
+									</div>
+								);
+							})}
+						</div>
+					</div>
+				</div>
+			)
 		const searchOptions = {
 			location: new google.maps.LatLng(-34, 151),
 			radius: 2000,
 			types: ['address']
-		  }
-		const AsyncMap = 
-		//withScriptjs(
+		}
+		const AsyncMap =
+			//withScriptjs(
 			withGoogleMap(
 				props => (
 					<div className="mapCov">
@@ -338,24 +338,24 @@ class Map extends Component {
 								</div>
 							</InfoWindow>
 							{/*Marker*/}
-							{this.state.state.markerPosition&&
-							<Marker google={this.props.google}
-								name={'Dolores park'}
-								draggable={true}
-								onDragEnd={this.onMarkerDragEnd}
-								position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
-							/>
+							{this.state.state.markerPosition &&
+								<Marker google={this.props.google}
+									name={'Dolores park'}
+									draggable={true}
+									onDragEnd={this.onMarkerDragEnd}
+									position={{ lat: this.state.markerPosition.lat, lng: this.state.markerPosition.lng }}
+								/>
 							}
 							<Marker />
 							{/* For Auto complete Search Box */}
 							<div className="mapResult">
-							  {/* <Autocomplete className="form-control"
+								{/* <Autocomplete className="form-control"
 								onPlaceSelected={this.onPlaceSelected}
 								onChange={this.onChange}
 								name='add'
 								types={['establishment']}
 							/> */}
-							 
+
 								<button type="submit"
 									className="btn btn_sub_help"
 									onClick={(e) => this.submitData(e)}> Help </button>
@@ -363,8 +363,8 @@ class Map extends Component {
 						</GoogleMap>
 					</div>
 				)
-		//	)
-		);
+				//	)
+			);
 		let map;
 		if (this.props.center.lat !== undefined) {
 			map = <div>
@@ -384,6 +384,22 @@ class Map extends Component {
 					<form>
 						<div className="row">
 							<div className="col-sm-12"><h3 className="map_title">Please suggest {this.state.var1} with {this.state.var2}  & {this.state.var3}  near {this.state.loc} </h3></div>
+
+							<div className="col-sm-6">
+								<div className="form-group">
+									<label htmlFor="">Please type your suggestion</label>
+									<Autocomplete className="form-control"
+										onPlaceSelected={this.onPlaceSelected}
+										onClick={this.onChange}
+										onSelect={this.onChange}
+										onChange={this.onChange}
+										name='add'
+										types={['establishment']}
+									>
+										{/* {renderInput}	 */}
+									</Autocomplete>
+								</div>
+							</div>
 							<div className="col-sm-6">						<div className="form-group">
 								<label htmlFor="">Address</label>
 								<input type="text" name="address" className="form-control" onChange={this.onChange} readOnly="readOnly" value={this.state.address} />
@@ -393,29 +409,14 @@ class Map extends Component {
 								<div className="form-group">
 									<label htmlFor="">Suggested place </label>
 									<input type="text"
-									 name="sugg"
-									 className="form-control" 
-									 ref="inputOfName"
-									 placeholder="Your suggestion appears here "
-									 value = {this.state.add}
-									onChange={this.onSuggestion} 
-									readOnly/>
+										name="sugg"
+										className="form-control"
+										ref="inputOfName"
+										placeholder="Your suggestion appears here "
+										value={this.state.add}
+										onChange={this.onSuggestion}
+										readOnly />
 								</div>
-							</div>
-							<div className="col-sm-6">
-								<div className="form-group">
-									<label htmlFor="">Please type your suggestion</label>
-									<Autocomplete className="form-control" 
-								onPlaceSelected={this.onPlaceSelected}
-								onClick={this.onChange}
-								onSelect={this.onChange}
-								onChange={this.onChange}
-								name='add'
-								types={['establishment']}
-							>
-							{/* {renderInput}	 */}
-							</Autocomplete>
-								 </div>
 							</div>
 							<div className="col-sm-12">
 								<div className="form-group">

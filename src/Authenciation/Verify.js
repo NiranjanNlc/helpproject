@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './Message.css'
 import { Link, withRouter } from 'react-router-dom'
 import AuthenciationService from './AuthenciationService'
 import queryString from 'querystring'
@@ -52,14 +51,14 @@ class Verify extends Component {
             return "loading..."
         }
         if (this.state.verifed === false) {
-            return (<h3>Could not vreify User</h3>)
+            return (<h3>Could not verify User</h3>)
         }
 
         return (
             <div>
                 <section id="topHeader">
-                <Link to="/home">
-                    <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+                    <Link to="/home">
+                        <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                     </Link>
                     <div className="container">
                         <div className="row">

@@ -1,7 +1,5 @@
 import React from 'react';
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
-
-import '../SelectPlace/Map.css'
 class Locat extends React.Component {
   constructor(props) {
     super(props);

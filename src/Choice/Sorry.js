@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '../Authenciation/Message.css'
 import NavbarPage from '../HomePage/NavbarPage';
 import { Link, withRouter } from 'react-router-dom'
 class Sorry extends Component {
@@ -10,7 +9,7 @@ class Sorry extends Component {
                 <section id="messageWrap">
                     <div className="container">
                         <div className="row justify-content-center">
-                            <div className="col-sm-6">
+                            <div className="col-sm-8">
                                 <div className="soonCov">
                                     <div className="mail">
                                         <span>Sorry !</span>

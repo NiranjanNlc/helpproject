@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import './thanks.css'
 import { Link, withRouter } from 'react-router-dom'
 import AuthenciationService from './AuthenciationService'
 class Forgot extends Component {
@@ -20,10 +19,10 @@ class Forgot extends Component {
     let errors = {};
     //    let formIsValid = true;
 
-    if (!fields["rid"]) {
-      formIsValid = false;
-      errors["rid"] = "*Please enter your username.";
-    }
+    // if (!fields["rid"]) {
+    //   formIsValid = false;
+    //   errors["rid"] = "*Please enter your username.";
+    // }
     if (!fields["psw"]) {
       formIsValid = false;
       errors["psw"] = "*Please enter your password.";
@@ -75,7 +74,7 @@ class Forgot extends Component {
       console.log("Validated")
       const signup = {
         phoneNumber: this.state.fields.numb,
-        rId: this.state.fields.rid,
+        // rId: this.state.fields.rid,
         psw: this.state.fields.psw,
 
       }
@@ -89,7 +88,7 @@ class Forgot extends Component {
           }
           else {
             let errors = {};
-            errors["rid"] = "Phonenumber and username not matched ";
+            errors["numb"] = "Phonenumber not Found";
             this.setState({
               errors: errors
             })
@@ -109,7 +108,9 @@ class Forgot extends Component {
     return (
       <div>
         <section id="topHeader">
-          <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+          <Link to="/home">
+            <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+          </Link>
           <div className="container">
             <div className="row">
               <div className="col-sm-12" align="center">
@@ -129,15 +130,6 @@ class Forgot extends Component {
                         <h4>Set Your New Password</h4>
                       </div>
                       <div className="feildCov">
-                        <div className="row feild_entry">
-                          <div className="col-sm-4 label">
-                            <label>Username</label>
-                          </div>
-                          <div className="col-sm-8 feild">
-                            <div className="errorMessage">{this.state.errors.rid}</div>
-                            <input type="text" name='rid' value={this.state.fields.rid} onChange={this.handleChange} className="form-control" placeholder="" required />
-                          </div>
-                        </div>
                         <div className="row feild_entry">
                           <div className="col-sm-4 label">
                             <label>Phone Number</label>

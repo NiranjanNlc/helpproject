@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
-import './register.css'
 import AuthenciationService from './AuthenciationService'
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
 
@@ -14,7 +13,8 @@ class SignUp extends React.Component {
     super(props)
     this.state = {
       fields: {},
-      errors: {}
+      errors: {},
+      // box: {},
       // name: '',
       // sname: '',
       // email: '',
@@ -34,6 +34,8 @@ class SignUp extends React.Component {
     this.onPlaceSelected = this.onPlaceSelected.bind(this)
     this.validateForm = this.validateForm.bind(this)
     this.getChildprops = this.getChildprops.bind(this)
+    this.getInitialState = this.getInitialState.bind(this)
+    this.handleCheck = this.handleCheck.bind(this)
   }
   getChildprops(fields) {
     this.setState({ fields })
@@ -64,7 +66,12 @@ class SignUp extends React.Component {
     });
     console.log(fields)
   }
-
+  getInitialState() {
+    return { checked: true }
+  }
+  handleCheck() {
+    this.setState({ checked: !this.state.checked });
+  }
   validateForm() {
     let formIsValid = true;
     console.log("hello here")
@@ -72,7 +79,12 @@ class SignUp extends React.Component {
     let fields = this.state.fields;
     let errors = {};
     //    let formIsValid = true;
-
+    // if (!this.state.checked == true) {
+    //   formIsValid = true;
+    // } else {
+    //   formIsValid = false;
+    //   errors["box"] = "*Try Please Work";
+    // }
     if (!fields["name"]) {
       formIsValid = false;
       errors["name"] = "*Please provide your First Name.";
@@ -260,14 +272,16 @@ class SignUp extends React.Component {
           this.setState({ hasLoginFailed: true })
         })
     }
+
   }
+
   render() {
     // this.refreshHelpedOne()
     return (
       <div>
         <section id="topHeader">
           <Link to="/home">
-          <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+            <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
           </Link>
           <div className="container">
             <div className="row">
@@ -443,7 +457,7 @@ class SignUp extends React.Component {
                             </div>
                             <div className="col-sm-8 feild">
                               <div className="errorMessage">{this.state.errors.numb}</div>
-                              <input type="text" value={this.state.fields.numb} placeholder="*country code required--" name="numb" className="form-control" required onChange={this.handleChange} required />
+                              <input type="number" value={this.state.fields.numb} placeholder="*country code required--" name="numb" className="form-control" required onChange={this.handleChange} required />
                             </div>
                           </div>
                           <div className="row feild_entry">
@@ -475,8 +489,9 @@ class SignUp extends React.Component {
                               <ul>
                                 <li>
                                   <label for="remember">
-                                    <input type="checkbox" />
-                                I agree to the terms and conditions and privacy policy statement </label>
+                                    <div className="errorMessage">{this.state.errors.box}</div>
+                                    <input type="checkbox" onChange={this.handleCheck} defaultChecked={this.state.box.checked} />
+                                I agree to the <Link to="/Terms">terms and conditions</Link> and <Link to="/Policy">privacy policy</Link> statement </label>
                                 </li>
                                 {/*      <li>
                               <input type="checkbox" /><label for="remember"> Telephone</label>

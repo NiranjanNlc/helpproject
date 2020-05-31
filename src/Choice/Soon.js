@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import '../Authenciation/Message.css'
 import NavbarPage from '../HomePage/NavbarPage';
 import { Link, withRouter } from 'react-router-dom'
 class Soon extends Component {

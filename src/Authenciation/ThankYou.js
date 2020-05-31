@@ -1,6 +1,5 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
-import './thanks.css'
 class ThankYOu extends React.Component {
     constructor(props) {
         super(props)
@@ -20,8 +19,8 @@ class ThankYOu extends React.Component {
         return (
             <div>
                 <section id="topHeader">
-                <Link to="/home">
-                    <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+                    <Link to="/home">
+                        <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                     </Link>
                     <div className="container">
                         <div className="row">
@@ -40,6 +39,8 @@ class ThankYOu extends React.Component {
                                     <div className="thanksWrap">
                                         <p className="thanks"><span></span></p>
                                         <p>You have been of great help . One step to bring a master in your area.</p>
+                                        <Link to="/dash" ><a href="#" className="btn back"><i class="fas fa-chevron-left"></i> Home</a>
+                                        </Link>
                                     </div>
                                 </div>
                             </div>

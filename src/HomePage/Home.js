@@ -326,7 +326,7 @@ class Home extends Component {
                                     <ul>
                                         {/* <li><Link to="#">Meet the team</Link></li> */}
                                         <li><Link to="/policy">Privacy policy</Link></li>
-                                        <li><Link to="#">Terms of Use</Link></li>
+                                        <li><Link to="/Terms">Terms of Use</Link></li>
                                         {/* <li><Link to="#">Confidentiality</Link></li> */}
                                     </ul>
                                 </div>

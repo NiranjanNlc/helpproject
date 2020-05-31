@@ -5,29 +5,29 @@
     #mainFace h1 {
         line-height: 1.2 !important;
         font-size: 1.75rem !important;
-        font-stretch: normal;
-        font-style: normal;
-        line-height: normal;
-        letter-spacing: normal;
-        color: #111;
+        font-stretch: normal !important;
+        font-style: normal !important;
+        line-height: normal !important;
+        letter-spacing: normal !important;
+        color: #111 !important;
     }
     #mainFace .vMore.watch {
-        margin-bottom: 15px;
+        margin-bottom: 15px !important;
     }
     .mobile, .testiModal {
-        display: none;
+        display: none !important;
     }
     #offer {
         padding: 50px 0 !important;
     }
     .mobPad {
-        padding: 10px 30px;
+        padding: 10px 30px !important;
     }
     #testimonial {
-        background: #e6e6ec;
+        background: #e6e6ec !important;
     }
     .no_people {
-        margin: 20px 0;
+        margin: 20px 0 !important;
     }
     .detailBlock {
         padding: 15px !important;
@@ -53,22 +53,22 @@
         padding-top: 10px !important;
     }
     .help_cov {
-        margin-bottom: 15px;
+        margin-bottom: 15px !important;
     }
     .register, .signIn {
-        width: 80%;
+        width: 80% !important;
     }
     #formWrap .small, #formWrap .cov-rem.clearfix {
         font-size: 15px !important;
     }
     #formWrap p.noac {
-        font-size: 16px;
+        font-size: 16px !important;
     }
     .modal-body {
-        padding: 15px 0;
+        padding: 15px 0 !important;
     }
     #formWrap .formWrap {
-        padding: 0;
+        padding: 0 !important;
     }
     #topHeader img {
         top: 3px !important;
@@ -79,13 +79,13 @@
         font-size: 1.9rem !important;
     }
     #topHeader {
-        text-align: center;
+        text-align: center !important;
     }
     .logo img {
-        height: 55px;
+        height: 55px !important;
     }
     .submitBtn {
-        text-align: left;
+        text-align: left !important;
     }
     .form-divider {
         padding: 12px 0 !important;
@@ -94,11 +94,62 @@
         width: 100% !important;
     }
     .feild {
-        display: flex;
-        flex-direction: column-reverse;
+        display: flex !important;
+        flex-direction: column-reverse !important;
     }
     button.nav-link.user {
         text-transform: capitalize !important;
+    }
+    #thanksWrap {
+        height: calc(100vh - 84px) !important;
+    }
+    .mapCov {
+        height: 300px;
+        margin: 0 calc(50% - 50vw) !important;
+    }
+    .map_title {
+        font-size: 20px !important;
+    }
+    .mail {
+        font-size: 18px !important;
+        margin: 8px 0 !important;
+    }
+    .messageCov h1 {
+        font-size: 1.6rem !important;
+    }
+    .soonCov {
+        padding: 30px 15px !important;
+    }
+    .soonCov .mail span {
+        font-size: 23px !important;
+    }
+    .soonCov p {
+        font-size: 16px !important;
+    }
+    #thanksWrap .formWrap {
+        background: #fff !important;
+        padding: 30px 20px !important;
+    }
+    #thanksWrap {
+        height: calc(100vh - 84px) !important;
+    }
+    #policyWrap h2 {
+        font-size: 1.5rem !important;
+    }
+    #policyWrap p {
+        font-size: 17px !important;
+    }
+    #forgetForm .errorMessage, #signUpWrap .errorMessage {
+        color: red;
+        margin-top: 10px;
+        margin-bottom: 0 !important;
+    }
+    #backS {
+        bottom: -29px !important;
+        font-size: 12px;
+    }
+    #policyWrap.secGap {
+        padding-top: 60px !important;
     }
 }
 
@@ -110,96 +161,63 @@
 
 @media (min-width: 576px) {
     .modal-dialog {
-        max-width: 460px;
+        max-width: 460px !important;
     }
 }
 
 @media (min-width: 768px) {
     .cMenu {
-        position: absolute;
-        width: 79%;
-        flex-direction: inherit;
-        justify-content: center;
+        position: absolute !important;
+        width: 79% !important;
+        flex-direction: inherit !important;
+        justify-content: center !important;
     }
     .label label {
         font-size: 16px !important;
-        margin: 0;
+        margin: 0 !important;
     }
     .feild_entry .label {
-        text-align: right;
+        text-align: right !important;
     }
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
     .register, .signIn {
-        width: 70%;
+        width: 70% !important;
     }
     .mobile {
         right: -20px !important;
     }
     .testiModal {
-        display: none;
+        display: none !important;
     }
     #detailWrap, #mapWrap {
-        min-height: calc(100vh - 92px);
+        min-height: calc(100vh - 92px)!important;
+    }
+    .messageCov {
+        margin: 0 90px !important;
+        min-height: auto !important;
+    }
+    .messageCov h1 {
+        font-size: 2rem!important;
+    }
+    .messageCov {
+        display: flex!important;
+        background: #fff!important;
+        padding: 40px 20px!important;
     }
 }
 
 @media only screen and (min-device-width: 1024px) and (max-device-width: 1366px) {
     #detailWrap, #mapWrap {
-        min-height: calc(100vh - 92px);
+        min-height: calc(100vh - 92px)!important;
     }
 }
 
 @media (min-width: 768px) {
     .messageCov {
-        min-height: 400px;
+        min-height: 400px !important;
     }
 }
 
-@media (max-width: 767px) {
-    .mail {
-        font-size: 18px;
-        margin: 8px 0;
-    }
-    .messageCov h1 {
-        font-size: 1.6rem;
-    }
-    .soonCov {
-        padding: 30px 15px;
-    }
-    .soonCov .mail span {
-        font-size: 23px;
-    }
-    .soonCov p {
-        font-size: 16px;
-    }
-    #thanksWrap .formWrap {
-        background: #fff;
-        padding: 30px 20px !important;
-    }
-    #thanksWrap {
-        height: calc(100vh - 84px);
-    }
-}
-
-@media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
-    .messageCov {
-        margin: 0 90px;
-        min-height: auto;
-    }
-    .messageCov h1 {
-        font-size: 2rem;
-    }
-    .messageCov {
-        display: flex;
-        background: #fff;
-        padding: 40px 20px;
-    }
-}
-
-#thanksWrap .formWrap {
-    background: #fff;
-    padding: 70px 50px;
-    border: 8px solid #58646f
-}
+@media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {}

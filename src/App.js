@@ -32,9 +32,9 @@ class App extends React.Component {
           {/* <MenuComponent /> */}
           <>
             <Switch>
-              <Route path="/" exact component={Home} />
+              <AuthenticatedRoute path="/" exact component={DashBoard} />
               <Route path="/add/" component={SelectPlace} />
-              <Route path="/chose/" component={Choice} />
+              <AuthenticatedRoute path="/chose/" component={Choice} />
               <AuthenticatedRoute path="/dash/" component={DashBoard} />
               <Route path="/login/" component={Login} />
               <Route path="/sign/" component={SignUp} />
@@ -45,8 +45,8 @@ class App extends React.Component {
               <Route path="/Soon/" component={Soon} />
               <Route path="/Sorry/" component={Sorry} />
               <Route path="/Home/" component={Home} />
-              <Route path="/Policy/" component={Policy} />
-              <Route path="/Terms/" component={Terms} />
+              <Route path="/Policy/" component={Terms} />
+              <Route path="/Terms/" component={Policy} />
               <Route path="/Forgot/" component={Forgot} />
               <Route path="/forgets/" component={ForgetS} />
 
