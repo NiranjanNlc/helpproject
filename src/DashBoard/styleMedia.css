@@ -151,6 +151,9 @@
     #policyWrap.secGap {
         padding-top: 60px !important;
     }
+    #backS a {
+        bottom: -35px !important;
+    }
 }
 
 @media (min-width: 1200px) {
