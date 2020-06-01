@@ -456,6 +456,10 @@ class Choice extends React.Component {
                       <option value="Chemist">Chemist</option>
                       <option value="Groceries">Groceries</option>
                       <option value="Petrol Pump">Petrol Pump</option>
+
+                      <option value="Buy">Buy</option>
+                      <option value="Adopt">Adopt</option>
+                      <option value="Take care">Take care</option>
                     </select>
                     </div>
                     {map}

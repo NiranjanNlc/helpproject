@@ -14,6 +14,7 @@ class SignUp extends React.Component {
     this.state = {
       fields: {},
       errors: {},
+      check:false
       // box: {},
       // name: '',
       // sname: '',
@@ -51,6 +52,10 @@ class SignUp extends React.Component {
     console.log(this.state.fields.loc)
   }
 
+handleCheck(event)
+{     
+  this.setState({check:!this.state.check})
+}
   handleChange(e) {
     console.log(e.target.value)
     // const { name, value } = event.target
@@ -69,9 +74,9 @@ class SignUp extends React.Component {
   getInitialState() {
     return { checked: true }
   }
-  handleCheck() {
-    this.setState({ checked: !this.state.checked });
-  }
+  // handleCheck() {
+  //   this.setState({ checked: !this.state.checked });
+  // }
   validateForm() {
     let formIsValid = true;
     console.log("hello here")
@@ -155,6 +160,11 @@ class SignUp extends React.Component {
     if (!fields["numb"]) {
       formIsValid = false;
       errors["numb"] = "*Required";
+    }
+    if(!this.state.check)
+    {
+      formIsValid = false;
+      errors["check"] = "*Agreee the terms and condition before proceeding";
     }
     if (typeof fields["numb"] !== "undefined") {
       // if (!fields["numb"].match(/^[0-9]{10}$/)) {
@@ -489,8 +499,14 @@ class SignUp extends React.Component {
                               <ul>
                                 <li>
                                   <label for="remember">
-                                    <div className="errorMessage">{this.state.errors.box}</div>
-                                    <input type="checkbox" onChange={this.handleCheck} defaultChecked={this.state.box.checked} />
+                                    <div className="errorMessage">{this.state.errors.check}</div>
+                                    <input type="checkbox" 
+                                    value={this.state.check}
+                                    name="check" 
+                                    onCheckboxChange={this.handleCheck}
+
+                                  // onChange={this.handleCheck}
+                                    />
                                 I agree to the <Link to="/Terms">terms and conditions</Link> and <Link to="/Policy">privacy policy</Link> statement </label>
                                 </li>
                                 {/*      <li>
