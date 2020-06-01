@@ -54,7 +54,10 @@ class SignUp extends React.Component {
 
 handleCheck(event)
 {     
-  this.setState({check:!this.state.check})
+  console.log("Checkbox status ")
+  let errors = this.state.errors;
+  this.setState({check:!this.state.check});
+  errors["check"]='' 
 }
   handleChange(e) {
     console.log(e.target.value)
@@ -161,6 +164,7 @@ handleCheck(event)
       formIsValid = false;
       errors["numb"] = "*Required";
     }
+    console.log(this.state.check)
     if(!this.state.check)
     {
       formIsValid = false;
@@ -503,9 +507,9 @@ handleCheck(event)
                                     <input type="checkbox" 
                                     value={this.state.check}
                                     name="check" 
-                                    onCheckboxChange={this.handleCheck}
+                                 //   onCheckboxChange={this.handleCheck}
 
-                                  // onChange={this.handleCheck}
+                                   onChange={this.handleCheck}
                                     />
                                 I agree to the <Link to="/Terms">terms and conditions</Link> and <Link to="/Policy">privacy policy</Link> statement </label>
                                 </li>
