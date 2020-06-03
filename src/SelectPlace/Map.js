@@ -7,6 +7,7 @@ import Axios from 'axios';
 import { withRouter } from 'react-router';
 import { API_URL } from '../Constant'
 import LocationSearchInput from './LocationSearchInput';
+import { ListGroupItemHeading } from 'reactstrap';
 const SUBMIT_URL = `${API_URL}/send/suggestion`
 //Geocode.setApiKey("AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc");
 //Geocode.enableDebug();
@@ -15,6 +16,8 @@ const google = window.google
 export const headers = {
 	'Authorization': 'Bearer ' + localStorage.getItem(TOKEN)
 }
+// const inputRef = React.useRef(null)
+
 class Map extends Component {
 
 	constructor(props) {
@@ -44,8 +47,9 @@ class Map extends Component {
 		}
 		this.onSuggestion = this.onSuggestion.bind(this)
 	}
-
+   
 	onSuggestion(event) {
+		
 		this.setState({ [event.target.name]: event.target.value });
 		console.log(this.state.sugg)
 	}
@@ -148,6 +152,7 @@ class Map extends Component {
 	onChange = (event) => {
 		this.setState({ [event.target.name]: event.target.value });
 		this.refs.inputOfName.value = event.target.value
+		this.setState({sugg:event.target.value})
 		console.log(this.state.add)
 
 	};
@@ -208,7 +213,13 @@ class Map extends Component {
 	 * @param place
 	*/
 	onPlaceSelected = (place) => {
-		//	this.onChange()
+		//	this.onChange() 
+	//	this.inputRef.onClick()
+	//this.inputElement.onClick();
+	var link = document.getElementById('auto');
+   link.click();
+		console.log(this.state.add)
+		this.setState({add:this.state.add})
 		console.log('plc', place);
 		const address = place.formatted_address,
 			addressArray = place.address_components
@@ -270,7 +281,8 @@ class Map extends Component {
 	}
 
 	render() {
-		console.log(SUBMIT_URL)
+		
+	//	console.log(SUBMIT_URL)
 		const renderInput =
 			({ getInputProps, suggestions, getSuggestionItemProps, loading }) => (
 				<div >
@@ -393,6 +405,9 @@ class Map extends Component {
 										onClick={this.onChange}
 										onSelect={this.onChange}
 										onChange={this.onChange}
+										id="auto"
+										//ref="inputRef"
+										innerRef={input => this.inputElement = input}
 										name='add'
 										types={['establishment']}
 									>
@@ -413,7 +428,7 @@ class Map extends Component {
 										className="form-control"
 										ref="inputOfName"
 										placeholder="Your suggestion appears here "
-										value={this.state.add}
+										//value={this.state.sugg}
 										onChange={this.onSuggestion}
 										readOnly />
 								</div>
