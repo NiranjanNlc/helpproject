@@ -713,8 +713,9 @@ select.form-control {
     position: absolute;
     background: #fc4c0126;
     color: #fc4c01;
-    bottom: -34px;
-    padding: 5px 10px;
+    bottom: -38px;
+    left: 0;
+    padding: 10px 15px;
     border-bottom: 2px solid #fc4d02;
     font-weight: 600;
 }

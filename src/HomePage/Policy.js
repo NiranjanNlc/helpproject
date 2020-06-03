@@ -15,7 +15,7 @@ class Policy extends Component {
                         </div>
                     </div>
                     <div id="backS">
-                        <Link to="/sign"><i class="fas fa-chevron-left"></i> Back to Signup</Link>
+                        <Link to="/sign"><i class="fas fa-chevron-left"></i></Link>
                     </div>
                 </section>
                 <section id="policyWrap" className="secGap">
