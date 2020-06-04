@@ -216,6 +216,12 @@
     #newNav #navbarCollapse3 ul.navbar-nav.mr-auto {
         display: none !important;
     }
+    .s-mob {
+        display: none;
+    }
+    .nav-link .nav-link {
+        padding: 0;
+    }
 }
 
 @media only screen and (min-device-width: 768px) and (max-device-width: 1023px) {
