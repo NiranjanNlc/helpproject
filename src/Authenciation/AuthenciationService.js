@@ -15,23 +15,20 @@ class AuthenticationService
         return axios.post(`${API_URL}/api/auth/login`,$signin)
     } 
     registerSuccessfulLoginForJwt(username, token,role) {
-      console.log(token)
-      console.log(role)
-      console.log(username)
-      
+       
       localStorage.setItem(USER_NAME_SESSION_ATTRIBUTE_NAME, username)
       localStorage.setItem(TOKEN,token)
       this.setupAxiosInterceptors(this.createJWTToken(token))
   }
 
    signUpRequest($signup) {
-        console.log(($signup))
+       // console.log(($signup))
         //  console.log($school+$subjet+$time)
       return   axios.post(`${API_URL}/api/auth/signup`,$signup)
        
       }
       forgetpassword($signup) {
-        console.log(($signup))
+       // console.log(($signup))
         //  console.log($school+$subjet+$time)
       return   axios.post(`${API_URL}/api/auth/forget`,$signup)
        
@@ -53,11 +50,11 @@ class AuthenticationService
     }
     verifyUser(token)
     {
-      console.log(token)
+    //  console.log(token)
       return   axios.post(`${API_URL}/api/auth/verify`,String(token))
     }
     setupAxiosInterceptors(token) {
-      console.log(token)
+      //console.log(token)
       axios.interceptors.request.use(
           (config) => {
               if (token) {

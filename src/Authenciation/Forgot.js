@@ -14,7 +14,7 @@ class Forgot extends Component {
   }
   validateForm() {
     let formIsValid = true;
-    console.log(this.state.rid)
+   // console.log(this.state.rid)
     let fields = this.state.fields;
     let errors = {};
     //    let formIsValid = true;
@@ -53,7 +53,7 @@ class Forgot extends Component {
     return formIsValid;
   }
   handleChange(e) {
-    console.log(e.target.value)
+  //  console.log(e.target.value)
     // const { name, value } = event.target
     // this.setState({
     //   [name]: value
@@ -65,24 +65,24 @@ class Forgot extends Component {
     this.setState({
       fields
     });
-    console.log(fields)
+  //  console.log(fields)
   }
   submitData(event) {
     event.preventDefault()
     const loc1 = this.state.fields.loc
     if (this.validateForm(event)) {
-      console.log("Validated")
+     // console.log("Validated")
       const signup = {
         phoneNumber: this.state.fields.numb,
         // rId: this.state.fields.rid,
         psw: this.state.fields.psw,
 
       }
-      console.log(signup)
+     // console.log(signup)
       AuthenciationService.forgetpassword(signup)
         .then((response) => {
-          console.log(response)
-          console.log(response.data.success)
+          // console.log(response)
+          // console.log(response.data.success)
           if (response.data === "Success") {
             this.props.history.push("/forgets")
           }

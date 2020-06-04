@@ -40,27 +40,27 @@ class SignUp extends React.Component {
   }
   getChildprops(fields) {
     this.setState({ fields })
-    console.log(this.state.fields)
+ //   console.log(this.state.fields)
   }
   onChange = (add) => {
-    console.log(add)
+   // console.log(add)
     this.setState({
       fields: {
         loc: add
       }
     })
-    console.log(this.state.fields.loc)
+   // console.log(this.state.fields.loc)
   }
 
 handleCheck(event)
 {     
-  console.log("Checkbox status ")
+//  console.log("Checkbox status ")
   let errors = this.state.errors;
   this.setState({check:!this.state.check});
   errors["check"]='' 
 }
   handleChange(e) {
-    console.log(e.target.value)
+  //  console.log(e.target.value)
     // const { name, value } = event.target
     // this.setState({
     //   [name]: value
@@ -72,7 +72,7 @@ handleCheck(event)
     this.setState({
       fields
     });
-    console.log(fields)
+    //console.log(fields)
   }
   getInitialState() {
     return { checked: true }
@@ -82,8 +82,8 @@ handleCheck(event)
   // }
   validateForm() {
     let formIsValid = true;
-    console.log("hello here")
-    console.log(this.state.fields.loc)
+    // console.log("hello here")
+    // console.log(this.state.fields.loc)
     let fields = this.state.fields;
     let errors = {};
     //    let formIsValid = true;
@@ -164,7 +164,7 @@ handleCheck(event)
       formIsValid = false;
       errors["numb"] = "*Required";
     }
-    console.log(this.state.check)
+    //console.log(this.state.check)
     if(!this.state.check)
     {
       formIsValid = false;
@@ -259,7 +259,7 @@ handleCheck(event)
       console.log(signup)
       AuthenciationService.signUpRequest(signup)
         .then((response) => {
-          console.log(response.data.success)
+         // console.log(response.data.success)
           if (response.data.success === "false") {
             this.props.history.push({
               pathname: '/message/',

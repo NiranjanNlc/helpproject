@@ -10,7 +10,7 @@ class LocationService
                    {
                    var  area =  addressArray[ i ].long_name;
                     //this.setState({area : area})
-                    console.log(area)
+                 //   console.log(area)
                     return area;
                   }
                 }
@@ -28,7 +28,7 @@ class LocationService
                    {
                    var  area =  addressArray[ i ].long_name;
                     //this.setState({area : area})
-                    console.log(area)
+                   // console.log(area)
                     return area;
                   }
                 }

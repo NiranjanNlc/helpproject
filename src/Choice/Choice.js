@@ -111,7 +111,7 @@ class Choice extends React.Component {
           postal_code = this.getpostal(addressArray)
         //    city=LocationService.getArea(addressArray)
         //    console.log(city)
-        console.log(postal_code)
+       // console.log(postal_code)
         this.setState({
           postal_code: postal_code
         })
@@ -150,14 +150,14 @@ class Choice extends React.Component {
   }
   handleChange(event) {
     const { name, value } = event.target
-    console.log(event.target.name)
-    console.log(event.target.value)
+    // console.log(event.target.name)
+    // console.log(event.target.value)
     this.setState({
       [name]: value
     }, function () {
-      console.log(this.state.var1)
+     // console.log(this.state.var1)
     })
-    console.log(this.state.var3)
+   // console.log(this.state.var3)
     //  this.getLocation();   
   }
 
@@ -167,7 +167,7 @@ class Choice extends React.Component {
     })
     //  this.getLocation()
     event.preventDefault()
-    console.log("hello hunny bunny ")
+   // console.log("hello hunny bunny ")
     const { name, value } = event.target
     this.setState({
       [name]: value

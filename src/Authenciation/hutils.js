@@ -34,17 +34,17 @@ isUserLoggedIn()
 {
  if(authStore.getters.getIsAuthenticated(this))
  {
-  console.log("user was authenciated")
-  console.log("user was authenciated"+authStore.getters.getIsAuthenticated(this))
+  // console.log("user was authenciated")
+  // console.log("user was authenciated"+authStore.getters.getIsAuthenticated(this))
   return true;
  }
- console.log("user was authenciated"+authStore.getters.getIsAuthenticated(this))
+//  console.log("user was authenciated"+authStore.getters.getIsAuthenticated(this))
  return false;
 }
  performLogout()  {
-  console.log(authStore.getters.getIsAuthenticated(authStore.state))
+  // console.log(authStore.getters.getIsAuthenticated(authStore.state))
 const intervalName = authStore.state.intervalName;
-console.log(intervalName)
+// console.log(intervalName)
  if (intervalName) clearInterval(intervalName);
  authStore.mutations.setIsAuthenticated(authStore.state,false);
  authStore.mutations.clearCurrentUser(authStore.state)
@@ -59,7 +59,7 @@ console.log(intervalName)
         {
           if (response.status === 200)
           {
-            console.log("refreshed from server")
+            // console.log("refreshed from server")
           } 
           else{
             this.performLogout()}
@@ -74,7 +74,7 @@ console.log(intervalName)
   httpResource.post("/api/auth/refresh")
   .then((response) => 
         {
-          console.log(response.status)
+          // console.log(response.status)
           return response.status;
         })
   .catch(() => 

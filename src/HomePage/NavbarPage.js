@@ -4,7 +4,7 @@ import {
     MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon
 } from "mdbreact";
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Link, withRouter } from 'react-router-dom';
+import { Link, withRouter,Redirect } from 'react-router-dom';
 import { connect } from "react-redux"
 import { performLogout, logout } from '../Authenciation/Redux/Actions/Actions'
 
@@ -16,6 +16,9 @@ class NavbarPage extends Component {
 
     onSubmit = (event) => {
         { this.props.dispatch(logout()) }
+    //  window.location.reload(false);
+      // this.props.history.push("/dash/")
+//      return <Redirect push to="/" />;    
     }
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });

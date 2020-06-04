@@ -49,7 +49,7 @@ class Home extends Component {
 
     validateForm() {
         let formIsValid = true;
-        console.log(this.state.rid)
+       // console.log(this.state.rid)
         let fields = this.state.fields;
         let errors = {};
         //    let formIsValid = true;
@@ -93,7 +93,7 @@ class Home extends Component {
     submitData(event) {
 
         event.preventDefault();
-        console.log("hello hunny bunny ")
+       // console.log("hello hunny bunny ")
         const { name, value } = event.target
         // this.setState({
         //   [name]: value
@@ -133,8 +133,8 @@ class Home extends Component {
                 .then((response) => {
                     if (response.status === 200) {
                         //     this.props.dispatch(getAuthenticatedUser());
-                        console.log("logged in ..")
-                        console.log("trying to open login page")
+                        // console.log("logged in ..")
+                        // console.log("trying to open login page")
                         this.props.history.push("/dash/")
                         window.location.reload(false);
                     }
@@ -190,7 +190,9 @@ class Home extends Component {
                                 <Link to="/Home/">
                                     <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                                 </Link>
-                                <a href="#" onClick={this.toggle}>Log in</a>
+                                <a 
+                               // href="#"
+                                 onClick={this.toggle}>Log in</a>
                                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                                     <ModalHeader toggle={this.toggle}>Log in</ModalHeader>
                                     <ModalBody>

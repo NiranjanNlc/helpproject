@@ -17,7 +17,7 @@ class AuthenticatedRoute extends Component {
         this.getAuth = this.getAuth.bind(this)
     }
     async componentDidMount() {
-        console.log(this.props.data)
+      //  console.log(this.props.data)
         await this.props.dispatch(getAuthenticatedUser())
 
         this.setState(
@@ -30,16 +30,16 @@ class AuthenticatedRoute extends Component {
         )
     }
     render() {
-        console.log(this.props.data.loading)
+     //   console.log(this.props.data.loading)
         if (this.state.loading === true) {
-            console.log(this.props.data.loading)
+       //     console.log(this.props.data.loading)
 
             return (<div></div>)
         }
-        console.log(this.props.data)
+        //console.log(this.props.data)
         if (this.props.data.isAuthenticated === false) {
             // return  <Redirect to='/home' /> 
-            return <Route path="/" component={Home} />
+            return <Route path="/"  component={Home} />
         }
         else {
             return <Route {...this.props} />

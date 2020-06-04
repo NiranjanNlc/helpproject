@@ -18,13 +18,13 @@ class Locat extends React.Component {
 
   handleChange = (address) => {
 
-    console.log(address)
+   // console.log(address)
     this.setState({ address })
     // var lang = this.state.address;
     // this.props.onChange(address);
   }
   onChange = (add) => {
-    console.log(add)
+   // console.log(add)
     this.setState({ add })
 
     this.props.onClick(add);
@@ -32,7 +32,7 @@ class Locat extends React.Component {
 
   // When the user selects an autocomplete suggestion...
   handleSelect(place) {
-    console.log(this.state.fields)
+   // console.log(this.state.fields)
     this.props.onSelect(place);
     this.props.callbackFromParent(this.state.fields);
     return;
@@ -45,7 +45,7 @@ class Locat extends React.Component {
     geocodeByAddress(place)
       .then(results => {
         const addressArray = results[0].address_components
-        console.log(addressArray)
+     //   console.log(addressArray)
         const city = this.setFormLocation(addressArray)
       })
       .catch(error => {
@@ -56,7 +56,7 @@ class Locat extends React.Component {
 
   }
   setFormLocation(addressArray) {
-    console.log("heloo this method is working ")
+    //console.log("heloo this method is working ")
     let city = '';
     let state = '';
     let area = '';
@@ -64,23 +64,23 @@ class Locat extends React.Component {
       if (addressArray[i].types[0] && 'administrative_area_level_2' === addressArray[i].types[0]) {
         city = 'City :' + addressArray[i].long_name;
         this.setState({ city: city })
-        console.log(city)
+      //  console.log(city)
       }
       if (addressArray[i].types[0] && 'administrative_area_level_1' === addressArray[i].types[0]) {
         state = 'State :' + addressArray[i].long_name;
         this.setState({ state: state })
-        console.log(state)
+        //console.log(state)
       }
       if (addressArray[i].types[0]) {
         for (let j = 0; j < addressArray[i].types.length; j++) {
           if ('sublocality_level_1' === addressArray[i].types[j] || 'locality' === addressArray[i].types[j]) {
             area = 'Area :' + addressArray[i].long_name;
             this.setState({ area: area })
-            console.log(area)
+          //  console.log(area)
           }
         }
       }
-      console.log(city + state + area)
+   //   console.log(city + state + area)
     }
   };
 

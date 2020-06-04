@@ -2,9 +2,11 @@ import React, { Component } from 'react';
 import { Link, withRouter } from 'react-router-dom'
 import LocationPicker from 'react-location-picker';
 import Map from './Map'
+import httpRessource from '../Authenciation/httpResource' 
 import queryString from 'querystring'
 /* Default position */
 import Geocode from "react-geocode"
+import Loading from '../HomePage/Loading';
 Geocode.setApiKey("AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc");
 Geocode.enableDebug();
 const defaultPosition = {
@@ -25,31 +27,41 @@ class SelectPlace extends Component {
       loc: '',
       loading: true,
       rid: '',
-      hid: ''
+      hid: '',
+      city:''
     }
   }
-  componentDidMount() {
-    console.log('Component did mount!')
-    console.log(this.props)
-    const query = this.props.location.search
-    console.log(this.props.location.search)
+ async componentDidMount() {
+  const query = this.props.location.search
     const values = queryString.parse(query.substr(1))
     console.log(values)
     console.log(values.id)
-    console.log(values.hid)
-    this.setState(
-      {
-        var1: values.var1,
-        var2: values.var2,
-        var3: values.var3,
-        lat: parseFloat(values.lat),
-        lng: parseFloat(values.lng)
-      })
-    this.setState({ rid: values.id })
-    this.setState({ hid: values.hid })
-    console.log(this.state.var1)
-    console.log(this.state.var2, this.state.var3)
-    Geocode.fromLatLng(values.lat, values.lng).then(
+     await httpRessource.post("/help/getinfo",values.id)
+     .then((response) =>
+     {
+         console.log(response)
+         if(response.data==="expired")
+         {
+             this.props.history.push("/expiry")
+         }
+         else
+         {
+          this.setState(
+            {
+              var1: response.data.var1,
+              var2: response.data.var2,
+              var3: response.data.var3,
+              lat: parseFloat(response.data.lat),
+              lng: parseFloat(response.data.lng)
+            })
+          this.setState({ city:response.data.city })
+          this.setState({ hid: values.hid }) 
+         }
+     })
+     .catch(() => {
+         console.log("error in geting suggestion")
+     }) 
+       Geocode.fromLatLng(this.state.lat,this.state.lng).then(
       response => {
         const address = response.results[0].formatted_address;
         this.setState(
@@ -68,7 +80,7 @@ class SelectPlace extends Component {
   }
   render() {
     if (this.state.loading === true) {
-      return "loading";
+      return <Loading></Loading>;
     }
     else {
       return (
@@ -95,7 +107,7 @@ class SelectPlace extends Component {
                 var2={this.state.var2}
                 var3={this.state.var3}
                 loc={this.state.loc}
-                rid={this.state.rid}
+                city={this.state.city}
                 hid={this.state.hid}
                 zoom={15}
               />

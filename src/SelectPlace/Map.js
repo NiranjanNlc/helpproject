@@ -24,7 +24,6 @@ class Map extends Component {
 		super(props);
 		this.state = {
 			address: '',
-			city: '',
 			area: '',
 			state: '',
 			sugg: '',
@@ -42,6 +41,7 @@ class Map extends Component {
 			var3: this.props.var3,
 			loc: this.props.loc,
 			rid: this.props.rid,
+			city:this.props.city,
 			hid: this.props.hid
 
 		}
@@ -259,7 +259,7 @@ class Map extends Component {
 			var3: this.state.var3,
 			sugg: this.state.sugg,
 			location: this.state.address,
-			rid: this.state.rid,
+			city: this.state.city,
 			hid: this.state.hid
 		}
 		console.log(help)

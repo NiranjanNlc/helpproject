@@ -20,6 +20,7 @@ class DashBoard extends React.Component {
       helpedBy: '',
       helpedTo: ''
     }
+    this.checkLogin = this.checkLogin.bind(this)
   }
   componentDidMount() {
     // this.props.dispatch(refresh())
@@ -35,10 +36,10 @@ class DashBoard extends React.Component {
     DashService.getData(this.props.data.currentUser)
       .then(
         response => {
-          console.log(response);
+       //   console.log(response);
           //console.log(response.data.firstName)
-          console.log(response.data.email)
-          console.log(response.data.phone)
+          // console.log(response.data.email)
+          // console.log(response.data.phone)
           this.setState(
             { name: response.data.name })
           this.setState(
@@ -56,11 +57,20 @@ class DashBoard extends React.Component {
     )
     // this.props.dispatch(refresh())
   }
+  checkLogin() {
+    // console.log(store.getState())
+    console.log(this.props.data)
+    if (this.props.data.isAuthenticated ===false) {
+        console.log("trying to open login page")
+        this.props.history.push("/")
+        window.location.reload(false);
+    }
 
+  }
 
-
-
-  render() {
+  render()
+   {
+    // this.checkLogin();
     if (this.state.loading === true) {
       return (<div></div>)
     }

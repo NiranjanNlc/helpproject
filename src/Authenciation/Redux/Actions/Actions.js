@@ -5,7 +5,7 @@ import httpService from '../httpService'
 export function login() {
   return async function(dispatch)
     {
-      console.log("login through dispatch")
+    //  console.log("login through dispatch")
       dispatch({ type: "LOGIN" });
   
 //   return {
@@ -22,11 +22,14 @@ export function logout() {
             {
               if (response.status === 200)
               {
-                console.log("deleted from  from server")
+             //   console.log("deleted from  from server")
             const intervalName = store.getState().intervalName
-          console.log(intervalName)
+          //console.log(intervalName)
           if (intervalName) clearInterval(intervalName);
           dispatch({ type: "LOGOUT"});
+          // this.props.history.push("/thanks");
+         console.log("reloading homepage");
+        window.location.replace("/")
               } 
               else{
                performLogout()
@@ -34,10 +37,10 @@ export function logout() {
             })
         .catch(() => 
         {
-        console.log("couldnot refresh token")
-        console.log("deleted from  from server")
+        // console.log("couldnot refresh token")
+        // console.log("deleted from  from server")
         const intervalName = store.getState().intervalName
-      console.log(intervalName)
+      // console.log(intervalName)
       if (intervalName) clearInterval(intervalName);
       dispatch({ type: "LOGOUT"});
         })
@@ -57,7 +60,7 @@ export function logout() {
        console.log("calculating the interval...")
          refreshTokenInternal();
      },180000); 
-     console.log(intervalName)
+     //console.log(intervalName)
      dispatch({ type: "TOKEN", payload:intervalName});
   }
 }
@@ -65,7 +68,7 @@ export function logout() {
     {
       return async function(dispatch)
       {
-        console.log(" refreshing function called")
+      //  console.log(" refreshing function called")
         return  await httpService.get("/profile/me")
         .then((response) => 
          {
@@ -78,7 +81,7 @@ export function logout() {
             //      refreshTokenInternal();
             //  },180000); 
             //  console.log(intervalName)
-            console.log(currentUser)
+           // console.log(currentUser)
             dispatch({ type: "REFRESH", payload: currentUser,auth:true});
             }   
          }).catch((error) => 

@@ -2,25 +2,26 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import AuthenciationService from './AuthenciationService'
 import queryString from 'querystring'
+import Loading from '../HomePage/Loading'
 class Verify extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
-            connected: true,
+            connected:false,
             verifed: ''
 
         }
 
     }
     componentDidMount() {
-        console.log('Component did mount!')
-        console.log(this.props)
+        // console.log('Component did mount!')
+        // console.log(this.props)
         const query = this.props.location.search
-        console.log(this.props.location.search)
+       // console.log(this.props.location.search)
         const values = queryString.parse(query.substr(1))
-        console.log(values)
-        console.log(values.token)
+       // console.log(values)
+       // console.log(values.token)
         AuthenciationService.verifyUser(values.token)
             .then((response) => {
                 console.log(response)
@@ -47,8 +48,8 @@ class Verify extends Component {
     }
     render() {
         console.log(this.props.location)
-        if (this.state.connected == false) {
-            return "loading..."
+        if (this.state.connected === false) {
+            return <Loading></Loading>
         }
         if (this.state.verifed === false) {
             return (<h3>Could not verify User</h3>)

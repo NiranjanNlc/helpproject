@@ -8,13 +8,13 @@ const DATA_URL =  `${API_URL}/send/get`
 }
 class DashService {
   retrieveValue() {
-    console.log("getting the value................")
+   // console.log("getting the value................")
     return axios.get(`${HELP_URL}`,{headers :headers});
   }
   getData(user )
   {
-    console.log("getting the value................")
-    console.log(user)
+    // console.log("getting the value................")
+    // console.log(user)
    // console.log(localStorage.getItem('authenticatedUser'))
     return axios.post(`${DATA_URL}`,user)
     // {headers:

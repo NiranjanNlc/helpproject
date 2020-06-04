@@ -12,9 +12,9 @@ class ChoiceService {
   
    ChoiceService(help)
    {
-    console.log(help)
-    console.log("let me check")
-    console.log(headers)
+   // console.log(help)
+   // console.log("let me check")
+   // console.log(headers)
      return  httpService.post("/send/",help)
     
   }

@@ -1,17 +1,17 @@
 import React, { Component } from 'react'
 import { Link, withRouter ,Redirect} from 'react-router-dom'
- 
+import Loading from "../HomePage/Loading" 
 import httpRessource from '../Authenciation/httpResource' 
 import queryString from 'querystring'
 import '../DashBoard/styleMedia.css'
 import '../DashBoard/styleCommon.css'
-class Suggestion extends Component {
+class Options extends Component {
 
     constructor(props) {
         super(props)
         this.state = {
             id:'',
-            connected: true,
+            connected:false,
             verifed: '',
             items:[]
 
@@ -72,12 +72,17 @@ class Suggestion extends Component {
         .catch(() => {
             console.log("error in geting suggestion")
         })
+        this.setState({connected:true})
     }
-    render() 
+    render()
     {
-       return(
-           <div>
-                 <section id="topHeader">
+      if(this.state.connected===false)
+      {
+        return(<Loading></Loading>)
+      }
+      return(
+        <div>
+        <section id="topHeader">
           <Link to="/home">
             <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
           </Link>
@@ -96,51 +101,42 @@ class Suggestion extends Component {
                 <form>
                   <div className="form-group">
                     <div className="form-divider">
-                      <div className="feild_title">
+                      <div className="feild_title optionTitle">
                         <h4 align="center">Chose Your Best Option</h4>
                       </div>
-                        <div   >
-                            <div class="container">
-            <div class="row justify-content-center">
-              <div class="col-sm-6">
-                <div class="detailBlock">
-                 {
-                    Object.entries(this.state.items)
-                    .map( ([key, value]) => 
-                   { 
-                       console.log(value)
-                       var  glink="https://maps.google.com/?q="+value
-                       console.log(glink)
-                    return(
-                        <div className="col-sm-12" align="center" >
-                         
-                             <button  className="btn sub_help" className="form-control input-lg" name={key} 
-                             value={value}
-                             onClick={this.handleClick}
-                             key={key}>
-                                 {key}
-                                 </button>
-                        
-                    </div>
-                    )
-                    }
-                     )
-                }
-                 </div>
-           </div>
-           </div>
-           </div>
-           </div>
-                      </div>
-                      </div>
-                      </form>
-                      </div>
+                      <div>
+                        <div class="optionBlock">
+                          {
+                            Object.entries(this.state.items)
+                              .map(([key, value]) => {
+                                console.log(value)
+                                var glink = "https://maps.google.com/?q=" + value
+                                console.log(glink)
+                                return (
+
+                                  <button className="btn sub_help" name={key}
+                                    value={value}
+                                    onClick={this.handleClick}
+                                    key={key}>
+                                    {key}
+                                  </button>
+                                )
+                              }
+                              )
+                          }
+                        </div>
                       </div>
                     </div>
-                    </section>
-               </div>
-       )
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+   
+      )
     }
 }
 
-export default withRouter(Suggestion)
+export default withRouter(Options)

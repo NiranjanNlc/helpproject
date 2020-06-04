@@ -4,7 +4,7 @@ import './App.css';
 import Choice from './Choice/Choice';
 import SelectPlace from './SelectPlace/SelectPlace';
 import DashBoard from './DashBoard/DashBoard';
-import { HashRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 import SignUp from './Authenciation/SignUp';
 import Login from './Authenciation/Login';
 import MenuComponent from './NavBAr/MenuComponent';
@@ -23,6 +23,7 @@ import AuthenticatedRoute from './Authenciation/AuthenciatedRoute';
 import { createBrowserHistory } from "history";
 import Options from './Suggestion/Options';
 import Expiry from './Suggestion/Expiry';
+import Loading from './HomePage/Loading';
 
 class App extends React.Component {
 
@@ -41,7 +42,7 @@ class App extends React.Component {
               <Route path="/login/" component={Login} />
               <Route path="/sign/" component={SignUp} />
               <Route path="/thanks/" component={ThankYOu} />
-              <Route path="/verify/" component={Verify} />
+              <Route path="/verification/" component={Verify} />
 
               <Route path="/Message/" component={Message} />
               <Route path="/Soon/" component={Soon} />
@@ -53,7 +54,7 @@ class App extends React.Component {
               <Route path="/forgets/" component={ForgetS} />
               <Route path="/options/" component={Options} />
               <Route path="/expiry/" component={Expiry} />
-
+              <Route path="/load/" component={Loading} />
               {/* /> */}
             </Switch>
           </>

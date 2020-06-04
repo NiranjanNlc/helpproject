@@ -16,14 +16,14 @@ const instance = axios.create({
 
 const requestHandler = request => {
   if (isHandlerEnabled(request)) {
-    console.log("Request Interceptor", request);
+   // console.log("Request Interceptor", request);
   }
   return request;
 };
 
 const errorHandler = error => {
   if (isHandlerEnabled(error.config)) {
-    console.log("Error Interceptor", error);
+  //  console.log("Error Interceptor", error);
 
     if (error.response) {
       if (error.response.status === 401) {
@@ -36,7 +36,7 @@ const errorHandler = error => {
 
 const successHandler = response => {
   if (isHandlerEnabled(response.config)) {
-    console.log("Response Interceptor", response);
+    //console.log("Response Interceptor", response);
   }
   return response;
 };

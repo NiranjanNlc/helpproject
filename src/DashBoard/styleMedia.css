@@ -154,6 +154,15 @@
     #backS a {
         bottom: -35px !important;
     }
+    #forgetForm, #signUpWrap {
+        min-height: calc(100vh - 84px) !important;
+    }
+    .optionBlock button {
+        width: 100% !important;
+    }
+    .optionBlock {
+        padding: 20px 20px !important;
+    }
 }
 
 @media (min-width: 1200px) {
