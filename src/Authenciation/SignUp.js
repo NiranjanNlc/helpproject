@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
 import AuthenciationService from './AuthenciationService'
 import PlacesAutocomplete, { geocodeByAddress } from 'react-places-autocomplete'
-
+import NavbarPage1 from "../HomePage/NavbarPage1"
 import Place from './Place'
 import LocationService from './LocationService'
 import Autocomplete from 'react-autocomplete'
@@ -293,7 +293,7 @@ handleCheck(event)
     // this.refreshHelpedOne()
     return (
       <div>
-        <NavbarPage1 />
+        <NavbarPage1/>
          <section id="signUpWrap" className="secGap">
           <div className="container">
             <div className="row justify-content-center">

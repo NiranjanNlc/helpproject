@@ -3,6 +3,7 @@ import { Link, withRouter } from 'react-router-dom'
 import AuthenciationService from './AuthenciationService'
 import queryString from 'querystring'
 import Loading from '../HomePage/Loading'
+import WelcomeNavbar from '../HomePage/WelcomeNavbar'
 class Verify extends Component {
 
     constructor(props) {
@@ -57,7 +58,8 @@ class Verify extends Component {
 
         return (
             <div>
-                <section id="topHeader">
+                <WelcomeNavbar></WelcomeNavbar>
+                {/* <section id="topHeader">
                     <Link to="/home">
                         <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                     </Link>
@@ -69,6 +71,7 @@ class Verify extends Component {
                         </div>
                     </div>
                 </section>
+               */}
                 <section id="messageWrap">
                     <div className="container">
                         <div className="row">

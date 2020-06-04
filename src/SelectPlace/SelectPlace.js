@@ -7,6 +7,7 @@ import queryString from 'querystring'
 /* Default position */
 import Geocode from "react-geocode"
 import Loading from '../HomePage/Loading';
+import HelpNav from '../HomePage/HelpNav';
 Geocode.setApiKey("AIzaSyD6SFZcoYyCDs21kC_MV5mI12OeyjWyxFc");
 Geocode.enableDebug();
 const defaultPosition = {
@@ -85,7 +86,8 @@ class SelectPlace extends Component {
     else {
       return (
         <div>
-          <section id="topHeader">
+          <HelpNav></HelpNav>
+          {/* <section id="topHeader">
             <Link to="/">
               <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
             </Link>
@@ -97,6 +99,7 @@ class SelectPlace extends Component {
               </div>
             </div>
           </section>
+          */}
           <section id="mapWrap" className="secGap">
             <div className="container">
               <Map

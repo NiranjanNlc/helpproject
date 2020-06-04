@@ -1,22 +1,12 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import WelcomeNavbar from '../HomePage/WelcomeNavbar'
 class ForgetS extends Component {
     render() {
         return (
             <div>
-                <section id="topHeader">
-                    <Link to="/home">
-                        <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
-                    </Link>
-                    <div className="container">
-                        <div className="row">
-                            <div className="col-sm-12" align="center">
-                                <h1>Welcome !</h1>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-                <section id="messageWrap">
+                 <WelcomeNavbar></WelcomeNavbar>
+                 <section id="messageWrap">
                     <div className="container">
                         <div className="row justify-content-center">
                             <div className="col-sm-7">

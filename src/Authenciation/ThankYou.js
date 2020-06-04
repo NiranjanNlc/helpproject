@@ -1,5 +1,9 @@
 import React from 'react'
 import { BrowserRouter as Router, Route, history, Redirect, Link } from 'react-router-dom'
+import NavbarPage from '../HomePage/NavbarPage'
+//import { Navbar } from 'reactstrap'
+import { performLogout, logout,getAuthenticatedUser } from '../Authenciation/Redux/Actions/Actions'
+import { connect } from "react-redux"
 class ThankYOu extends React.Component {
     constructor(props) {
         super(props)
@@ -7,10 +11,10 @@ class ThankYOu extends React.Component {
 
         }
     }
-    componentDidMount() {
-
+    async componentDidMount() {
+        //  console.log(this.props.data)
+          await this.props.dispatch(getAuthenticatedUser())
     }
-
 
 
 
@@ -18,7 +22,7 @@ class ThankYOu extends React.Component {
         // this.refreshHelpedOne()
         return (
             <div>
-                <section id="topHeader">
+                {/* <section id="topHeader">
                     <Link to="/home">
                         <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                     </Link>
@@ -30,6 +34,8 @@ class ThankYOu extends React.Component {
                         </div>
                     </div>
                 </section>
+                */} 
+                <NavbarPage></NavbarPage>
                 <section id="thanksWrap">
                     <div class="container">
                         <div class="row justify-content-center">
@@ -51,5 +57,10 @@ class ThankYOu extends React.Component {
         )
 
     }
-}
-export default ThankYOu;
+}const mapStateToProps = state => {
+    return {
+        data: state
+    };
+};
+
+export default connect(mapStateToProps)(ThankYOu);

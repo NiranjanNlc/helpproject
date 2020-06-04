@@ -48,13 +48,16 @@ class App extends React.Component {
               <Route path="/Soon/" component={Soon} />
               <Route path="/Sorry/" component={Sorry} />
               <Route path="/Home/" component={Home} />
-              <Route path="/Policy/" component={Terms} />
-              <Route path="/Terms/" component={Policy} />
+              {/* <Route path="/policy/" component={Policy} /> */}
+              <Route path="/policy/" component={Terms} />
+             <Route path="/Terms/" component={Policy} />
               <Route path="/Forgot/" component={Forgot} />
               <Route path="/forgets/" component={ForgetS} />
               <Route path="/options/" component={Options} />
               <Route path="/expiry/" component={Expiry} />
               <Route path="/load/" component={Loading} />
+              {/* <Route path="/terms/" component={Terms} /> */}
+             
               {/* /> */}
             </Switch>
           </>

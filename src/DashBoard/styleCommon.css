@@ -880,15 +880,10 @@ select.form-control {
 .optionBlock button {
     background: #f0f2f4;
     border-color: #f0f2f4;
-<<<<<<< HEAD
-    width: 60%;
-    margin: 0 auto;
-=======
     min-width: 60%;
     max-width: 100%;
     margin: 0 auto;
     white-space: break-spaces;
->>>>>>> c5fcedff0d8f583ccad026d4da21932ddf34bfc6
 }
 
 .optionBlock button:not(:last-child) {

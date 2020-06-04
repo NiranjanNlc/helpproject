@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom' 
 import queryString from 'querystring'
+import ExpiryNavbar from '../HomePage/ExpiryNavbar'
 class Expiry extends React.Component {
     constructor(props) {
         super(props)
@@ -19,7 +20,8 @@ class Expiry extends React.Component {
         // this.refreshHelpedOne()
         return (
             <div>
-                <section id="topHeader">
+                <ExpiryNavbar></ExpiryNavbar>
+                {/* <section id="topHeader">
                     <Link to="/home">
                         <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                     </Link>
@@ -31,6 +33,7 @@ class Expiry extends React.Component {
                         </div>
                     </div>
                 </section>
+                */}
                 <section id="thanksWrap">
                     <div class="container">
                         <div class="row justify-content-center">

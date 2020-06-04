@@ -16,11 +16,13 @@ class NavbarPage1 extends Component {
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
-
+    onSubmit = (event) => { 
+        window.location.replace("/home/")    
+    }
 
     render() {
         return (
-            <Router>
+        //    <Router>
                 <MDBNavbar id="newNav" color="default-color" light expand="md">
                     <MDBNavbarBrand>
                         <Link to="/home">
@@ -32,27 +34,44 @@ class NavbarPage1 extends Component {
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
                         <MDBNavbarNav left>
                             <MDBNavItem active>
-                                <MDBNavLink to="#!">Home</MDBNavLink>
+                                {/* <MDBNavLink to="#!">Home</MDBNavLink> */}
+                                <Link className="nav-link" to="/home"><button className="nav-link"
+
+                                >Home</button></Link>
                             </MDBNavItem>
 
                             <MDBNavItem>
-                                <MDBNavLink to="#!">Sign up</MDBNavLink>
+                                {/* <MDBNavLink to="#!">Sign up</MDBNavLink> */}
+                                <Link className="nav-link" to="/sign"><button className="nav-link"
+
+                                >SignUp</button></Link>
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to="#!">Privacy policy</MDBNavLink>
+                                
+                                {/* <MDBNavLink to="#!">Privacy policy</MDBNavLink> */}
+                                <Link className="nav-link" to="/policy">
+                                    <button className="nav-link">Privacy Policy </button></Link>
+                                
                             </MDBNavItem>
                             <MDBNavItem>
-                                <MDBNavLink to="#!">Terms of Use</MDBNavLink>
+                            <Link className="nav-link" to="/terms">
+                                    <button className="nav-link">Terms of use  </button></Link>
+                                
+                                {/* <MDBNavLink to="#!">Terms of Use</MDBNavLink> */}
                             </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>
                             <MDBNavItem>
-                                <MDBNavLink to="#!">login</MDBNavLink>
+                                <li>
+                            <button className="nav-link user"
+                                    onClick={this.onSubmit}
+                                >Login</button></li>
+                                {/* <MDBNavLink to="#!">login</MDBNavLink> */}
                             </MDBNavItem>
                         </MDBNavbarNav>
                     </MDBCollapse>
                 </MDBNavbar>
-            </Router>
+          //  </Router>
         );
     }
 }

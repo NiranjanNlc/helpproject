@@ -14,6 +14,10 @@ class NavbarPage extends Component {
         username: ''
     };
 
+    onLogin = (event) => { 
+        window.location.replace("/home/")    
+    }
+    
     onSubmit = (event) => {
         { this.props.dispatch(logout()) }
     //  window.location.reload(false);
@@ -42,7 +46,7 @@ class NavbarPage extends Component {
                         <MDBNavbarNav left className="cMenu">
                             <MDBNavItem active>
                                 {/* <MDBNavLink to="/#/chose">Home</MDBNavLink> */}
-                                {loggedIn && <Link className="nav-link" to="/home"><button className="nav-link"
+                                {  <Link className="nav-link" to="/home"><button className="nav-link"
 
                                 >Home</button></Link>}
                             </MDBNavItem>
@@ -59,6 +63,9 @@ class NavbarPage extends Component {
                                 {loggedIn && <li><button className="nav-link user"
                                     onClick={this.onSubmit}
                                 >Logout</button></li>}
+                                {!loggedIn && <li><button className="nav-link user"
+                                    onClick={this.onLogin}
+                                >Login</button></li>}
                                 {/* <MDBDropdown>
                                         <MDBDropdownToggle nav caret>
                                             Username

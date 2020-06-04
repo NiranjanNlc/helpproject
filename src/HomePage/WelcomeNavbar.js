@@ -8,7 +8,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from "react-redux"
 import { performLogout, logout } from '../Authenciation/Redux/Actions/Actions'
 
-class NavbarPage2 extends Component {
+class Welcome extends Component {
     state = {
         isOpen: false
     };
@@ -29,7 +29,7 @@ class NavbarPage2 extends Component {
                         <Link to="/home">
                             <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                         </Link>
-                        <h1>Reset</h1>
+                        <h1>Welcome</h1>
                     </MDBNavbarBrand>
                     <MDBNavbarToggler onClick={this.toggleCollapse} />
                     <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -78,4 +78,4 @@ class NavbarPage2 extends Component {
     }
 }
 
-export default (NavbarPage2);
+export default (Welcome);
