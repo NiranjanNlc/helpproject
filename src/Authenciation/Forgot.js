@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import AuthenciationService from './AuthenciationService'
+import NavbarPage2 from '../HomePage/NavbarPage2';
 class Forgot extends Component {
   constructor(props) {
     super(props)
@@ -107,18 +108,7 @@ class Forgot extends Component {
   render() {
     return (
       <div>
-        <section id="topHeader">
-          <Link to="/home">
-            <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
-          </Link>
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-12" align="center">
-                <h1>Reset</h1>
-              </div>
-            </div>
-          </div>
-        </section>
+        <NavbarPage2 />
         <section id="forgetForm" className="secGap">
           <div className="container">
             <div className="row justify-content-center">

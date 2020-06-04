@@ -7,6 +7,7 @@ import Place from './Place'
 import LocationService from './LocationService'
 import Autocomplete from 'react-autocomplete'
 import Locat from './Locat'
+import NavbarPage1 from '../HomePage/NavbarPage1';
 // import Validation from './Validation'
 class SignUp extends React.Component {
   constructor(props) {
@@ -14,7 +15,7 @@ class SignUp extends React.Component {
     this.state = {
       fields: {},
       errors: {},
-      check:false
+      check: false
       // box: {},
       // name: '',
       // sname: '',
@@ -52,13 +53,12 @@ class SignUp extends React.Component {
     console.log(this.state.fields.loc)
   }
 
-handleCheck(event)
-{     
-  console.log("Checkbox status ")
-  let errors = this.state.errors;
-  this.setState({check:!this.state.check});
-  errors["check"]='' 
-}
+  handleCheck(event) {
+    console.log("Checkbox status ")
+    let errors = this.state.errors;
+    this.setState({ check: !this.state.check });
+    errors["check"] = ''
+  }
   handleChange(e) {
     console.log(e.target.value)
     // const { name, value } = event.target
@@ -165,8 +165,7 @@ handleCheck(event)
       errors["numb"] = "*Required";
     }
     console.log(this.state.check)
-    if(!this.state.check)
-    {
+    if (!this.state.check) {
       formIsValid = false;
       errors["check"] = "*Agreee the terms and condition before proceeding";
     }
@@ -293,18 +292,7 @@ handleCheck(event)
     // this.refreshHelpedOne()
     return (
       <div>
-        <section id="topHeader">
-          <Link to="/home">
-            <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
-          </Link>
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-12" align="center">
-                <h1>Sign up</h1>
-              </div>
-            </div>
-          </div>
-        </section>
+        <NavbarPage1 />
         <section id="signUpWrap" className="secGap">
           <div className="container">
             <div className="row justify-content-center">
@@ -504,12 +492,12 @@ handleCheck(event)
                                 <li>
                                   <label for="remember">
                                     <div className="errorMessage">{this.state.errors.check}</div>
-                                    <input type="checkbox" 
-                                    value={this.state.check}
-                                    name="check" 
-                                 //   onCheckboxChange={this.handleCheck}
+                                    <input type="checkbox"
+                                      value={this.state.check}
+                                      name="check"
+                                      //   onCheckboxChange={this.handleCheck}
 
-                                   onChange={this.handleCheck}
+                                      onChange={this.handleCheck}
                                     />
                                 I agree to the <Link to="/Terms">terms and conditions</Link> and <Link to="/Policy">privacy policy</Link> statement </label>
                                 </li>

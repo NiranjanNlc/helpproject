@@ -57,7 +57,7 @@ class Soon extends Component {
                                         </div>
                                     }
 
-                                    <Link to="/dash" ><a href="#" className="btn back"><i class="fas fa-chevron-left"></i> Home</a>
+                                    <Link to="/dash" ><a className="btn back"><i class="fas fa-chevron-left"></i> Home</a>
                                     </Link>
                                 </div>
                             </div>

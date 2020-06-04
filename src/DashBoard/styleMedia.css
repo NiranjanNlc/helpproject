@@ -154,6 +154,37 @@
     #backS a {
         bottom: -35px !important;
     }
+    #forgetForm, #signUpWrap {
+        min-height: calc(100vh - 84px) !important;
+    }
+    .optionBlock button {
+        width: 100% !important;
+    }
+    .optionBlock {
+        padding: 20px 20px !important;
+    }
+    #newNav {
+        padding: 20px 10px;
+    }
+    #newNav img {
+        position: absolute;
+        z-index: 1;
+        top: 3px !important;
+        left: 3px !important;
+        height: 38px !important;
+    }
+    #newNav.navbar-light .navbar-brand h1 {
+        position: absolute;
+        top: 22px;
+        font-size: 1.7rem;
+        font-weight: 700!important;
+    }
+    #newNav a.nav-link.Ripple-parent.active {
+        padding: 15px 10px;
+    }
+    ul.navbar-nav.mr-auto {
+        margin-top: 15px;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -181,6 +212,9 @@
     }
     .feild_entry .label {
         text-align: right !important;
+    }
+    #newNav #navbarCollapse3 ul.navbar-nav.mr-auto {
+        display: none !important;
     }
 }
 
