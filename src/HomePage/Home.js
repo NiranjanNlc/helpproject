@@ -190,9 +190,13 @@ class Home extends Component {
                                 <Link to="/Home/">
                                     <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                                 </Link>
+<<<<<<< HEAD
                                 <a 
                                // href="#"
                                  onClick={this.toggle}>Log in</a>
+=======
+                                <a href="/login" onClick={this.toggle}>Log in</a>
+>>>>>>> c5fcedff0d8f583ccad026d4da21932ddf34bfc6
                                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                                     <ModalHeader toggle={this.toggle}>Log in</ModalHeader>
                                     <ModalBody>
@@ -227,7 +231,7 @@ class Home extends Component {
                                                                     </div>
                                                                 </div>
                                                                 <hr />
-                                                                <p className="noac">Not member yet? <Link to="/sign/"><a href="#">create an account</a></Link> to join </p>
+                                                                <p className="noac">Not member yet? <Link to="/sign/"><a>create an account</a></Link> to join </p>
                                                             </form>
                                                         </div>
                                                     </div>

@@ -293,19 +293,8 @@ handleCheck(event)
     // this.refreshHelpedOne()
     return (
       <div>
-        <section id="topHeader">
-          <Link to="/home">
-            <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
-          </Link>
-          <div className="container">
-            <div className="row">
-              <div className="col-sm-12" align="center">
-                <h1>Sign up</h1>
-              </div>
-            </div>
-          </div>
-        </section>
-        <section id="signUpWrap" className="secGap">
+        <NavbarPage1 />
+         <section id="signUpWrap" className="secGap">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-sm-8">

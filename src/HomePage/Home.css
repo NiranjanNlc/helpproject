@@ -48,3 +48,21 @@ button:focus {
     outline: 0px dotted !important;
     outline: 0px auto -webkit-focus-ring-color !important;
 }
+
+/* new  */
+
+#newNav.navbar-light .navbar-brand h1 {
+    position: absolute;
+    top: 22px;
+    left: 0;
+    font-size: 2.2rem;
+    font-weight: 700!important;
+    width: 100%;
+    text-align: center;
+    z-index: -1;
+}
+
+#newNav ul.navbar-nav.ml-auto .nav-link {
+    color: #fc4c01 !important;
+    text-transform: uppercase;
+}

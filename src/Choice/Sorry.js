@@ -15,7 +15,7 @@ class Sorry extends Component {
                                         <span>Sorry !</span>
                                     </div>
                                     <p>No Helper online from this location, Please try another location</p>
-                                    <a href="#" className="btn back"><i class="fas fa-chevron-left"></i> Go back</a>
+                                    <Link to="#"><a className="btn back"><i class="fas fa-chevron-left"></i> Go back</a></Link>
                                 </div>
                             </div>
                         </div>
