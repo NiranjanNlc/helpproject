@@ -180,6 +180,19 @@
     ul.navbar-nav.mr-auto {
         margin-top: 15px;
     }
+    #contact_Wrap .info {
+        position: relative !important;
+        width: 100% !important;
+        border-left: 3px solid #ffc600;
+        bottom: -9px !important;
+        margin: 10px 0;
+    }
+    .row.contact {
+        flex-direction: column-reverse;
+    }
+    #contact_Wrap {
+        padding: 0 !important;
+    }
 }
 
 @media (min-width: 1200px) {
@@ -229,7 +242,7 @@
     .testiModal {
         display: none !important;
     }
-    #detailWrap, #mapWrap {
+    #detailWrap, #mapWrap, #contact_Wrap {
         min-height: calc(100vh - 92px)!important;
     }
     .messageCov {

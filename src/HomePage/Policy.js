@@ -2,24 +2,47 @@ import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import PolicyNav from './PolicyNav'
 class Policy extends Component {
-    render() {
-        return (
-            <div>
-                {/* <section id="topHeader">
+    constructor(props) {
+        super(props);
+        this.state = {
+            is_visible: false
+        };
+    }
 
-                    <Link to="/home"> <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
-                    </Link> <div className="container">
-                        <div className="row">
-                            <div className="col-sm-12" align="center">
-                                <h1>Policies</h1>
-                            </div>
-                        </div>
+    componentDidMount() {
+        var scrollComponent = this;
+        document.addEventListener("scroll", function (e) {
+            scrollComponent.toggleVisibility();
+        });
+    }
+
+    toggleVisibility() {
+        if (window.pageYOffset > 300) {
+            this.setState({
+                is_visible: true
+            });
+        } else {
+            this.setState({
+                is_visible: false
+            });
+        }
+    }
+
+    scrollToTop() {
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+    render() {
+        const { is_visible } = this.state;
+        return (
+            <div className="scroll-to-top">
+                {is_visible && (
+                    <div className="topBtn" onClick={() => this.scrollToTop()}>
+                        <i class="fas fa-chevron-up"></i>
                     </div>
-                    <div id="backS">
-                        <Link to="/sign"><i class="fas fa-chevron-left"></i></Link>
-                    </div>
-                </section>
-                */}
+                )}
                 <PolicyNav></PolicyNav>
                 <section id="policyWrap" className="secGap">
                     <div className="container">

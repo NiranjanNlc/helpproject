@@ -17,67 +17,73 @@ class NavbarPage2 extends Component {
         this.setState({ isOpen: !this.state.isOpen });
     }
 
-    onSubmit = (event) => { 
-       // window.location.replace("/home/")  
-       return this.props.history.push({ 
-        pathname: '/home/',
-        detail: true
-     });  
+    onSubmit = (event) => {
+        // window.location.replace("/home/")  
+        return this.props.history.push({
+            pathname: '/home/',
+            detail: true
+        });
     }
 
     render() {
         return (
-         //   <Router>
-                <MDBNavbar id="newNav" color="default-color" light expand="md">
-                    <MDBNavbarBrand>
-                        <Link to="/home">
-                            <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
-                        </Link>
-                        <h1>Reset</h1>
-                    </MDBNavbarBrand>
-                    <MDBNavbarToggler onClick={this.toggleCollapse} />
-                    <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
-                        <MDBNavbarNav left>
-                            <MDBNavItem active>
-                                {/* <MDBNavLink to="#!">Home</MDBNavLink> */}
-                                <Link className="nav-link" to="/home"><button className="nav-link"
+            //   <Router>
+            <MDBNavbar id="newNav" color="default-color" light expand="md">
+                <MDBNavbarBrand>
+                    <Link to="/home">
+                        <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
+                    </Link>
+                    <h1>Reset</h1>
+                </MDBNavbarBrand>
+                <MDBNavbarToggler onClick={this.toggleCollapse} />
+                <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+                    <MDBNavbarNav left>
+                        <MDBNavItem active>
+                            {/* <MDBNavLink to="#!">Home</MDBNavLink> */}
+                            <Link className="nav-link" to="/home"><button className="nav-link"
 
-                                >Home</button></Link>
-                            </MDBNavItem>
+                            >Home</button></Link>
+                        </MDBNavItem>
 
-                            <MDBNavItem>
-                                {/* <MDBNavLink to="#!">Sign up</MDBNavLink> */}
-                                <Link className="nav-link" to="/sign"><button className="nav-link"
+                        <MDBNavItem>
+                            {/* <MDBNavLink to="#!">Sign up</MDBNavLink> */}
+                            <Link className="nav-link" to="/sign"><button className="nav-link"
 
-                                >SignUp</button></Link>
-                            </MDBNavItem>
-                            <MDBNavItem>
-                                
-                                {/* <MDBNavLink to="#!">Privacy policy</MDBNavLink> */}
-                                <Link className="nav-link" to="/policy">
-                                    <button className="nav-link">Privacy Policy </button></Link>
-                                
-                            </MDBNavItem>
-                            <MDBNavItem>
+                            >SignUp</button></Link>
+                        </MDBNavItem>
+                        <MDBNavItem>
+
+                            {/* <MDBNavLink to="#!">Privacy policy</MDBNavLink> */}
+                            <Link className="nav-link" to="/policy">
+                                <button className="nav-link">Privacy Policy </button></Link>
+
+                        </MDBNavItem>
+                        <MDBNavItem>
                             <Link className="nav-link" to="/terms">
-                                    <button className="nav-link">Terms of use  </button></Link>
-                                
-                                {/* <MDBNavLink to="#!">Terms of Use</MDBNavLink> */}
-                            </MDBNavItem>
-                        </MDBNavbarNav>
-                        <MDBNavbarNav right>
-                            <MDBNavItem>
-                                <li>
-                            <button className="nav-link user"
+                                <button className="nav-link">Terms of use  </button></Link>
+
+                            {/* <MDBNavLink to="#!">Terms of Use</MDBNavLink> */}
+                        </MDBNavItem>
+                        <MDBNavItem>
+                            <Link className="nav-link" to="/Contact">
+                                <button className="nav-link">Contact Us  </button></Link>
+
+                            {/* <MDBNavLink to="#!">Terms of Use</MDBNavLink> */}
+                        </MDBNavItem>
+                    </MDBNavbarNav>
+                    <MDBNavbarNav right>
+                        <MDBNavItem>
+                            <li>
+                                <button className="nav-link user"
                                     onClick={this.onSubmit}
                                 >Login</button></li>
-                                {/* <MDBNavLink to="#!">login</MDBNavLink> */}
-                            </MDBNavItem>
-                        </MDBNavbarNav>
-                    </MDBCollapse>
-              
-                     </MDBNavbar>
-           // </Router>
+                            {/* <MDBNavLink to="#!">login</MDBNavLink> */}
+                        </MDBNavItem>
+                    </MDBNavbarNav>
+                </MDBCollapse>
+
+            </MDBNavbar>
+            // </Router>
         );
     }
 }

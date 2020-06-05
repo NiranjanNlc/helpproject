@@ -6,39 +6,26 @@ import {
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from "react-redux"
-import { performLogout, logout, getAuthenticatedUser } from '../Authenciation/Redux/Actions/Actions'
+import { performLogout, logout } from '../Authenciation/Redux/Actions/Actions'
 
-class HelpNav extends Component {
+class ContactNav extends Component {
     state = {
         isOpen: false
     };
-    async componentDidMount() {
-        //  console.log(this.props.data)
-        await this.props.dispatch(getAuthenticatedUser())
-    }
 
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
 
-    onLogin = (event) => {
+    onSubmit = (event) => {
         // window.location.replace("/home/")  
         return this.props.history.push({
             pathname: '/home/',
             detail: true
         });
-        //  window.location.replace("/home/")    
-    }
-    onSubmit = (event) => {
-        { this.props.dispatch(logout()) }
-        //  window.location.reload(false);
-        // this.props.history.push("/dash/")
-        //      return <Redirect push to="/" />;    
     }
 
     render() {
-        const loggedIn = this.props.data.isAuthenticated
-        console.log(loggedIn)
         return (
             //   <Router>
             <MDBNavbar id="newNav" color="default-color" light expand="md">
@@ -46,8 +33,7 @@ class HelpNav extends Component {
                     <Link to="/home">
                         <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                     </Link>
-                    <h1>Need Help</h1>
-
+                    <h1>Contact Us</h1>
                 </MDBNavbarBrand>
                 <MDBNavbarToggler onClick={this.toggleCollapse} />
                 <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
@@ -61,9 +47,9 @@ class HelpNav extends Component {
 
                         <MDBNavItem>
                             {/* <MDBNavLink to="#!">Sign up</MDBNavLink> */}
-                            {!loggedIn && <Link className="nav-link" to="/sign"><button className="nav-link"
+                            <Link className="nav-link" to="/sign"><button className="nav-link"
 
-                            >SignUp</button></Link>}
+                            >SignUp</button></Link>
                         </MDBNavItem>
                         <MDBNavItem>
 
@@ -87,25 +73,19 @@ class HelpNav extends Component {
                     </MDBNavbarNav>
                     <MDBNavbarNav right>
                         <MDBNavItem>
-                            {loggedIn && <li><button className="nav-link user"
-                                onClick={this.onSubmit}
-                            >Logout</button></li>}
-                            {!loggedIn && <li><button className="nav-link user"
-                                onClick={this.onLogin}
-                            >Login</button></li>}
+                            <li>
+                                <button className="nav-link user"
+                                    onClick={this.onSubmit}
+                                >Login</button></li>
                             {/* <MDBNavLink to="#!">login</MDBNavLink> */}
                         </MDBNavItem>
                     </MDBNavbarNav>
                 </MDBCollapse>
+
             </MDBNavbar>
             // </Router>
         );
     }
 }
-const mapStateToProps = state => {
-    return {
-        data: state
-    };
-};
 
-export default connect(mapStateToProps)(withRouter(HelpNav));
+export default withRouter(ContactNav);

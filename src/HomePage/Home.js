@@ -26,8 +26,7 @@ class Home extends Component {
     }
     componentDidMount() {
         console.log("Here")
-        if (this.props.location.detail != null) 
-        {
+        if (this.props.location.detail != null) {
             console.log(this.props.location.detail)
             if (this.props.location.detail === true) {
                 this.setState(
@@ -37,8 +36,8 @@ class Home extends Component {
             else {
 
             }
+        }
     }
-}
 
     toggle() {
         this.setState(prevState => ({
@@ -64,7 +63,7 @@ class Home extends Component {
 
     validateForm() {
         let formIsValid = true;
-       // console.log(this.state.rid)
+        // console.log(this.state.rid)
         let fields = this.state.fields;
         let errors = {};
         //    let formIsValid = true;
@@ -108,7 +107,7 @@ class Home extends Component {
     submitData(event) {
 
         event.preventDefault();
-       // console.log("hello hunny bunny ")
+        // console.log("hello hunny bunny ")
         const { name, value } = event.target
         // this.setState({
         //   [name]: value
@@ -169,7 +168,7 @@ class Home extends Component {
         return;
     }
 
-     
+
 
     checkLogin() {
         // console.log(store.getState())
@@ -191,7 +190,7 @@ class Home extends Component {
                     <div className="container">
                         <div className="row ">
                             <div className="col-sm-12" align="center">
-                                <Link to="#">Need urgent support? Get help from a crisis service →</Link>
+                                <Link to="/Contact">Need urgent support? Get help from a crisis service →</Link>
                             </div>
                         </div>
                     </div>
@@ -203,9 +202,9 @@ class Home extends Component {
                                 <Link to="/Home/">
                                     <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                                 </Link>
-                                <a 
-                               // href=""
-                                 onClick={this.toggle}>Log in</a>
+                                <a
+                                    // href=""
+                                    onClick={this.toggle}>Log in</a>
                                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                                     <ModalHeader toggle={this.toggle}>Log in</ModalHeader>
                                     <ModalBody>
