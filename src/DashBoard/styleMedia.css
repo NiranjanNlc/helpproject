@@ -44,13 +44,11 @@
         padding: 20px 0 !important;
     }
     #policyWrap .row {
-        padding: 20px 5px !important;
+        padding: 20px 5px 20px!important;
         background: #fff;
-        padding-top: 15px !important;
     }
     #policyWrap.secGap {
         padding: 0 !important;
-        padding-top: 10px !important;
     }
     .help_cov {
         margin-bottom: 15px !important;
@@ -147,9 +145,6 @@
     #backS {
         bottom: -29px !important;
         font-size: 12px;
-    }
-    #policyWrap.secGap {
-        padding-top: 60px !important;
     }
     #backS a {
         bottom: -35px !important;
