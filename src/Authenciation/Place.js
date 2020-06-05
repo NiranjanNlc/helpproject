@@ -130,6 +130,7 @@ class Place extends React.Component {
       <PlacesAutocomplete highlightFirstSuggestion
         value={this.state.address}
         onChange={this.handleChange}
+        onClick={this.handleChange}
         onSelect={this.handleSelect}
         renderInput={{ placeholder: 'Enter address' }}
       // Pass the search options prop

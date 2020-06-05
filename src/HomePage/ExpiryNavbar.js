@@ -59,9 +59,9 @@ class ExpiryNavBar extends Component {
 
                             <MDBNavItem>
                                 {/* <MDBNavLink to="#!">Sign up</MDBNavLink> */}
-                                <Link className="nav-link" to="/sign"><button className="nav-link"
+                                {!loggedIn &&<Link className="nav-link" to="/sign"><button className="nav-link"
 
-                                >SignUp</button></Link>
+                                >SignUp</button></Link>}
                             </MDBNavItem>
                             <MDBNavItem>
                                 

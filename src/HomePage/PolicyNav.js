@@ -8,7 +8,7 @@ import { Link, withRouter } from 'react-router-dom';
 import { connect } from "react-redux"
 import { performLogout, logout,getAuthenticatedUser } from '../Authenciation/Redux/Actions/Actions'
 
-class HelpNav extends Component {
+class PolicyNav extends Component {
     state = {
         isOpen: false
     };
@@ -26,8 +26,7 @@ class HelpNav extends Component {
         return this.props.history.push({ 
             pathname: '/home/',
             detail: true
-         });
-      //  window.location.replace("/home/")    
+         });   
     }
     onSubmit = (event) => {
         { this.props.dispatch(logout()) }
@@ -46,7 +45,7 @@ class HelpNav extends Component {
                         <Link to="/home">
                             <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                         </Link>
-                        <h1>Need Help</h1>
+                        <h1>Privacy Policy</h1>
                  
                     </MDBNavbarBrand>
                     <MDBNavbarToggler onClick={this.toggleCollapse} />
@@ -102,4 +101,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(withRouter(HelpNav));
+export default connect(mapStateToProps)(withRouter(PolicyNav));

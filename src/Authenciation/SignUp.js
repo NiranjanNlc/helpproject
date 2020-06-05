@@ -531,7 +531,8 @@ handleCheck(event)
 
                     </div>
                     <div className="col-sm-12 submitBtn" >
-                      <button type="submit" className="btn sub_help" onClick={this.submitData}> Register </button>
+                      <button type="submit" className="btn sub_help" 
+                      onClick={this.submitData}> Register </button>
                     </div>
                   </form>
                 </div>

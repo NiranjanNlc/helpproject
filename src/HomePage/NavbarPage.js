@@ -4,7 +4,7 @@ import {
     MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon
 } from "mdbreact";
 import { BrowserRouter as Router } from 'react-router-dom';
-import { Link, withRouter,Redirect } from 'react-router-dom';
+import { Link, withRouter, Redirect } from 'react-router-dom';
 import { connect } from "react-redux"
 import { performLogout, logout } from '../Authenciation/Redux/Actions/Actions'
 
@@ -21,12 +21,12 @@ class NavbarPage extends Component {
             detail: true
          });    
     }
-    
+
     onSubmit = (event) => {
         { this.props.dispatch(logout()) }
-    //  window.location.reload(false);
-      // this.props.history.push("/dash/")
-//      return <Redirect push to="/" />;    
+        //  window.location.reload(false);
+        // this.props.history.push("/dash/")
+        //      return <Redirect push to="/" />;    
     }
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
@@ -50,7 +50,7 @@ class NavbarPage extends Component {
                         <MDBNavbarNav left className="cMenu">
                             <MDBNavItem active>
                                 {/* <MDBNavLink to="/#/chose">Home</MDBNavLink> */}
-                                {  <Link className="nav-link" to="/home"><button className="nav-link"
+                                {<Link className="nav-link" to="/home"><button className="nav-link"
 
                                 >Home</button></Link>}
                             </MDBNavItem>
@@ -59,6 +59,18 @@ class NavbarPage extends Component {
                                 {loggedIn && <Link className="nav-link" to="/chose" ><button className="nav-link"
 
                                 >Chose </button></Link>}
+                            </MDBNavItem>
+                            <MDBNavItem className="s-mob">
+                                {/* <MDBNavLink to="/#/chose">Home</MDBNavLink> */}
+                                {<Link className="nav-link" to="/policy"><button className="nav-link"
+
+                                >Privacy policy</button></Link>}
+                            </MDBNavItem>
+                            <MDBNavItem className="s-mob">
+                                {/* <MDBNavLink to="/#/chose">Home</MDBNavLink> */}
+                                {<Link className="nav-link" to="/Terms"><button className="nav-link"
+
+                                >Terms of Use</button></Link>}
                             </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>

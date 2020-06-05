@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
+import TermNav from './TermNav'
 class Terms extends Component {
     render() {
         return (
             <div>
-                <section id="topHeader">
+                {/* <section id="topHeader">
 
                     <Link to="/home"> <img src={window.location.origin + '/images/logo.png'} className="img-fluid" alt="logo" />
                     </Link> <div className="container">
@@ -18,6 +19,8 @@ class Terms extends Component {
                         <Link to="/sign"><i class="fas fa-chevron-left"></i></Link>
                     </div>
                 </section>
+                */}
+                <TermNav></TermNav>
                 <section id="policyWrap" className="secGap">
                     <div className="container">
                         <div className="row justify-content-center">

@@ -468,7 +468,6 @@ class Choice extends React.Component {
 
                     <b>in the location</b>
                     <Place
-
                       onSelect={this.handleCo} name="postcode" className="form-control" />
                     <button type="submit"
                       className="btn sub_help"
