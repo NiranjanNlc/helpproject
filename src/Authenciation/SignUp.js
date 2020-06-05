@@ -259,6 +259,16 @@ handleCheck(event)
       console.log(signup)
       AuthenciationService.signUpRequest(signup)
         .then((response) => {
+          if (response.data.message === "disabled")
+          {
+            this.props.history.push({
+              pathname: '/againverify/',
+              // search: '?query=abc',
+              detail: this.state.fields.numb,
+              message: response.data.message,
+              success: response.data.success
+            })
+          }
          // console.log(response.data.success)
           if (response.data.success === "false") {
             this.props.history.push({

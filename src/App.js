@@ -24,6 +24,8 @@ import { createBrowserHistory } from "history";
 import Options from './Suggestion/Options';
 import Expiry from './Suggestion/Expiry';
 import Loading from './HomePage/Loading';
+import AgainVerify from './Authenciation/AgainVerify';
+import AgainVerifyS from './Authenciation/AgainVerifyS';
 
 class App extends React.Component {
 
@@ -56,6 +58,9 @@ class App extends React.Component {
               <Route path="/options/" component={Options} />
               <Route path="/expiry/" component={Expiry} />
               <Route path="/load/" component={Loading} />
+              <Route path="/againverify/" component={AgainVerify} />
+
+              <Route path="/againverifys/" component={AgainVerifyS} />
               {/* <Route path="/terms/" component={Terms} /> */}
              
               {/* /> */}
