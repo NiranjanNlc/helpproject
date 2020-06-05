@@ -21,7 +21,11 @@ class ExpiryNavBar extends Component {
     }
 
     onLogin = (event) => { 
-        window.location.replace("/home/")    
+        // window.location.replace("/home/") 
+        return this.props.history.push({ 
+            pathname: '/home/',
+            detail: true
+         });    
     }
     onSubmit = (event) => {
         { this.props.dispatch(logout()) }
@@ -97,4 +101,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps) (ExpiryNavBar);
+export default connect(mapStateToProps) (withRouter(ExpiryNavBar));

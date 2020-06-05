@@ -15,7 +15,11 @@ class NavbarPage extends Component {
     };
 
     onLogin = (event) => { 
-        window.location.replace("/home/")    
+        // window.location.replace("/home/") 
+        return this.props.history.push({ 
+            pathname: '/home/',
+            detail: true
+         });    
     }
     
     onSubmit = (event) => {
@@ -89,4 +93,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(NavbarPage);
+export default connect(mapStateToProps)((withRouter)(NavbarPage))

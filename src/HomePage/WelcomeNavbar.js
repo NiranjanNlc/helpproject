@@ -18,7 +18,11 @@ class Welcome extends Component {
     }
 
     onSubmit = (event) => { 
-        window.location.replace("/home/")    
+       // window.location.replace("/home/") 
+       return this.props.history.push({ 
+        pathname: '/home/',
+        detail: true
+     });   
     }
 
     render() {
@@ -78,4 +82,4 @@ class Welcome extends Component {
     }
 }
 
-export default (Welcome);
+export default withRouter(Welcome);

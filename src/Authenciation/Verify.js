@@ -47,6 +47,13 @@ class Verify extends Component {
 
             })
     }
+    onLogin = (event) => { 
+        // window.location.replace("/home/") 
+        return this.props.history.push({ 
+         pathname: '/home/',
+         detail: true
+      });   
+     }
     render() {
         console.log(this.props.location)
         if (this.state.connected === false) {
@@ -82,7 +89,11 @@ class Verify extends Component {
                                         <span><i class="fas fa-envelope"></i></span>
                                     </div>
                                     <p>Enjoy our platform </p>
-                                    <b><Link to="/home/"> <h6><u>click to login</u></h6></Link></b>
+                                    <b><center>
+                                        <button className="nav-link user"
+                                    onClick={this.onLogin}
+                                ><h6><u>click to login</u></h6></button>
+                                          </center></b>
                                 </div>
                             </div>
                         </div>

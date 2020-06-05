@@ -18,7 +18,11 @@ class NavbarPage2 extends Component {
     }
 
     onSubmit = (event) => { 
-        window.location.replace("/home/")    
+       // window.location.replace("/home/")  
+       return this.props.history.push({ 
+        pathname: '/home/',
+        detail: true
+     });  
     }
 
     render() {
@@ -78,4 +82,4 @@ class NavbarPage2 extends Component {
     }
 }
 
-export default (NavbarPage2);
+export default withRouter(NavbarPage2);

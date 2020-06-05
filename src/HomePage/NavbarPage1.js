@@ -3,7 +3,7 @@ import {
     MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBDropdown,
     MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem, MDBIcon
 } from "mdbreact";
-import { BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router, Redirect ,history} from 'react-router-dom';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from "react-redux"
 import { performLogout, logout } from '../Authenciation/Redux/Actions/Actions'
@@ -16,8 +16,14 @@ class NavbarPage1 extends Component {
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
-    onSubmit = (event) => { 
-        window.location.replace("/home/")    
+    onSubmit = (event) =>
+     { 
+          console.log(event.target.name , event.target.value)
+      return this.props.history.push({ 
+        pathname: '/home/',
+        detail: true
+     }); 
+       // window.location.replace("/home/")    
     }
 
     render() {
@@ -76,4 +82,4 @@ class NavbarPage1 extends Component {
     }
 }
 
-export default (NavbarPage1);
+export default withRouter (NavbarPage1);

@@ -24,6 +24,21 @@ class Home extends Component {
         this.checkLogin = this.checkLogin.bind(this)
         this.validateForm = this.validateForm.bind(this)
     }
+    componentDidMount() {
+        console.log("Here")
+        if (this.props.location.detail != null) 
+        {
+            console.log(this.props.location.detail)
+            if (this.props.location.detail === true) {
+                this.setState(
+                    { modal: true }
+                )
+            }
+            else {
+
+            }
+    }
+}
 
     toggle() {
         this.setState(prevState => ({
@@ -154,14 +169,12 @@ class Home extends Component {
         return;
     }
 
-    componentDidMount() {
-        // this.checkLogin()
-
-    }
+     
 
     checkLogin() {
         // console.log(store.getState())
         console.log(this.props.data)
+
         if (this.props.data.isAuthenticated === true) {
             console.log("trying to open login page")
             this.props.history.push("/dash/")
