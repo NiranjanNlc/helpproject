@@ -24,6 +24,7 @@ import { createBrowserHistory } from "history";
 import Options from './Suggestion/Options';
 import Expiry from './Suggestion/Expiry';
 import Loading from './HomePage/Loading';
+import Contact from './HomePage/Contact';
 
 class App extends React.Component {
 
@@ -50,14 +51,15 @@ class App extends React.Component {
               <Route path="/Home/" component={Home} />
               {/* <Route path="/policy/" component={Policy} /> */}
               <Route path="/policy/" component={Terms} />
-             <Route path="/Terms/" component={Policy} />
+              <Route path="/Terms/" component={Policy} />
               <Route path="/Forgot/" component={Forgot} />
               <Route path="/forgets/" component={ForgetS} />
               <Route path="/options/" component={Options} />
               <Route path="/expiry/" component={Expiry} />
               <Route path="/load/" component={Loading} />
+              <Route path="/Contact/" component={Contact} />
               {/* <Route path="/terms/" component={Terms} /> */}
-             
+
               {/* /> */}
             </Switch>
           </>

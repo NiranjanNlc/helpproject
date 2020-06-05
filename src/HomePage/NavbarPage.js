@@ -14,12 +14,12 @@ class NavbarPage extends Component {
         username: ''
     };
 
-    onLogin = (event) => { 
+    onLogin = (event) => {
         // window.location.replace("/home/") 
-        return this.props.history.push({ 
+        return this.props.history.push({
             pathname: '/home/',
             detail: true
-         });    
+        });
     }
 
     onSubmit = (event) => {
@@ -71,6 +71,12 @@ class NavbarPage extends Component {
                                 {<Link className="nav-link" to="/Terms"><button className="nav-link"
 
                                 >Terms of Use</button></Link>}
+                            </MDBNavItem>
+                            <MDBNavItem>
+                                <Link className="nav-link" to="/Contact">
+                                    <button className="nav-link">Contact Us  </button></Link>
+
+                                {/* <MDBNavLink to="#!">Terms of Use</MDBNavLink> */}
                             </MDBNavItem>
                         </MDBNavbarNav>
                         <MDBNavbarNav right>

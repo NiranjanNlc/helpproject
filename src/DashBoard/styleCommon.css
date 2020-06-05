@@ -901,6 +901,174 @@ select.form-control {
     padding: 15px !important;
 }
 
+/*contact*/
+
+#contact_Wrap {
+    min-height: calc(100vh - 106px);
+    background: #f0f2f4;
+}
+
+#contact_Wrap .submit {
+    padding: 14px 45px!important;
+    background: #ffc600!important;
+    font-size: 16px;
+    margin-right: 10px!important;
+    color: #000!important;
+    font-weight: 600!important;
+    border-radius: 25px;
+    text-decoration: underline!important;
+    display: inline-block;
+}
+
+#contact_Wrap .submit:hover {
+    background: #ffcf29!important;
+    transition: all 0.8s;
+}
+
+#contact_Wrap .content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: auto;
+}
+
+#contact_Wrap .contact {
+    border: 1px solid #ddd;
+}
+
+#contact_Wrap .other:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(45deg, #00cfbbd1, rgba(0, 0, 0, 0.25));
+}
+
+#contact_Wrap .other i {
+    margin-right: 7px;
+    font-size: 20px;
+}
+
+#contact_Wrap .other i.fas.fa-phone {
+    transform: rotate(100deg);
+}
+
+#contact_Wrap .form form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+#contact_Wrap .flex-rev {
+    display: flex;
+    flex-direction: column-reverse;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#contact_Wrap .flex-rev input, .flex-rev textarea {
+    border: 1px solid #ddd;
+    padding: 12px 10px;
+    font-size: 16px;
+    resize: none;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border-radius: 0;
+    color: #243342;
+    outline-color: #243342;
+    outline-width: thin;
+    -webkit-appearance: none;
+}
+
+#contact_Wrap .flex-rev textarea {
+    height: 150px;
+}
+
+#contact_Wrap button {
+    -webkit-appearance: none;
+    margin-right: 0;
+}
+
+#contact_Wrap .info {
+    padding: 20px;
+    background: #ffffff;
+    position: absolute;
+    left: -1px;
+    width: 70%;
+    border-left: 3px solid #ffc600;
+}
+
+#contact_Wrap .info h2 {
+    font-size: 28px;
+}
+
+#contact_Wrap .info h3 {
+    color: black;
+    letter-spacing: 1.2px;
+    margin-top: 20px;
+}
+
+#contact_Wrap .svg-wrap {
+    display: flex;
+    margin-top: 14px;
+}
+
+#contact_Wrap .svg-wrap a {
+    border: 0;
+    padding: 0;
+    display: flex;
+    font-size: 16px;
+    justify-content: center;
+    align-items: center;
+}
+
+#contact_Wrap .mail a {
+    font-style: italic;
+}
+
+#contact_Wrap .svg-wrap a svg {
+    width: 20px;
+    height: 20px;
+    fill: white;
+    transition: fill 0.2s ease-in-out;
+    margin-right: 13px;
+}
+
+#contact_Wrap .svg-wrap a:hover svg {
+    fill: #16f1dc;
+    cursor: pointer;
+}
+
+#contact_Wrap .svg-wrap a:hover {
+    background-color: transparent;
+    color: #90cbff;
+    cursor: pointer;
+}
+
+.other {
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+}
+
+.form {
+    background: #fff;
+    padding: 20px;
+}
+
+.topBtn {
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+    color: #fff;
+    background: #00cfbb;
+    padding: 10px;
+    z-index: 1;
+}
+
 /* Footer  */
 
 #footBTM {
