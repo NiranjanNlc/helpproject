@@ -193,6 +193,9 @@
     #contact_Wrap {
         padding: 0 !important;
     }
+    #user-message .modal-body {
+        padding: 20px 20px !important;
+    }
 }
 
 @media (min-width: 1200px) {

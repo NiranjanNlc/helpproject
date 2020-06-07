@@ -7,6 +7,8 @@ import Place from './Place'
 import LocationService from './LocationService'
 import Autocomplete from 'react-autocomplete'
 import Locat from './Locat'
+
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import Validation from './Validation'
 class SignUp extends React.Component {
   constructor(props) {
@@ -14,7 +16,8 @@ class SignUp extends React.Component {
     this.state = {
       fields: {},
       errors: {},
-      check:false
+      check: false,
+      modal: false
       // box: {},
       // name: '',
       // sname: '',
@@ -37,30 +40,35 @@ class SignUp extends React.Component {
     this.getChildprops = this.getChildprops.bind(this)
     this.getInitialState = this.getInitialState.bind(this)
     this.handleCheck = this.handleCheck.bind(this)
+    this.toggle = this.toggle.bind(this)
   }
   getChildprops(fields) {
     this.setState({ fields })
- //   console.log(this.state.fields)
+    //   console.log(this.state.fields)
+  }
+  toggle() {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
   }
   onChange = (add) => {
-   // console.log(add)
+    // console.log(add)
     this.setState({
       fields: {
         loc: add
       }
     })
-   // console.log(this.state.fields.loc)
+    // console.log(this.state.fields.loc)
   }
 
-handleCheck(event)
-{     
-//  console.log("Checkbox status ")
-  let errors = this.state.errors;
-  this.setState({check:!this.state.check});
-  errors["check"]='' 
-}
+  handleCheck(event) {
+    //  console.log("Checkbox status ")
+    let errors = this.state.errors;
+    this.setState({ check: !this.state.check });
+    errors["check"] = ''
+  }
   handleChange(e) {
-  //  console.log(e.target.value)
+    //  console.log(e.target.value)
     // const { name, value } = event.target
     // this.setState({
     //   [name]: value
@@ -165,8 +173,7 @@ handleCheck(event)
       errors["numb"] = "*Required";
     }
     //console.log(this.state.check)
-    if(!this.state.check)
-    {
+    if (!this.state.check) {
       formIsValid = false;
       errors["check"] = "*Agreee the terms and condition before proceeding";
     }
@@ -237,6 +244,7 @@ handleCheck(event)
     console.log(this.state.fields.loc)
     console.log("In place select ")
   }
+
   submitData(event) {
     event.preventDefault()
     const loc1 = this.state.fields.loc
@@ -259,8 +267,7 @@ handleCheck(event)
       console.log(signup)
       AuthenciationService.signUpRequest(signup)
         .then((response) => {
-          if (response.data.message === "disabled")
-          {
+          if (response.data.message === "disabled") {
             this.props.history.push({
               pathname: '/againverify/',
               // search: '?query=abc',
@@ -269,7 +276,7 @@ handleCheck(event)
               success: response.data.success
             })
           }
-         // console.log(response.data.success)
+          // console.log(response.data.success)
           if (response.data.success === "false") {
             this.props.history.push({
               pathname: '/message/',
@@ -303,8 +310,20 @@ handleCheck(event)
     // this.refreshHelpedOne()
     return (
       <div>
-        <NavbarPage1/>
-         <section id="signUpWrap" className="secGap">
+        <NavbarPage1 />
+        <div className="user-message">
+          <Button color="danger" onClick={this.toggle}>username error Message</Button>
+          <Modal id="user-message" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader >Message</ModalHeader>
+            <ModalBody>
+              Sorry... username already taken
+      </ModalBody>
+            <ModalFooter>
+              <Button color="secondary" onClick={this.toggle}>OK</Button>
+            </ModalFooter>
+          </Modal>
+        </div>
+        <section id="signUpWrap" className="secGap">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-sm-8">
@@ -503,12 +522,12 @@ handleCheck(event)
                                 <li>
                                   <label for="remember">
                                     <div className="errorMessage">{this.state.errors.check}</div>
-                                    <input type="checkbox" 
-                                    value={this.state.check}
-                                    name="check" 
-                                 //   onCheckboxChange={this.handleCheck}
+                                    <input type="checkbox"
+                                      value={this.state.check}
+                                      name="check"
+                                      //   onCheckboxChange={this.handleCheck}
 
-                                   onChange={this.handleCheck}
+                                      onChange={this.handleCheck}
                                     />
                                 I agree to the <Link to="/Terms">terms and conditions</Link> and <Link to="/Policy">privacy policy</Link> statement </label>
                                 </li>
@@ -541,8 +560,8 @@ handleCheck(event)
 
                     </div>
                     <div className="col-sm-12 submitBtn" >
-                      <button type="submit" className="btn sub_help" 
-                      onClick={this.submitData}> Register </button>
+                      <button type="submit" className="btn sub_help"
+                        onClick={this.submitData}> Register </button>
                     </div>
                   </form>
                 </div>

@@ -9,6 +9,7 @@ import { Link, withRouter } from 'react-router-dom'
 import httpResource from '../Authenciation/httpResource'
 //import { getAuthenticatedUser, login, logout } from "../Authenciation/Redux/Actions/Actions"
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -167,7 +168,6 @@ class Home extends Component {
         }
         return;
     }
-
 
 
     checkLogin() {
