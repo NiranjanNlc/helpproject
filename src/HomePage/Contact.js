@@ -1,8 +1,55 @@
 import React, { Component } from 'react'
 import { Link, withRouter } from 'react-router-dom'
 import ContactNav from './ContactNav'
-class Contact extends Component {
+import httpResource from '../Authenciation/httpResource'
+class Contact extends Component 
+{
+    constructor(props) {
+        super(props)
+        this.state = {
+            name:'',
+            email:'',
+            message:''
+        }
+    this.handleChange = this.handleChange.bind(this)
+    this.submitData = this.submitData.bind(this)
+    }
 
+    handleChange(event) {
+     //   console.log(e.target.value)
+        const { name, value } = event.target
+        this.setState({
+          [name]: value
+        })
+    }
+    submitData(event) { 
+        const { name, value } = event.target
+        this.setState({
+          [name]: value
+        })
+      event.preventDefault();
+        if(this.state.name==='' || this.state.email==='' || this.state.message==='')
+        {
+            alert('Fill up the info compltely')
+            return;
+        }
+        const signIn = {
+          name: this.state.name,
+          email: this.state.email,
+          message:this.state.message
+        };
+        httpResource.post("/help/contact", signIn)
+                .then((response) => {
+                    if (response.data === "success") { 
+                        this.props.history.push("/contacts/")
+                        window.location.reload(false);
+                    }
+                    this.props.history.push("/contacts/")
+                }).catch(() =>
+                {
+                     
+                })
+    }
     render() {
         return (
             <div>
@@ -32,19 +79,19 @@ class Contact extends Component {
                             <div className="col-sm-5 form">
                                 <form>
                                     <div className="flex-rev">
-                                        <input type="text" placeholder="" />
+                                        <input type="text" onChange={this.handleChange} name="name" placeholder="" />
                                         <label >Full Name</label>
                                     </div>
                                     <div className="flex-rev">
-                                        <input type="email" placeholder="" />
+                                        <input type="email" onChange={this.handleChange} name="email" placeholder="" />
                                         <label >Your Email</label>
                                     </div>
 
                                     <div className="flex-rev">
-                                        <textarea placeholder="I want to know ....." name="message" ></textarea>
+                                        <textarea name = "message" onChange={this.handleChange} placeholder="I want to know ....." name="message" ></textarea>
                                         <label>Message</label>
                                     </div>
-                                    <button type="submit" class="btn btn-lg submit"> Submit </button>
+                                    <button type="submit" onClick={this.submitData} class="btn btn-lg submit"> Submit </button>
                                 </form>
                             </div>
                         </div>

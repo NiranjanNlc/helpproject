@@ -27,6 +27,7 @@ import Loading from './HomePage/Loading';
 import  AgainVerify from './Authenciation/AgainVerify';
 import AgainVerifyS from './Authenciation/AgainVerifyS';
 import Contact from './HomePage/Contact';
+import Contacts from './HomePage/Contacts';
 
 class App extends React.Component {
 
@@ -63,6 +64,7 @@ class App extends React.Component {
 
               <Route path="/againverifys/" component={AgainVerifyS} />
               <Route path="/Contact/" component={Contact} />
+              <Route path="/contacts/" component={Contacts} />
               {/* <Route path="/terms/" component={Terms} /> */}
 
               {/* /> */}
