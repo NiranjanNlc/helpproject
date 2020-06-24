@@ -38,7 +38,7 @@ class AgainVerifyS extends Component {
                                         <p>Verification Sms  has been sent to you  </p>
                                         <b><h6><u>Check your message</u></h6></b>
                                     </div> 
-                                     }
+                                     
 
                                 </div>
                             </div>

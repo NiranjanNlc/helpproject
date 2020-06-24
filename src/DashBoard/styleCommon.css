@@ -1069,6 +1069,33 @@ select.form-control {
     z-index: 1;
 }
 
+#user-message .modal-header {
+    background: #f1f2f4;
+    border: 0;
+    border-bottom: 1px solid #c1c1c1;
+    border-radius: 0;
+}
+
+#user-message .modal-body {
+    font-size: 17px;
+    font-weight: 500;
+    padding: 25px 30px;
+}
+
+#user-message .modal-footer {
+    background: #f1f2f4;
+    border: 0;
+    padding: 10px 20px;
+    padding-top: 0;
+}
+
+#user-message .modal-footer .btn {
+    background: #ffc600;
+    color: #000;
+    border-color: #ffc600;
+    border-radius: 0;
+}
+
 /* Footer  */
 
 #footBTM {

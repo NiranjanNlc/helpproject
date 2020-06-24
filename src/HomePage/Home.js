@@ -9,6 +9,7 @@ import { Link, withRouter } from 'react-router-dom'
 import httpResource from '../Authenciation/httpResource'
 //import { getAuthenticatedUser, login, logout } from "../Authenciation/Redux/Actions/Actions"
 export const USER_NAME_SESSION_ATTRIBUTE_NAME = 'authenticatedUser'
+
 class Home extends Component {
     constructor(props) {
         super(props);
@@ -169,7 +170,6 @@ class Home extends Component {
     }
 
 
-
     checkLogin() {
         // console.log(store.getState())
         console.log(this.props.data)
@@ -208,14 +208,14 @@ class Home extends Component {
                                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
                                     <ModalHeader toggle={this.toggle}>Log in</ModalHeader>
                                     <ModalBody>
-                                        <section id="formWrap" >
+                                    <section id="formWrap" >
                                             <div className="container">
                                                 <div className="row">
                                                     <div className="col-sm-12">
                                                         <div className="formWrap">
                                                             <form>
                                                                 <div className="form-group">
-                                                                    <label>Username</label>
+                                                                    <label>Username or phone </label>
                                                                     <input type="text" name='rid' value={this.state.fields.rid} onChange={this.handleChange} className="form-control" placeholder="" required />
                                                                     <div className="errorMessage">{this.state.errors.rid}</div>
                                                                     <label>Password</label>

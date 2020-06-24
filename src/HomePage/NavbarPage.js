@@ -58,7 +58,7 @@ class NavbarPage extends Component {
                                 {/* <MDBNavLink to="#!">Ask Help</MDBNavLink> */}
                                 {loggedIn && <Link className="nav-link" to="/chose" ><button className="nav-link"
 
-                                >Chose </button></Link>}
+                                >Ask Help</button></Link>}
                             </MDBNavItem>
                             <MDBNavItem className="s-mob">
                                 {/* <MDBNavLink to="/#/chose">Home</MDBNavLink> */}

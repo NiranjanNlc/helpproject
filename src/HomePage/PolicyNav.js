@@ -35,7 +35,8 @@ class PolicyNav extends Component {
         //      return <Redirect push to="/" />;    
     }
 
-    render() {
+    render() 
+    {
         const loggedIn = this.props.data.isAuthenticated
         console.log(loggedIn)
         return (

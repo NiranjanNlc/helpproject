@@ -48,6 +48,14 @@ class Forgot extends Component {
       formIsValid = false;
       errors["numb"] = "*Required";
     }
+    if (typeof fields["numb"] !== "undefined") {
+      
+    if (fields["numb"].length<9) {
+     // console.log("hello ");
+      formIsValid = false;
+      errors["numb"] = "*Phonenumber not valid";
+    }
+  }
     this.setState({
       errors: errors
     })
@@ -126,7 +134,7 @@ class Forgot extends Component {
                           </div>
                           <div className="col-sm-8 feild">
                             <div className="errorMessage">{this.state.errors.numb}</div>
-                            <input type="text" name='numb' value={this.state.fields.numb} onChange={this.handleChange} className="form-control" placeholder="" required />
+                            <input type="number" name='numb' value={this.state.fields.numb} onChange={this.handleChange} className="form-control" placeholder="" required />
                           </div>
                         </div>
 

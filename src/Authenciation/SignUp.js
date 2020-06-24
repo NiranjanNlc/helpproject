@@ -7,6 +7,8 @@ import Place from './Place'
 import LocationService from './LocationService'
 import Autocomplete from 'react-autocomplete'
 import Locat from './Locat'
+
+import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 // import Validation from './Validation'
 class SignUp extends React.Component {
   constructor(props) {
@@ -14,7 +16,9 @@ class SignUp extends React.Component {
     this.state = {
       fields: {},
       errors: {},
-      check:false
+      check: false,
+      modal: false,
+      sodal:false
       // box: {},
       // name: '',
       // sname: '',
@@ -37,30 +41,43 @@ class SignUp extends React.Component {
     this.getChildprops = this.getChildprops.bind(this)
     this.getInitialState = this.getInitialState.bind(this)
     this.handleCheck = this.handleCheck.bind(this)
+    this.toggle = this.toggle.bind(this)
+    this.foggle= this.foggle.bind(this);
   }
   getChildprops(fields) {
     this.setState({ fields })
- //   console.log(this.state.fields)
+    //   console.log(this.state.fields)
+  }
+  toggle() 
+  {
+    this.setState(prevState => ({
+      modal: !prevState.modal
+    }));
+  }
+  foggle() 
+  {
+    this.setState(prevState => ({
+      sodal: !prevState.sodal
+    }));
   }
   onChange = (add) => {
-   // console.log(add)
+    // console.log(add)
     this.setState({
       fields: {
         loc: add
       }
     })
-   // console.log(this.state.fields.loc)
+    // console.log(this.state.fields.loc)
   }
 
-handleCheck(event)
-{     
-//  console.log("Checkbox status ")
-  let errors = this.state.errors;
-  this.setState({check:!this.state.check});
-  errors["check"]='' 
-}
+  handleCheck(event) {
+    //  console.log("Checkbox status ")
+    let errors = this.state.errors;
+    this.setState({ check: !this.state.check });
+    errors["check"] = ''
+  }
   handleChange(e) {
-  //  console.log(e.target.value)
+    //  console.log(e.target.value)
     // const { name, value } = event.target
     // this.setState({
     //   [name]: value
@@ -118,13 +135,13 @@ handleCheck(event)
     }
     if (!fields["country"]) {
       formIsValid = false;
-      errors["country"] = "*required.";
+      errors["country"] = "* country required.";
     }
     if (typeof fields["rid"] !== "undefined") {
 
       if (fields["rid"].length < 6) {
         formIsValid = false;
-        errors["rid"] = "*At Least 6 Character.";
+        errors["rid"] = "* Username should be at Least 6 Character.";
       }
     }
     if (!fields["psw"]) {
@@ -149,24 +166,23 @@ handleCheck(event)
     }
     if (!fields["street"]) {
       formIsValid = false;
-      errors["street"] = "*Required";
+      errors["street"] = "* Street required";
     }
     if (!fields["city"]) {
       formIsValid = false;
-      errors["city"] = "*Required";
+      errors["city"] = "*City required";
     }
 
     if (!fields["postcode"]) {
       formIsValid = false;
-      errors["postcode"] = "*Required";
+      errors["postcode"] = "*Post code required";
     }
     if (!fields["numb"]) {
       formIsValid = false;
-      errors["numb"] = "*Required";
+      errors["numb"] = "*Phone number required";
     }
     //console.log(this.state.check)
-    if(!this.state.check)
-    {
+    if (!this.state.check) {
       formIsValid = false;
       errors["check"] = "*Agreee the terms and condition before proceeding";
     }
@@ -174,12 +190,19 @@ handleCheck(event)
       // if (!fields["numb"].match(/^[0-9]{10}$/)) {
       //   formIsValid = false;
       //   errors["numb"] = "*Please enter valid mobile no.";
-      // }
+      // } 
+      console.log(fields["numb"].length);
+      if (fields["numb"].length<9) {
+        console.log("hello ");
+        formIsValid = false;
+        errors["numb"] = "*Phonenumber not valid";
+      }
+
     }
-    // if (!fields["loc"]) {
-    //   formIsValid = false;
-    //   errors["loc"] = "*Required";
-    // }
+    if (!fields["loc"]) {
+      formIsValid = false;
+      errors["loc"] = "*Required";
+    }
     this.setState({
       errors: errors
     })
@@ -217,6 +240,7 @@ handleCheck(event)
             sname: nlc.sname,
             email: nlc.email,
             street: street,
+            numb:nlc.numb,
             country: nlc.country,
             hphn: nlc.hphn,
             loc: results[0].formatted_address
@@ -237,11 +261,13 @@ handleCheck(event)
     console.log(this.state.fields.loc)
     console.log("In place select ")
   }
+
   submitData(event) {
     event.preventDefault()
     const loc1 = this.state.fields.loc
-    if (this.validateForm(event)) {
-
+    if (this.validateForm(event))
+     {
+      
       const signup = {
         firstName: this.state.fields.name,
         surname: this.state.fields.sname,
@@ -261,20 +287,32 @@ handleCheck(event)
         .then((response) => 
         {
           console.log(response)
-          if (response.data.message === "disabled")
+          if (response.data.message === "Username already taken")
+          {
+            console.log(response.data.message)
+             this.toggle();
+            return ;
+          }
+        else if (response.data.message === "Invalid")
+          {
+            console.log(response.data.message)
+             this.foggle();
+            return ;
+          }
+         else  if (response.data.message === "disabled")
           {
             console.log(response.data.message)
             this.props.history.push({
               pathname: '/againverify/',
               // search: '?query=abc',
-              detail: this.state.fields.numb,
+              detail: response.data.numb,
               message: response.data.message,
               success: response.data.success
             })
             return;
           }
          // console.log(response.data.success)
-         if (response.data.success === "false") {
+         else if (response.data.success === "false") {
             this.props.history.push({
               pathname: '/message/',
               // search: '?query=abc',
@@ -307,8 +345,58 @@ handleCheck(event)
     // this.refreshHelpedOne()
     return (
       <div>
-        <NavbarPage1/>
-         <section id="signUpWrap" className="secGap">
+        <NavbarPage1 />
+        <div className="user-message">
+          {/* <Button color="danger" onClick={this.toggle}>username error Message</Button> */}
+          <Modal id="user-message" isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
+            <ModalHeader > <h3>Username already taken</h3></ModalHeader>
+            <ModalBody>
+            <section id="formWrap" >
+                                            <div className="container">
+                                                <div className="row">
+                                                    <div className="col-sm-12">
+                                                        <div className="formWrap">
+                                                            <form>
+                                                            <div className="form-group" align="center">
+               You may choose the next one 
+               </div>
+               </form>
+               </div></div></div></div>
+               </section>
+           </ModalBody>
+            <ModalFooter>
+            <div className="col-sm-12" align="center">
+                                                                
+              <Button color="secondary" onClick={this.toggle}>OK</Button>
+              </div>
+            </ModalFooter>
+          </Modal>
+          <Modal id="user-message" isOpen={this.state.sodal} toggle={this.foggle} className={this.props.className}>
+            <ModalHeader > <h3>Invalid Number </h3></ModalHeader>
+            <ModalBody>
+            <section id="formWrap" >
+                                            <div className="container">
+                                                <div className="row">
+                                                    <div className="col-sm-12">
+                                                        <div className="formWrap">
+                                                            <form>
+                                                            <div className="form-group" align="center">
+               Please enter  valid number...
+               </div>
+               </form>
+               </div></div></div></div>
+               </section>
+           </ModalBody>
+            <ModalFooter>
+            <div className="col-sm-12" align="center">
+                                                                
+              <Button color="secondary" onClick={this.foggle}>OK</Button>
+              </div>
+            </ModalFooter>
+          </Modal>
+       
+        </div>
+        <section id="signUpWrap" className="secGap">
           <div className="container">
             <div className="row justify-content-center">
               <div className="col-sm-8">
@@ -458,13 +546,11 @@ handleCheck(event)
                                 onChange={this.handleChange}
                                 name="country"
                                 value={this.state.fields.country}>
-                                <option>USA</option>
-                                <option>UK</option>
-
+                                <option value="SPAIN">SPAIN(+34)</option> 
+                                <option value="NEPAL">Nepal(+977)</option>
+                                <option value="UK">UK(+44)</option>
                                 <option selected="selected">......</option>
-                                <option  >SPAIN</option>
-                                <option>GERMANY</option>
-                                <option>POLAND</option>
+                                <option value="SPAIN">SPAIN(+34)</option> 
                               </select>
                             </div>
                           </div>
@@ -474,7 +560,7 @@ handleCheck(event)
                             </div>
                             <div className="col-sm-8 feild">
                               <div className="errorMessage">{this.state.errors.numb}</div>
-                              <input type="number" value={this.state.fields.numb} placeholder="*country code required--" name="numb" className="form-control" required onChange={this.handleChange} required />
+                              <input type="number" value={this.state.fields.numb} placeholder="" name="numb" className="form-control" required onChange={this.handleChange} required />
                             </div>
                           </div>
                           <div className="row feild_entry">
@@ -507,12 +593,12 @@ handleCheck(event)
                                 <li>
                                   <label for="remember">
                                     <div className="errorMessage">{this.state.errors.check}</div>
-                                    <input type="checkbox" 
-                                    value={this.state.check}
-                                    name="check" 
-                                 //   onCheckboxChange={this.handleCheck}
+                                    <input type="checkbox"
+                                      value={this.state.check}
+                                      name="check"
+                                      //   onCheckboxChange={this.handleCheck}
 
-                                   onChange={this.handleCheck}
+                                      onChange={this.handleCheck}
                                     />
                                 I agree to the <Link to="/Terms">terms and conditions</Link> and <Link to="/Policy">privacy policy</Link> statement </label>
                                 </li>
@@ -545,8 +631,8 @@ handleCheck(event)
 
                     </div>
                     <div className="col-sm-12 submitBtn" >
-                      <button type="submit" className="btn sub_help" 
-                      onClick={this.submitData}> Register </button>
+                      <button type="submit" className="btn sub_help"
+                        onClick={this.submitData}> Register </button>
                     </div>
                   </form>
                 </div>

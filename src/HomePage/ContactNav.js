@@ -6,7 +6,7 @@ import {
 import { BrowserRouter as Router } from 'react-router-dom';
 import { Link, withRouter } from 'react-router-dom';
 import { connect } from "react-redux"
-import { performLogout, logout } from '../Authenciation/Redux/Actions/Actions'
+ import { performLogout, logout, getAuthenticatedUser } from '../Authenciation/Redux/Actions/Actions'
 
 class ContactNav extends Component {
     state = {
@@ -16,16 +16,28 @@ class ContactNav extends Component {
     toggleCollapse = () => {
         this.setState({ isOpen: !this.state.isOpen });
     }
+    async componentDidMount() {
+        //  console.log(this.props.data)
+        await this.props.dispatch(getAuthenticatedUser())
+    }
 
-    onSubmit = (event) => {
+    onLogin = (event) => {
         // window.location.replace("/home/")  
         return this.props.history.push({
             pathname: '/home/',
             detail: true
         });
     }
+    onSubmit = (event) => {
+        { this.props.dispatch(logout()) }
+        //  window.location.reload(false);
+        // this.props.history.push("/dash/")
+        //      return <Redirect push to="/" />;    
+    }
 
     render() {
+        const loggedIn = this.props.data.isAuthenticated
+        console.log(loggedIn)
         return (
             //   <Router>
             <MDBNavbar id="newNav" color="default-color" light expand="md">
@@ -73,11 +85,17 @@ class ContactNav extends Component {
                     </MDBNavbarNav>
                     <MDBNavbarNav right>
                         <MDBNavItem>
-                            <li>
+                            {/* <li>
                                 <button className="nav-link user"
-                                    onClick={this.onSubmit}
+                                    onClick={this.onLogin}
                                 >Login</button></li>
-                            {/* <MDBNavLink to="#!">login</MDBNavLink> */}
+                            <MDBNavLink to="#!">login</MDBNavLink> */}
+                             {loggedIn && <li><button className="nav-link user"
+                                onClick={this.onSubmit}
+                            >Logout</button></li>}
+                            {!loggedIn && <li><button className="nav-link user"
+                                onClick={this.onLogin}
+                            >Login</button></li>}
                         </MDBNavItem>
                     </MDBNavbarNav>
                 </MDBCollapse>
@@ -87,5 +105,10 @@ class ContactNav extends Component {
         );
     }
 }
+const mapStateToProps = state => {
+    return {
+        data: state
+    };
+};
 
-export default withRouter(ContactNav);
+export default connect(mapStateToProps)( withRouter(ContactNav));
